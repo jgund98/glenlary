@@ -95,7 +95,7 @@ export default function WeddingsPage() {
               You bring the occasion.{" "}
               <em className="text-moss">The estate brings everything it has.</em>
             </MaskReveal>
-            <p className="mx-auto mt-8 max-w-2xl leading-loose text-ink/85">
+            <p className="mx-auto mt-8 max-w-2xl leading-loose text-ink-soft">
               Events at GlenLary range from full in-house planning and
               coordination to our estate liaison working hand in hand with your
               own planner. Either way you get the same thing: a family that has
@@ -133,7 +133,7 @@ export default function WeddingsPage() {
                   <h3 className="font-display mt-6 text-3xl font-light">
                     {o.title}
                   </h3>
-                  <p className="mt-3 max-w-md leading-relaxed text-ink/85">
+                  <p className="mt-3 max-w-md leading-relaxed text-ink-soft">
                     {o.body}
                   </p>
                 </div>
@@ -188,7 +188,7 @@ export default function WeddingsPage() {
             <h2 className="font-display mt-4 text-4xl font-light leading-tight md:text-6xl">
               Reserve your season
             </h2>
-            <p className="mx-auto mt-6 max-w-xl leading-loose text-ink/85">
+            <p className="mx-auto mt-6 max-w-xl leading-loose text-ink-soft">
               The estate hosts a limited number of events each year, and
               autumn Saturdays are spoken for early. Tell us your season and
               your vision, and Elizabeth will send current rates and open

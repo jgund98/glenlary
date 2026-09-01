@@ -44,15 +44,9 @@ export default function TourForm({ presetWhen = "" }: { presetWhen?: string }) {
         <p className="font-display text-4xl font-light italic text-pine">
           Almost there
         </p>
-        <p className="mx-auto mt-4 max-w-sm leading-relaxed text-ink/85">
-          Your email app just opened with everything filled in. Hit send, and
-          Elizabeth will be in touch to set your tour date.
-        </p>
-        <p className="mt-6 text-sm text-ink/70">
-          Nothing opened? Email us directly at{" "}
-          <a href={`mailto:${site.email}`} className="underline">
-            {site.email}
-          </a>
+        <p className="mx-auto mt-4 max-w-sm leading-relaxed text-ink-soft">
+          Your request is on its way. Elizabeth will be in touch shortly to set
+          your tour date.
         </p>
       </div>
     );
@@ -194,14 +188,6 @@ export default function TourForm({ presetWhen = "" }: { presetWhen?: string }) {
           >
             Request Your Tour
           </button>
-          <p className="mt-4 text-sm leading-relaxed text-ink/70">
-            This opens a ready-to-send email to Elizabeth Lary, our events
-            director. Prefer to write your own? Reach her any time at{" "}
-            <a href={`mailto:${site.email}`} className="underline">
-              {site.email}
-            </a>
-            .
-          </p>
         </div>
       </form>
     </div>

@@ -37,7 +37,7 @@ export default async function TourPage({
                   ? `So, ${when} at GlenLary`
                   : "Tell us about your day"}
               </h2>
-              <p className="mt-4 max-w-lg leading-loose text-ink/85">
+              <p className="mt-4 max-w-lg leading-loose text-ink-soft">
                 {when
                   ? "Wonderful choice. A few details and we will hold a morning or an evening for your visit."
                   : "A few details are all we need to set up your visit and pull current availability for your season."}
@@ -46,7 +46,7 @@ export default async function TourPage({
                 <TourForm presetWhen={when ?? ""} />
               </div>
 
-              <div className="mt-10 grid gap-px overflow-hidden border border-ink/15 bg-ink/15 sm:grid-cols-3">
+              <div className="mt-10 grid gap-px overflow-hidden border border-ink/12 bg-ink/15 sm:grid-cols-3">
                 {[
                   ["Thirty minutes", "Gates to porch to barn, at your pace"],
                   ["Bring anyone", "Parents, planners, and opinions welcome"],
@@ -54,7 +54,7 @@ export default async function TourPage({
                 ].map(([t, b]) => (
                   <div key={t} className="bg-cream p-6">
                     <p className="font-display text-xl font-light">{t}</p>
-                    <p className="mt-2 text-sm leading-relaxed text-ink/85">
+                    <p className="mt-2 text-sm leading-relaxed text-ink-soft">
                       {b}
                     </p>
                   </div>
@@ -81,7 +81,7 @@ export default async function TourPage({
                   <p className="font-display mt-2 text-2xl font-light">
                     {site.location}
                   </p>
-                  <p className="mt-1 text-sm text-ink/85">{site.region}</p>
+                  <p className="mt-1 text-sm text-ink-soft">{site.region}</p>
                 </div>
                 <div>
                   <p className="label text-brass">Events & tours</p>
@@ -91,7 +91,7 @@ export default async function TourPage({
                   >
                     {site.email}
                   </a>
-                  <p className="mt-1 text-sm text-ink/85">
+                  <p className="mt-1 text-sm text-ink-soft">
                     Elizabeth Lary, events director
                   </p>
                 </div>
@@ -118,11 +118,11 @@ export default async function TourPage({
                 </div>
               </div>
               <figure className="mt-8 border-l-2 border-brass pl-6">
-                <blockquote className="font-display text-xl font-light italic leading-relaxed text-ink/85">
+                <blockquote className="font-display text-xl font-light italic leading-relaxed text-ink-soft">
                   &ldquo;From the minute you pull up the long driveway, the
                   sprawling grounds just take your breath away.&rdquo;
                 </blockquote>
-                <figcaption className="label mt-3 text-ink/70">
+                <figcaption className="label mt-3 text-ink-soft">
                   {testimonials[1].name} · {testimonials[1].role}
                 </figcaption>
               </figure>

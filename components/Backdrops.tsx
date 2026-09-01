@@ -78,14 +78,14 @@ export default function Backdrops() {
                 href={s.href}
                 onMouseEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
-                className={`group border-b border-ink/15 py-7 transition-colors duration-300 first:border-t ${
+                className={`group border-b border-ink/12 py-7 transition-colors duration-300 first:border-t ${
                   i === active ? "border-b-brass/60" : ""
                 }`}
               >
                 <div className="flex items-baseline gap-5">
                   <span
                     className={`font-display w-8 text-xl italic transition-colors duration-300 ${
-                      i === active ? "text-brass" : "text-ink/40"
+                      i === active ? "text-brass" : "text-ink-soft"
                     }`}
                   >
                     {s.numeral}.
@@ -94,14 +94,14 @@ export default function Backdrops() {
                     className={`font-display whitespace-nowrap text-3xl font-light transition-all duration-300 xl:text-4xl ${
                       i === active
                         ? "translate-x-1 text-pine"
-                        : "text-ink/60 group-hover:text-ink"
+                        : "text-ink-soft group-hover:text-ink"
                     }`}
                   >
                     {s.title}
                   </span>
                 </div>
                 <p
-                  className="overflow-hidden pl-13 text-sm leading-relaxed text-ink/85 transition-all duration-500"
+                  className="overflow-hidden pl-13 text-sm leading-relaxed text-ink-soft transition-all duration-500"
                   style={{
                     maxHeight: i === active ? "5rem" : "0",
                     opacity: i === active ? 1 : 0,
@@ -121,7 +121,7 @@ export default function Backdrops() {
             </Link>
           </div>
 
-          <div className="relative overflow-hidden lg:col-span-7" style={{ minHeight: 560 }}>
+          <div className="elev-3 relative overflow-hidden lg:col-span-7" style={{ minHeight: 560 }}>
             {spaces.map((s, i) => (
               <div
                 key={s.image}
@@ -171,7 +171,7 @@ export default function Backdrops() {
                   <h3 className="font-display text-3xl font-light">{s.title}</h3>
                 </div>
                 <p className="label mt-1.5 text-brass">{s.note}</p>
-                <p className="mt-2 max-w-md text-sm leading-relaxed text-ink/85">
+                <p className="mt-2 max-w-md text-sm leading-relaxed text-ink-soft">
                   {s.body}
                 </p>
               </Link>

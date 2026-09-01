@@ -45,7 +45,7 @@ export default function EstatePage() {
               Some places are decorated with history. This one was{" "}
               <span data-keep>built from it.</span>
             </MaskReveal>
-            <p className="mt-6 max-w-lg leading-loose text-ink/85">
+            <p className="mt-6 max-w-lg leading-loose text-ink-soft">
               The Lary Manor rose in 1840 and has watched nearly two centuries
               of Kentucky pass its columns: wars and derbies, droughts and
               christenings, and generation after generation of the Lary family,
@@ -53,7 +53,7 @@ export default function EstatePage() {
               nearby is older still, reclaimed and restored to its rustic
               charm.
             </p>
-            <p className="mt-4 max-w-lg leading-loose text-ink/85">
+            <p className="mt-4 max-w-lg leading-loose text-ink-soft">
               What you feel when you arrive is not a venue that opened for the
               season. It is a home that decided, after nearly two centuries, to
               share its best days.
@@ -71,7 +71,7 @@ export default function EstatePage() {
                 />
               </div>
             </div>
-            <p className="label mt-6 text-ink/65">
+            <p className="label mt-6 text-ink-soft">
               The manor porch, behind its 180-year-old shade
             </p>
           </Reveal>
@@ -107,14 +107,14 @@ export default function EstatePage() {
           </Reveal>
           <div className="mt-12 grid gap-10 lg:grid-cols-12">
             <Reveal className="lg:col-span-5">
-              <p className="leading-loose text-ink/85">
+              <p className="leading-loose text-ink-soft">
                 Marry on the front steps beneath the columns, host cocktails
                 through the parlors, and let the double gallery hold your whole
                 wedding party for the portrait everyone frames. Upstairs, the
                 bridal suite gives the morning-of its own address: tall
                 windows, deep light, and room for every robe and garment bag.
               </p>
-              <p className="mt-4 leading-loose text-ink/85">
+              <p className="mt-4 leading-loose text-ink-soft">
                 Intimate indoor gatherings fit the manor's elegant rooms as
                 naturally as grand tented affairs fit its lawn, and overnight
                 accommodations across the estate sleep up to nineteen of your
@@ -259,14 +259,14 @@ export default function EstatePage() {
                   </h2>
                 </div>
               </div>
-              <p className="mt-6 max-w-lg leading-loose text-ink/85">
+              <p className="mt-6 max-w-lg leading-loose text-ink-soft">
                 Reclaimed log walls, a hunting-lodge easiness, and a kitchen
                 guests describe as &ldquo;was this in a magazine?&rdquo; The
                 cabin gives the groom and his groomsmen their own corner of the
                 farm for the morning, and gives weekend guests a reason to
                 fight over room assignments.
               </p>
-              <p className="mt-4 max-w-lg leading-loose text-ink/85">
+              <p className="mt-4 max-w-lg leading-loose text-ink-soft">
                 Between the manor and the cabin, the estate sleeps nineteen, so
                 the people you love most never have to say goodnight and drive
                 away.
@@ -301,7 +301,7 @@ export default function EstatePage() {
             </div>
           </Reveal>
           <Reveal delay={0.08}>
-            <p className="mt-8 max-w-2xl leading-loose text-ink/85">
+            <p className="mt-8 max-w-2xl leading-loose text-ink-soft">
               The great oak over the ceremony lawn. A pond with a resident
               swan. Paddocks of grazing horses, a pool for cocktail hour, and a
               night sky the city never touches. Photographers call the estate
@@ -329,7 +329,7 @@ export default function EstatePage() {
                     sizes="(min-width: 1024px) 25vw, 50vw"
                   />
                 </div>
-                <p className="label mt-3 text-ink/70">{g.label}</p>
+                <p className="label mt-3 text-ink-soft">{g.label}</p>
               </Reveal>
             ))}
           </div>

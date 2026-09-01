@@ -62,7 +62,7 @@ export default function GalleryClient() {
               className={`label whitespace-nowrap px-4 py-2.5 transition-colors duration-300 md:px-5 ${
                 cat === c.key
                   ? "border-l-2 border-l-brass-soft bg-pine text-cream"
-                  : "border border-ink/20 text-ink/70 hover:border-ink/50 hover:text-ink"
+                  : "border border-ink/15 text-ink-soft hover:border-ink/50 hover:text-ink"
               }`}
             >
               {c.label}

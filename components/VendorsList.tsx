@@ -72,11 +72,11 @@ export default function VendorsList() {
       {vendors.map((group, gi) => (
         <Reveal key={group.category} delay={gi * 0.05}>
           <div
-            className="group/row border-b border-ink/15 py-8 transition-colors duration-300 first:pt-0 hover:border-brass/60 md:py-10"
+            className="group/row border-b border-ink/12 pb-9 pt-11 transition-colors duration-300 first:pt-0 hover:border-brass/60 md:pb-11 md:pt-14"
             onMouseEnter={() => setHovered(group.category)}
           >
             <p className="label text-brass">{group.category}</p>
-            <ul className="mt-4 space-y-2">
+            <ul className="mt-5 space-y-2 md:mt-6">
               {group.names.map((name) => (
                 <li
                   key={name}

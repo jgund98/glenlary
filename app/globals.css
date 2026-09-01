@@ -1,16 +1,33 @@
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------
+   GlenLary color system
+
+   Two rules make it hold together:
+   1. Gold has two values. `brass` is the dark gold, and is the ONLY
+      gold allowed on light surfaces (4.9:1). `brass-soft` is the
+      light gold, and is the ONLY gold allowed on dark surfaces
+      (7.1:1). Never swap them.
+   2. Body copy is `ink` (15.8:1 on paper) or `ink-soft` (7.4:1).
+      Nothing lighter than ink-soft ever carries a sentence.
+
+   Shadows are tinted with the ink hue, never neutral black, so
+   elevation reads warm rather than dirty.
+   --------------------------------------------------------------- */
 @theme inline {
-  --color-cream: #fbfaf6;
-  --color-parchment: #f2f0e9;
-  --color-linen: #e8e6df;
-  --color-ink: #20281f;
-  --color-pine: #1c4229;
-  --color-moss: #2e7042;
-  --color-sage: #64805f;
-  --color-brass: #a97e2f;
-  --color-brass-soft: #dcb96a;
-  --color-rose: #c26a52;
+  --color-cream: #fbfaf7; /* paper: page base */
+  --color-white: #ffffff; /* raised: cards above paper */
+  --color-parchment: #f1efe8; /* sunken: alternating sections */
+  --color-linen: #e6e3d9; /* rules, wells */
+  --color-ink: #16201a; /* primary text */
+  --color-ink-soft: #4a5650; /* secondary text */
+  --color-pine: #10331f; /* brand dark surface */
+  --color-pine-deep: #0b2417; /* footer, deepest ground */
+  --color-moss: #1e5233; /* hover green, accents on light */
+  --color-sage: #6d8271; /* quiet green */
+  --color-brass: #966b22; /* GOLD ON LIGHT only */
+  --color-brass-soft: #e0b963; /* GOLD ON DARK only */
+  --color-clay: #b5583f; /* warm accent, used sparingly */
 
   --font-display: var(--font-cormorant);
   --font-body: var(--font-lora);
@@ -18,8 +35,24 @@
 }
 
 :root {
-  --line: rgba(29, 35, 28, 0.16);
-  --line-light: rgba(250, 250, 247, 0.22);
+  --line: rgba(22, 32, 26, 0.14);
+  --line-strong: rgba(22, 32, 26, 0.28);
+  --line-light: rgba(251, 250, 247, 0.22);
+
+  /* elevation, tinted with the ink hue */
+  --e1: 0 1px 2px rgba(22, 32, 26, 0.06), 0 2px 6px rgba(22, 32, 26, 0.05);
+  --e2: 0 4px 10px rgba(22, 32, 26, 0.07), 0 12px 26px rgba(22, 32, 26, 0.08);
+  --e3: 0 10px 20px rgba(22, 32, 26, 0.08), 0 28px 64px rgba(22, 32, 26, 0.14);
+}
+
+.elev-1 {
+  box-shadow: var(--e1);
+}
+.elev-2 {
+  box-shadow: var(--e2);
+}
+.elev-3 {
+  box-shadow: var(--e3);
 }
 
 html {
@@ -27,16 +60,16 @@ html {
 }
 
 body {
-  background: #fafaf7;
-  color: #1d231c;
+  background: #fbfaf7;
+  color: #16201a;
   font-family: var(--font-lora), Georgia, serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
 
 ::selection {
-  background: #24382b;
-  color: #fafaf7;
+  background: #10331f;
+  color: #fbfaf7;
 }
 
 /* Utility helpers used across the site */
@@ -58,8 +91,8 @@ body {
   background: #ffffff;
   padding: 10px 10px 44px;
   box-shadow:
-    0 18px 42px rgba(24, 28, 23, 0.28),
-    0 4px 10px rgba(24, 28, 23, 0.18);
+    0 18px 42px rgba(22, 32, 26, 0.26),
+    0 4px 10px rgba(22, 32, 26, 0.16);
 }
 
 /* Brand wordmark: all-caps Playfair, matching the estate's existing logo */
@@ -131,22 +164,45 @@ body {
    2. Large display lines sit inside a .scrim-radial zone.
    3. .on-photo adds only a whisper of depth, never carries legibility alone. */
 .on-photo {
-  text-shadow: 0 1px 10px rgba(24, 28, 23, 0.22);
+  text-shadow: 0 1px 10px rgba(22, 32, 26, 0.24);
+}
+
+/* Hero eyebrow on mobile: no slab, just fine caps over the scrim */
+.tag-hero {
+  display: inline-block;
+  font-family: var(--font-jost), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.34em;
+  font-size: 0.6rem;
+  font-weight: 500;
+  color: #e0b963;
+  padding-left: 0.34em;
+}
+@media (min-width: 768px) {
+  .tag-hero {
+    background: #10331f;
+    color: #fbfaf7;
+    border-left: 2px solid #e0b963;
+    padding: 0.6rem 1.15rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.28em;
+    box-shadow: var(--e2);
+  }
 }
 
 /* Estate nameplate: solid pine chip with a brass edge */
 .tag {
   display: inline-block;
-  background: #1c4229;
-  color: #fbfaf6;
-  border-left: 2px solid #dcb96a;
+  background: #10331f;
+  color: #fbfaf7;
+  border-left: 2px solid #e0b963;
   padding: 0.6rem 1.15rem;
   font-family: var(--font-jost), system-ui, sans-serif;
   text-transform: uppercase;
   letter-spacing: 0.28em;
   font-size: 0.65rem;
   font-weight: 500;
-  box-shadow: 0 4px 18px rgba(24, 28, 23, 0.3);
+  box-shadow: var(--e2);
 }
 
 /* Soft elliptical darkening behind centered display text on photos */
@@ -159,8 +215,8 @@ body {
   inset: -3rem -4rem;
   background: radial-gradient(
     ellipse at center,
-    rgba(24, 28, 23, 0.5) 0%,
-    rgba(24, 28, 23, 0.28) 45%,
+    rgba(22, 32, 26, 0.52) 0%,
+    rgba(22, 32, 26, 0.3) 45%,
     transparent 72%
   );
   pointer-events: none;
@@ -208,7 +264,7 @@ body {
   content: "";
   position: absolute;
   inset: -12px;
-  border: 1px solid rgba(169, 136, 90, 0.55);
+  border: 1px solid rgba(150, 107, 34, 0.5);
   border-radius: inherit;
   pointer-events: none;
 }
@@ -222,7 +278,7 @@ body {
   position: absolute;
   inset: 0;
   transform: translate(16px, 16px);
-  border: 1px solid rgba(169, 136, 90, 0.5);
+  border: 1px solid rgba(150, 107, 34, 0.45);
   pointer-events: none;
 }
 .frame-offset > * {
@@ -240,12 +296,12 @@ body {
   content: "";
   position: absolute;
   inset: 4px;
-  border: 1px solid rgba(220, 185, 106, 0.45);
+  border: 1px solid rgba(224, 185, 99, 0.4);
   pointer-events: none;
   transition: border-color 0.45s;
 }
 .btn-fill:hover::after {
-  border-color: rgba(220, 185, 106, 0.85);
+  border-color: rgba(224, 185, 99, 0.8);
 }
 .btn-fill::before {
   content: "";
@@ -260,16 +316,16 @@ body {
     opacity 0.45s;
 }
 .btn-fill-dark:hover {
-  color: #fafaf7;
+  color: #fbfaf7;
 }
 .btn-fill-dark::before {
-  background: #24382b;
+  background: #10331f;
 }
 .btn-fill-light:hover {
-  color: #1d231c;
+  color: #16201a;
 }
 .btn-fill-light::before {
-  background: #fafaf7;
+  background: #fbfaf7;
 }
 .btn-fill:hover::before {
   transform: translateY(0);
@@ -281,35 +337,35 @@ body {
   width: 100%;
   background: transparent;
   border: 0;
-  border-bottom: 1px solid rgba(32, 40, 31, 0.3);
+  border-bottom: 1px solid var(--line-strong);
   padding: 0.65rem 0;
   font-family: var(--font-lora), Georgia, serif;
   font-size: 1.05rem;
-  color: #20281f;
+  color: #16201a;
   transition: border-color 0.35s;
 }
 .field-line::placeholder {
-  color: rgba(32, 40, 31, 0.38);
+  color: rgba(22, 32, 26, 0.42);
   font-style: italic;
 }
 .field-line:focus {
   outline: none;
-  border-bottom-color: #a97e2f;
-  box-shadow: 0 1px 0 0 #a97e2f;
+  border-bottom-color: #966b22;
+  box-shadow: 0 1px 0 0 #966b22;
 }
 
 /* Invitation card: hairline frame with inner brass echo */
 .card-invite {
   position: relative;
-  background: #fbfaf6;
-  border: 1px solid rgba(32, 40, 31, 0.18);
-  box-shadow: 0 24px 60px rgba(32, 40, 31, 0.12);
+  background: #ffffff;
+  border: 1px solid var(--line);
+  box-shadow: var(--e3);
 }
 .card-invite::after {
   content: "";
   position: absolute;
   inset: 7px;
-  border: 1px solid rgba(169, 126, 47, 0.35);
+  border: 1px solid rgba(150, 107, 34, 0.32);
   pointer-events: none;
 }
 

@@ -47,9 +47,11 @@ export default function QuoteBand({
               <blockquote className="font-display mt-6 max-w-2xl text-2xl font-light italic leading-[1.45] text-cream sm:text-3xl md:text-[2.1rem]">
                 {quote}
               </blockquote>
-              <figcaption className="mt-9">
-                <span className="tag !border-l-brass-soft !bg-cream/[0.07]">
-                  {name} · {role}
+              {/* name and role stack so neither strands a word */}
+              <figcaption className="mt-9 border-l-2 border-brass-soft pl-5">
+                <span className="label block text-cream">{name}</span>
+                <span className="mt-1.5 block font-body text-sm italic text-brass-soft">
+                  {role}
                 </span>
               </figcaption>
             </Reveal>

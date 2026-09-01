@@ -67,7 +67,7 @@ export default function Seasons() {
           </h2>
         </Reveal>
 
-        <div className="mt-10 flex flex-wrap gap-2 md:gap-3">
+        <div className="mt-10 grid grid-cols-2 gap-2 sm:flex sm:flex-wrap md:gap-3">
           {seasons.map((season, i) => (
             <button
               key={season.key}
@@ -75,7 +75,7 @@ export default function Seasons() {
               className={`label px-5 py-3 transition-colors duration-300 md:px-7 ${
                 i === active
                   ? "border-l-2 border-l-brass-soft bg-pine text-cream"
-                  : "border border-ink/25 text-ink/85 hover:border-ink/60 hover:text-ink"
+                  : "border border-ink/20 text-ink-soft hover:border-ink/60 hover:text-ink"
               }`}
             >
               {season.label}
@@ -93,7 +93,7 @@ export default function Seasons() {
               transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
               className="grid gap-8 lg:grid-cols-12"
             >
-              <div className="relative aspect-[4/3] overflow-hidden lg:col-span-7 lg:aspect-auto lg:min-h-[540px]">
+              <div className="elev-3 relative aspect-[4/3] overflow-hidden lg:col-span-7 lg:aspect-auto lg:min-h-[540px]">
                 <Image
                   src={s.main.src}
                   alt={s.main.alt}
@@ -107,11 +107,11 @@ export default function Seasons() {
                   <h3 className="font-display text-3xl font-light leading-snug md:text-5xl">
                     {s.heading}
                   </h3>
-                  <p className="mt-5 max-w-md leading-loose text-ink/85">
+                  <p className="mt-5 max-w-md leading-loose text-ink-soft">
                     {s.body}
                   </p>
                 </div>
-                <div className="relative aspect-[16/10] overflow-hidden md:aspect-[16/8] lg:aspect-[16/10]">
+                <div className="elev-2 relative aspect-[16/10] overflow-hidden md:aspect-[16/8] lg:aspect-[16/10]">
                   <Image
                     src={s.side.src}
                     alt={s.side.alt}

@@ -55,7 +55,7 @@ export default function VendorsPage() {
                   <p className="font-display text-2xl font-light leading-snug">
                     Bringing your own team?
                   </p>
-                  <p className="mt-3 text-sm leading-relaxed text-ink/85">
+                  <p className="mt-3 text-sm leading-relaxed text-ink-soft">
                     Wonderful. Our estate liaison works hand in hand with
                     outside planners and vendors, and we are happy to walk them
                     through the property before the big day.

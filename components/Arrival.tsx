@@ -132,7 +132,7 @@ export default function Arrival() {
               sizes="100vw"
             />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-ink/45 via-ink/10 to-ink/45" />
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/50 via-ink/20 to-ink/70" />
         </div>
 
         {/* Stage 2: the lane */}
@@ -171,9 +171,16 @@ export default function Arrival() {
           className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-cream"
         >
           <div className="scrim-radial flex flex-col items-center">
-          <p className="mb-8">
-            <span className="tag">
-              Paris, Kentucky · A working horse farm since 1840
+          <p className="mb-7 md:mb-8">
+            {/* short on phones, full on desktop; the wrapper owns display so
+                .tag-hero's own inline-block cannot defeat `hidden` */}
+            <span className="block md:hidden">
+              <span className="tag-hero">Paris, Kentucky · Est. 1840</span>
+            </span>
+            <span className="hidden md:block">
+              <span className="tag-hero">
+                Paris, Kentucky · A working horse farm since 1840
+              </span>
             </span>
           </p>
           <h1 className="flex flex-col items-center">

@@ -44,7 +44,7 @@ export default function Home() {
       <section className="relative overflow-hidden bg-cream">
         <GhostWord
           text="1840"
-          className="left-1/2 top-10 -translate-x-1/2 text-[38vw] text-pine/[0.045] md:text-[26rem]"
+          className="left-1/2 top-16 hidden -translate-x-1/2 text-[38vw] text-pine/[0.045] sm:block md:text-[26rem]"
         />
         <div className="relative mx-auto max-w-4xl px-6 py-24 text-center md:py-36">
           <Reveal>
@@ -52,15 +52,29 @@ export default function Home() {
               <span className="whitespace-nowrap">Welcome home</span>
             </p>
           </Reveal>
-          <MaskReveal
-            className="font-display mt-10 text-4xl font-light leading-[1.15] md:text-6xl"
-            delay={0.1}
-          >
-            Eighty acres of bluegrass. A manor built in 1840.{" "}
-            <em className="text-moss">One extraordinary day.</em>
-          </MaskReveal>
+          {/* three deliberate lines: free wrap broke "built / in 1840" */}
+          <div className="mt-10 space-y-1 md:space-y-2">
+            <MaskReveal
+              className="font-display block text-[2rem] font-light leading-[1.2] sm:text-4xl md:text-6xl"
+              delay={0.08}
+            >
+              Eighty acres of bluegrass.
+            </MaskReveal>
+            <MaskReveal
+              className="font-display block text-[2rem] font-light leading-[1.2] sm:text-4xl md:text-6xl"
+              delay={0.2}
+            >
+              A manor built in 1840.
+            </MaskReveal>
+            <MaskReveal
+              className="font-display block text-[2rem] font-light italic leading-[1.2] text-moss sm:text-4xl md:text-6xl"
+              delay={0.32}
+            >
+              One extraordinary day.
+            </MaskReveal>
+          </div>
           <Reveal delay={0.3}>
-            <p className="mx-auto mt-8 max-w-2xl leading-loose text-ink/85">
+            <p className="mx-auto mt-8 max-w-2xl text-left leading-loose text-ink-soft sm:text-center">
               The GlenLary Estate is a working horse farm in the heart of
               Kentucky horse country, twenty minutes from Lexington and a world
               away from everything else. Marry before the columns of the Lary

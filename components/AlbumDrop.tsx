@@ -32,8 +32,8 @@ const prints: Print[] = [
   { src: "/images/sky-lanterns.jpg", alt: "Sky lanterns over the send-off", caption: "almost midnight", x: -20, y: 25, r: -5, z: 4, pos: "center 35%" },
   { src: "/images/pool-entrance.jpg", alt: "The grand entrance by the pool", caption: "the grand entrance", x: 31, y: 13, r: -6, z: 4, pos: "center 35%" },
   { src: "/images/cake-magnolia.jpg", alt: "A magnolia-trimmed cake", caption: "the cake", x: 23, y: 25, r: 4, z: 5, pos: "center 55%" },
-  { src: "/images/first-dance.jpg", alt: "The first dance under the tent", caption: "the first dance", x: -3, y: -16, r: 2, z: 6, pos: "center 30%" },
-  { src: "", alt: "", caption: "your day, here", x: 0, y: 12, r: -2, z: 10 },
+  { src: "/images/first-dance.jpg", alt: "The first dance under the tent", caption: "the first dance", x: -8, y: -19, r: 2, z: 6, pos: "center 30%" },
+  { src: "", alt: "", caption: "your day, here", x: 0, y: 0, r: -2, z: 10 },
 ];
 
 function ramp(p: number, a: number, b: number) {
@@ -42,6 +42,10 @@ function ramp(p: number, a: number, b: number) {
 // spring-ish ease with a little overshoot for the "toss"
 function toss(t: number) {
   return t === 1 ? 1 : 1 - Math.pow(2, -9 * t) * Math.cos(t * 7);
+}
+// calmer settle for small screens: no overshoot, shorter travel
+function glide(t: number) {
+  return 1 - Math.pow(1 - t, 3);
 }
 
 export default function AlbumDrop() {
@@ -61,9 +65,19 @@ export default function AlbumDrop() {
       const total = rect.height - window.innerHeight;
       const p = total > 0 ? Math.min(1, Math.max(0, -rect.top / total)) : 0;
 
+      const small = window.innerWidth < 768;
       if (headRef.current) {
-        headRef.current.style.opacity = String(1 - ramp(p, 0.82, 0.96) * 0.35);
+        // on phones the pile fills the frame, so the title hands off early
+        headRef.current.style.opacity = small
+          ? String(1 - ramp(p, 0.16, 0.34))
+          : String(1 - ramp(p, 0.82, 0.96) * 0.35);
       }
+
+      // on phones: tighter spread, pushed down clear of the title, gentler motion
+      const sx = small ? 0.62 : 1;
+      const sy = small ? 0.58 : 1;
+      // nudge up a touch on phones so the docked booking rail never clips it
+      const yShift = small ? -3 : 0;
 
       const n = prints.length;
       prints.forEach((pr, i) => {
@@ -71,13 +85,17 @@ export default function AlbumDrop() {
         if (!el) return;
         const start = 0.06 + (i * 0.82) / n;
         const end = start + 0.82 / n;
-        const t = reduced ? 1 : toss(ramp(p, start, end));
+        const raw = ramp(p, start, end);
+        const t = reduced ? 1 : small ? glide(raw) : toss(raw);
         const dev = reduced ? 1 : ramp(p, start + 0.02, end + 0.05);
 
-        // fly in from below-right with extra spin, settle into the pose
-        const fx = pr.x + (1 - t) * 55;
-        const fy = pr.y + (1 - t) * 120;
-        const fr = pr.r + (1 - t) * 24;
+        // fly in from below-right, settle into the pose
+        const travelX = small ? 22 : 55;
+        const travelY = small ? 48 : 120;
+        const spin = small ? 8 : 24;
+        const fx = pr.x * sx + (1 - t) * travelX;
+        const fy = pr.y * sy + yShift + (1 - t) * travelY;
+        const fr = pr.r + (1 - t) * spin;
         el.style.transform = `translate(-50%, -50%) translate(${fx}cqw, ${fy}cqh) rotate(${fr}deg)`;
         el.style.opacity = t > 0.02 ? "1" : "0";
 
@@ -128,7 +146,7 @@ export default function AlbumDrop() {
           <h2 className="font-display mt-3 text-4xl font-light md:text-5xl">
             Proof it happens here
           </h2>
-          <p className="font-hand mt-2 text-2xl text-ink/70">
+          <p className="font-hand mt-2 text-2xl text-ink-soft">
             keep scrolling, the prints are still developing
           </p>
         </div>
@@ -143,8 +161,8 @@ export default function AlbumDrop() {
               }}
               className={`polaroid absolute left-1/2 top-1/2 opacity-0 ${
                 pr.src
-                  ? "w-[46cqw] max-w-[240px] sm:max-w-[270px] md:w-[24cqw] md:max-w-[300px]"
-                  : "w-[54cqw] max-w-[270px] sm:max-w-[300px] md:w-[27cqw] md:max-w-[340px]"
+                  ? "w-[34cqw] max-w-[168px] sm:w-[40cqw] sm:max-w-[240px] md:w-[24cqw] md:max-w-[300px]"
+                  : "w-[40cqw] max-w-[196px] sm:w-[46cqw] sm:max-w-[270px] md:w-[27cqw] md:max-w-[340px]"
               }`}
               style={{ zIndex: pr.z, willChange: "transform" }}
             >
@@ -164,7 +182,7 @@ export default function AlbumDrop() {
                   href="/tour"
                   className="relative flex aspect-square items-center justify-center bg-[#f6f4ee] transition-colors hover:bg-[#f1eee4]"
                 >
-                  <span className="font-display px-6 text-center text-xl font-light italic text-ink/60">
+                  <span className="font-display px-6 text-center text-xl font-light italic text-ink-soft">
                     add yours
                     <span className="mt-2 block text-sm not-italic tracking-wide text-brass">
                       Book a private tour →
@@ -172,7 +190,7 @@ export default function AlbumDrop() {
                   </span>
                 </Link>
               )}
-              <p className="font-hand absolute inset-x-0 bottom-1.5 text-center text-[1.35rem] leading-none text-ink/80">
+              <p className="font-hand absolute inset-x-0 bottom-1.5 text-center text-[1.35rem] leading-none text-ink-soft">
                 {pr.caption}
               </p>
             </div>

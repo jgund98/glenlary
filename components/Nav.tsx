@@ -140,14 +140,14 @@ export default function Nav() {
         </div>
         <div className="relative h-36">
           <Image
-            src="/images/pastures-golden.jpg"
-            alt="Golden hour over the GlenLary pastures"
+            src="/images/manor-golden-hero.jpg"
+            alt="The Lary Manor at golden hour"
             fill
             className="object-cover"
             sizes="100vw"
           />
         </div>
-        <div className="flex items-center justify-between border-t border-ink/15 px-8 py-4">
+        <div className="flex items-center justify-between border-t border-ink/12 px-8 py-4">
           <span className="label opacity-70">{site.location}</span>
           <a href={`mailto:${site.email}`} className="label opacity-70" tabIndex={open ? 0 : -1}>
             Email us

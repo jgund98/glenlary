@@ -57,7 +57,7 @@ export default function LoveNotesPage() {
                   </MaskReveal>
                 </blockquote>
                 <Reveal delay={0.5}>
-                  <figcaption className="label mt-8 text-ink/70">
+                  <figcaption className="label mt-8 text-ink-soft">
                     {t.name} · {t.role}
                   </figcaption>
                 </Reveal>
