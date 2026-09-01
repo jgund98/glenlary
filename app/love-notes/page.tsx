@@ -26,12 +26,12 @@ export default function LoveNotesPage() {
     <>
       <StickyTour />
       <PageHero
-        image="/images/reception-laugh-bw.jpg"
-        alt="Laughter during the toasts under the tent"
+        image="/images/ceremony-oak-crowd.jpg"
+        alt="A ceremony gathered beneath the great oak"
         eyebrow="In their words"
         title="Love Notes"
         sub="Brides, photographers, planners, and guests, all trying to explain the same feeling."
-        position="center 30%"
+        position="center 48%"
       />
 
       <section className="bg-cream">

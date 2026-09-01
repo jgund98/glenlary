@@ -28,9 +28,9 @@ export default function GalleryPage() {
         </div>
       </section>
       <CtaBand
-        image="/images/pastures-golden.jpg"
-        alt="Golden hour over the GlenLary pastures"
-        position="center 65%"
+        image="/images/tent-pool-night.jpg"
+        alt="The sailcloth tent glowing over the pool after dark"
+        position="center 55%"
         eyebrow="Your chapter next"
         title={"Picture yourselves here"}
         body="A thirty-minute walk of the grounds says more than three hundred photographs. Come take the tour."

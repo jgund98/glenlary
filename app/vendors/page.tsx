@@ -17,12 +17,12 @@ export default function VendorsPage() {
     <>
       <StickyTour />
       <PageHero
-        image="/images/candles-florals.jpg"
-        alt="Candlelight and garden florals on a reception table"
+        image="/images/tent-long-table.jpg"
+        alt="A king's table dressed the length of the sailcloth tent"
         eyebrow="Vetted over years of weddings"
         title="Preferred Vendors"
         sub="The people below have loaded in, set up, and shone here many times. They know our light, our layout, and our standards."
-        position="center 60%"
+        position="center 45%"
       />
 
       <section className="bg-cream">

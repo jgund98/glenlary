@@ -131,7 +131,7 @@ body {
    2. Large display lines sit inside a .scrim-radial zone.
    3. .on-photo adds only a whisper of depth, never carries legibility alone. */
 .on-photo {
-  text-shadow: 0 1px 16px rgba(24, 28, 23, 0.4);
+  text-shadow: 0 1px 10px rgba(24, 28, 23, 0.22);
 }
 
 /* Estate nameplate: solid pine chip with a brass edge */

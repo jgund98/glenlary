@@ -6,10 +6,10 @@ import { useEffect, useRef, useState } from "react";
 
 const slides = [
   {
-    src: "/images/couple-horse.jpg",
+    src: "/images/couple-horse-fence.jpg",
     alt: "A bride and groom greeting one of GlenLary's horses at the fence",
     caption: "The horses always come to see",
-    pos: "center 40%",
+    pos: "center 45%",
   },
   {
     src: "/images/ceremony-vows.jpg",
