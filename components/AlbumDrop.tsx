@@ -24,12 +24,16 @@ type Print = {
 };
 
 const prints: Print[] = [
-  { src: "/images/porch-kiss.jpg", alt: "A kiss beside the manor porch", caption: "the first kiss", x: -30, y: -22, r: -7, z: 1 },
-  { src: "/images/bridesmaids-navy.jpg", alt: "The bridal party in navy at the shutters", caption: "the whole crew", x: 26, y: -26, r: 5, z: 2, pos: "center 30%" },
-  { src: "/images/couple-two-horses.jpg", alt: "Bride and groom with two of the horses", caption: "the witnesses", x: -26, y: 18, r: 6, z: 3, pos: "center 40%" },
-  { src: "/images/pool-entrance.jpg", alt: "The grand entrance by the pool", caption: "the grand entrance", x: 28, y: 20, r: -5, z: 4, pos: "center 35%" },
-  { src: "/images/first-dance.jpg", alt: "The first dance under the tent", caption: "the first dance", x: -2, y: -4, r: 2, z: 5, pos: "center 30%" },
-  { src: "", alt: "", caption: "your day, here", x: 2, y: 26, r: -3, z: 6 },
+  { src: "/images/porch-kiss.jpg", alt: "A kiss beside the manor porch", caption: "the kiss", x: -32, y: -22, r: -7, z: 1 },
+  { src: "/images/ring-pillow.jpg", alt: "A monogrammed ring pillow", caption: "the rings", x: -21, y: -29, r: 5, z: 2, pos: "center 45%" },
+  { src: "/images/bridesmaids-navy.jpg", alt: "The bridal party in navy at the shutters", caption: "the whole crew", x: 29, y: -25, r: 5, z: 2, pos: "center 30%" },
+  { src: "/images/groom-manor-door.jpg", alt: "The groom waiting at the manor door", caption: "the nerves", x: 19, y: -31, r: -4, z: 3, pos: "center 30%" },
+  { src: "/images/couple-two-horses.jpg", alt: "Bride and groom with two of the horses", caption: "the witnesses", x: -31, y: 16, r: 6, z: 3, pos: "24% 40%" },
+  { src: "/images/sky-lanterns.jpg", alt: "Sky lanterns over the send-off", caption: "almost midnight", x: -20, y: 25, r: -5, z: 4, pos: "center 35%" },
+  { src: "/images/pool-entrance.jpg", alt: "The grand entrance by the pool", caption: "the grand entrance", x: 31, y: 13, r: -6, z: 4, pos: "center 35%" },
+  { src: "/images/cake-magnolia.jpg", alt: "A magnolia-trimmed cake", caption: "the cake", x: 23, y: 25, r: 4, z: 5, pos: "center 55%" },
+  { src: "/images/first-dance.jpg", alt: "The first dance under the tent", caption: "the first dance", x: -3, y: -16, r: 2, z: 6, pos: "center 30%" },
+  { src: "", alt: "", caption: "your day, here", x: 0, y: 12, r: -2, z: 10 },
 ];
 
 function ramp(p: number, a: number, b: number) {
@@ -102,7 +106,7 @@ export default function AlbumDrop() {
     <section
       ref={sectionRef}
       aria-label="From the album"
-      className="relative h-[280vh] bg-parchment"
+      className="relative h-[330vh] bg-parchment"
     >
       <div
         className="sticky top-0 flex h-screen flex-col overflow-hidden"
@@ -137,7 +141,11 @@ export default function AlbumDrop() {
               ref={(el) => {
                 cardRefs.current[i] = el;
               }}
-              className="polaroid absolute left-1/2 top-1/2 w-[46cqw] max-w-[240px] opacity-0 sm:max-w-[270px] md:w-[24cqw] md:max-w-[300px]"
+              className={`polaroid absolute left-1/2 top-1/2 opacity-0 ${
+                pr.src
+                  ? "w-[46cqw] max-w-[240px] sm:max-w-[270px] md:w-[24cqw] md:max-w-[300px]"
+                  : "w-[54cqw] max-w-[270px] sm:max-w-[300px] md:w-[27cqw] md:max-w-[340px]"
+              }`}
               style={{ zIndex: pr.z, willChange: "transform" }}
             >
               {pr.src ? (

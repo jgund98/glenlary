@@ -10,7 +10,6 @@ import Marquee from "@/components/Marquee";
 import StickyTour from "@/components/StickyTour";
 import WeddingReel from "@/components/WeddingReel";
 import Backdrops from "@/components/Backdrops";
-import PictureYourDay from "@/components/PictureYourDay";
 import AlbumDrop from "@/components/AlbumDrop";
 import { testimonials } from "@/lib/site";
 
@@ -229,8 +228,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <PictureYourDay />
 
       <CtaBand
         image="/images/couple-barn-walk.jpg"
