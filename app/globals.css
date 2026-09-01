@@ -1,26 +1,251 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-cream: #fbfaf6;
+  --color-parchment: #f2f0e9;
+  --color-linen: #e8e6df;
+  --color-ink: #20281f;
+  --color-pine: #1c4229;
+  --color-moss: #2e7042;
+  --color-sage: #64805f;
+  --color-brass: #a97e2f;
+  --color-brass-soft: #dcb96a;
+  --color-rose: #c26a52;
+
+  --font-display: var(--font-cormorant);
+  --font-body: var(--font-lora);
+  --font-label: var(--font-jost);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --line: rgba(29, 35, 28, 0.16);
+  --line-light: rgba(250, 250, 247, 0.22);
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #fafaf7;
+  color: #1d231c;
+  font-family: var(--font-lora), Georgia, serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: #24382b;
+  color: #fafaf7;
+}
+
+/* Utility helpers used across the site */
+.font-display {
+  font-family: var(--font-cormorant), Georgia, serif;
+}
+
+.font-label {
+  font-family: var(--font-jost), system-ui, sans-serif;
+}
+
+/* Brand wordmark: all-caps Playfair, matching the estate's existing logo */
+.font-brand {
+  font-family: var(--font-playfair), Georgia, serif;
+  text-transform: uppercase;
+}
+
+.label {
+  font-family: var(--font-jost), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 0.6875rem;
+  font-weight: 400;
+}
+
+@media (min-width: 768px) {
+  .label {
+    font-size: 0.75rem;
+  }
+}
+
+.hairline {
+  border-color: var(--line);
+}
+
+/* Fine-ruled ornament line with a diamond at center */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+}
+.ornament::before,
+.ornament::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: currentColor;
+  opacity: 0.35;
+}
+
+/* Slow Ken Burns drift for hero stills */
+@keyframes kenburns {
+  0% {
+    transform: scale(1.06) translateY(0.6%);
+  }
+  100% {
+    transform: scale(1) translateY(-0.6%);
+  }
+}
+.kenburns {
+  animation: kenburns 14s ease-out both;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 42s linear infinite;
+}
+
+/* Legibility on photography: consistent soft shadow for overlay text */
+.on-photo {
+  text-shadow:
+    0 2px 24px rgba(24, 28, 23, 0.55),
+    0 1px 6px rgba(24, 28, 23, 0.4);
+}
+
+/* Grain overlay to keep large photos from feeling flat-digital */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Gallery items fade-rise in as a filter set mounts */
+@keyframes galleryIn {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.gallery-item {
+  opacity: 0;
+  animation: galleryIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Arched image mask: the couture-invitation silhouette */
+.arch {
+  border-radius: 999px 999px 0 0;
+}
+
+/* Brass keyline echo floating just outside an arch or frame */
+.arch-frame {
+  position: relative;
+}
+.arch-frame::after {
+  content: "";
+  position: absolute;
+  inset: -12px;
+  border: 1px solid rgba(169, 136, 90, 0.55);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Offset keyline behind rectangular editorial images */
+.frame-offset {
+  position: relative;
+}
+.frame-offset::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate(16px, 16px);
+  border: 1px solid rgba(169, 136, 90, 0.5);
+  pointer-events: none;
+}
+.frame-offset > * {
+  position: relative;
+}
+
+/* Button with sliding fill */
+.btn-fill {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  transition: color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-fill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: currentColor;
+  opacity: 0;
+  transform: translateY(101%);
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s;
+}
+.btn-fill-dark:hover {
+  color: #fafaf7;
+}
+.btn-fill-dark::before {
+  background: #24382b;
+}
+.btn-fill-light:hover {
+  color: #1d231c;
+}
+.btn-fill-light::before {
+  background: #fafaf7;
+}
+.btn-fill:hover::before {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Underline sweep for inline links */
+.link-sweep {
+  position: relative;
+}
+.link-sweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.link-sweep:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .kenburns,
+  .animate-marquee {
+    animation: none;
+  }
+  .gallery-item {
+    animation: none;
+    opacity: 1;
+  }
 }

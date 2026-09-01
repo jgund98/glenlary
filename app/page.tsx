@@ -1,69 +1,349 @@
 import Image from "next/image";
+import Link from "next/link";
+import Arrival from "@/components/Arrival";
+import QuoteBand from "@/components/QuoteBand";
+import CtaBand from "@/components/CtaBand";
+import Reveal from "@/components/Reveal";
+import MaskReveal from "@/components/MaskReveal";
+import GhostWord from "@/components/GhostWord";
+import Marquee from "@/components/Marquee";
+import StickyTour from "@/components/StickyTour";
+import WeddingReel from "@/components/WeddingReel";
+import PictureYourDay from "@/components/PictureYourDay";
+import { testimonials } from "@/lib/site";
+
+const spaces = [
+  {
+    title: "The Lary Manor",
+    note: "Built 1840",
+    body: "Ceremonies before the columns, cocktails in the parlor, and a bridal suite upstairs with nearly two centuries of stories below.",
+    image: "/images/manor-lawn-party.jpg",
+    position: "center 55%",
+    href: "/estate#manor",
+    tall: false,
+  },
+  {
+    title: "The Black Barn",
+    note: "Rustic, reimagined",
+    body: "Kentucky's iconic black barn, swept, strung with greenery chandeliers, and set for a dinner nobody wants to end.",
+    image: "/images/bridesmaids-barn.jpg",
+    position: "center 40%",
+    href: "/estate#barn",
+    tall: true,
+  },
+  {
+    title: "The Great Oak",
+    note: "The ceremony lawn",
+    body: "One tree, three hundred guests, and the whole bluegrass horizon behind your vows.",
+    image: "/images/ceremony-oak-crowd.jpg",
+    position: "center 50%",
+    href: "/estate#grounds",
+    tall: true,
+  },
+  {
+    title: "The Tented Lawn",
+    note: "Sailcloth & chandeliers",
+    body: "Crystal under canvas beside the pool, from the first toast to the last song under the stars.",
+    image: "/images/reception-toast-bride.jpg",
+    position: "center 45%",
+    href: "/estate#grounds",
+    tall: false,
+  },
+];
+
+const dayPreview = [
+  {
+    time: "Nine in the morning",
+    caption: "Slow coffee, silk robes, happy nerves",
+    image: "/images/morning-prep.jpg",
+    position: "center 35%",
+  },
+  {
+    time: "Half past four",
+    caption: "Three hundred hearts under one oak",
+    image: "/images/ceremony-oak-crowd.jpg",
+    position: "center 52%",
+  },
+  {
+    time: "Almost midnight",
+    caption: "Lanterns over the send-off",
+    image: "/images/sky-lanterns.jpg",
+    position: "center 40%",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      <StickyTour />
+      <Arrival />
+
+      {/* Editorial introduction */}
+      <section className="relative overflow-hidden bg-cream">
+        <GhostWord
+          text="1840"
+          className="left-1/2 top-10 -translate-x-1/2 text-[38vw] text-pine/[0.045] md:text-[26rem]"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+        <div className="relative mx-auto max-w-4xl px-6 py-24 text-center md:py-36">
+          <Reveal>
+            <p className="ornament label mx-auto max-w-xs text-brass">
+              <span className="whitespace-nowrap">Welcome home</span>
+            </p>
+          </Reveal>
+          <MaskReveal
+            className="font-display mt-10 text-4xl font-light leading-[1.15] md:text-6xl"
+            delay={0.1}
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Eighty acres of bluegrass. A manor built in 1840.{" "}
+            <em className="text-moss">One extraordinary day.</em>
+          </MaskReveal>
+          <Reveal delay={0.3}>
+            <p className="mx-auto mt-8 max-w-2xl leading-loose text-ink/85">
+              The GlenLary Estate is a working horse farm in the heart of
+              Kentucky horse country, twenty minutes from Lexington and a world
+              away from everything else. Marry before the columns of the Lary
+              Manor, dine in the black barn, dance under sailcloth and stars,
+              and wake the next morning to horses grazing outside your window.
+            </p>
+          </Reveal>
+
+          <Reveal delay={0.15}>
+            <div className="mt-16 grid grid-cols-2 gap-y-10 md:grid-cols-4">
+              {[
+                ["1840", "The manor rises"],
+                ["80+", "Acres of bluegrass"],
+                ["19", "Overnight guests"],
+                ["20", "Minutes to Lexington"],
+              ].map(([stat, label]) => (
+                <div key={label}>
+                  <p className="font-display text-5xl font-light text-pine md:text-6xl">
+                    {stat}
+                  </p>
+                  <p className="label mt-3 text-brass">{label}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Backdrops */}
+      <section className="bg-parchment">
+        <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+          <Reveal>
+            <div className="flex flex-wrap items-end justify-between gap-6">
+              <div>
+                <p className="label text-brass">Four settings, one estate</p>
+                <MaskReveal
+                  className="font-display mt-4 max-w-xl text-4xl font-light leading-tight md:text-6xl"
+                  delay={0.08}
+                >
+                  Choose your backdrop
+                </MaskReveal>
+              </div>
+              <Link href="/estate" className="label link-sweep pb-1">
+                Explore the estate
+              </Link>
+            </div>
+          </Reveal>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-12">
+            {spaces.map((s, i) => (
+              <Reveal
+                key={s.title}
+                delay={i * 0.08}
+                className={
+                  i === 0
+                    ? "lg:col-span-7"
+                    : i === 1
+                      ? "lg:col-span-5"
+                      : i === 2
+                        ? "lg:col-span-5"
+                        : "lg:col-span-7"
+                }
+              >
+                <Link href={s.href} className="group block">
+                  <div
+                    className={`relative overflow-hidden ${
+                      s.tall ? "aspect-[4/5] md:aspect-[3/4]" : "aspect-[4/3]"
+                    }`}
+                  >
+                    <Image
+                      src={s.image}
+                      alt={s.title}
+                      fill
+                      className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
+                      style={{ objectPosition: s.position }}
+                      sizes="(min-width: 1024px) 50vw, 100vw"
+                    />
+                    <div className="absolute inset-0 bg-ink/0 transition-colors duration-700 group-hover:bg-ink/10" />
+                  </div>
+                  <div className="flex flex-col gap-1.5 pt-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
+                    <h3 className="font-display text-3xl font-light">
+                      {s.title}
+                    </h3>
+                    <span className="label whitespace-nowrap text-brass">
+                      {s.note}
+                    </span>
+                  </div>
+                  <p className="mt-2 max-w-md text-sm leading-relaxed text-ink/85">
+                    {s.body}
+                  </p>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <WeddingReel />
+
+      {/* One perfect day teaser */}
+      <section className="relative overflow-hidden bg-cream">
+        <GhostWord
+          text="dawn to dark"
+          className="right-[-4%] top-24 hidden text-[11rem] text-pine/[0.05] lg:block"
+          drift={80}
+        />
+        <div className="relative mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+          <Reveal>
+            <p className="label text-brass">From first light to last lantern</p>
+          </Reveal>
+          <MaskReveal
+            className="font-display mt-4 max-w-2xl text-4xl font-light leading-tight md:text-6xl"
+            delay={0.08}
+          >
+            One perfect day
+          </MaskReveal>
+          <div className="mt-20 grid gap-14 md:grid-cols-3 md:gap-8">
+            {dayPreview.map((d, i) => (
+              <Reveal key={d.time} delay={i * 0.12}>
+                <Link href="/weddings" className="group block text-center">
+                  <div
+                    className={`arch arch-frame relative overflow-hidden aspect-[3/4.2] ${
+                      i === 1 ? "md:-translate-y-8" : ""
+                    }`}
+                  >
+                    <Image
+                      src={d.image}
+                      alt={d.caption}
+                      fill
+                      className="object-cover transition-transform duration-[1600ms] ease-out group-hover:scale-[1.06]"
+                      style={{ objectPosition: d.position }}
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                    />
+                  </div>
+                  <p
+                    className={`label pt-7 text-brass ${i === 1 ? "md:-translate-y-8" : ""}`}
+                  >
+                    {d.time}
+                  </p>
+                  <p
+                    className={`font-display mt-2 text-2xl font-light ${i === 1 ? "md:-translate-y-8" : ""}`}
+                  >
+                    {d.caption}
+                  </p>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal delay={0.2}>
+            <div className="mt-16 text-center md:mt-14">
+              <Link
+                href="/weddings"
+                className="label btn-fill btn-fill-dark inline-block border border-ink/40 px-9 py-4"
+              >
+                Walk Through the Whole Day
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      <QuoteBand
+        image="/images/party-columns-color.jpg"
+        alt="A full wedding party before the manor's columns"
+        quote={testimonials[0].quote}
+        name={testimonials[0].name}
+        role={testimonials[0].role}
+        position="center 30%"
+      />
+
+      {/* Occasions marquee */}
+      <section className="border-y border-ink/10 bg-parchment text-pine">
+        <Marquee
+          items={[
+            "Weddings",
+            "Vow Renewals",
+            "Black-Tie Galas",
+            "Weekend Stays",
+            "Corporate Retreats",
+          ]}
+        />
+      </section>
+
+      {/* Estate life */}
+      <section className="overflow-hidden bg-pine text-cream">
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-24 md:px-8 md:py-32 lg:grid-cols-12 lg:gap-0">
+          <Reveal className="relative lg:col-span-5">
+            <div className="relative aspect-[3/4] overflow-hidden">
+              <Image
+                src="/images/horse-feeding.jpg"
+                alt="Feeding one of GlenLary's horses at the fence line, black barn behind"
+                fill
+                className="object-cover"
+                style={{ objectPosition: "12% center" }}
+                sizes="(min-width: 1024px) 40vw, 100vw"
+              />
+            </div>
+            <div className="absolute -bottom-6 -right-4 hidden w-48 rotate-2 border border-cream/20 bg-ink/60 p-3 backdrop-blur-sm md:block lg:-right-10 lg:w-56">
+              <div className="relative aspect-square overflow-hidden">
+                <Image
+                  src="/images/bride-flower-girls-horse.jpg"
+                  alt="A bride and her flower girls meeting a paint horse at the fence"
+                  fill
+                  className="object-cover"
+                  style={{ objectPosition: "35% center" }}
+                  sizes="220px"
+                />
+              </div>
+            </div>
+          </Reveal>
+          <div className="lg:col-span-6 lg:col-start-7">
+            <Reveal delay={0.1}>
+              <p className="label text-brass-soft">A farm first, always</p>
+              <h2 className="font-display mt-4 text-4xl font-light leading-tight md:text-6xl">
+                Your other wedding guests have four legs
+              </h2>
+              <p className="mt-6 max-w-lg leading-loose opacity-85">
+                GlenLary is no set piece. It is a working horse farm, and the
+                residents like to make an appearance: at the fence during
+                portraits, across the paddock during cocktail hour, silhouetted
+                in the pasture as the sun goes down. Couples plan around a
+                thousand details. The horses are the one nobody forgets.
+              </p>
+              <Link
+                href="/estate"
+                className="label btn-fill btn-fill-light mt-10 inline-block border border-cream/60 px-8 py-4"
+              >
+                Meet the Estate
+              </Link>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      <PictureYourDay />
+
+      <CtaBand
+        image="/images/couple-barn-walk.jpg"
+        alt="A newly married couple walking the lane toward the black barn"
+        eyebrow="Private tours, seven days a week"
+        title={"Come stand where it happens"}
+        body="Photographs only get you so far. Walk the drive, climb the porch steps, and watch the light fall across the pastures. You will know."
+        cta="Book a Private Tour"
+        position="center 30%"
+      />
+    </>
   );
 }
