@@ -59,7 +59,7 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.32em;
   font-size: 0.6875rem;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 @media (min-width: 768px) {
@@ -112,11 +112,47 @@ body {
   animation: marquee 42s linear infinite;
 }
 
-/* Legibility on photography: consistent soft shadow for overlay text */
+/* Legibility on photography, the system:
+   1. Small/label type NEVER floats on a photo — it sits on a solid .tag plaque.
+   2. Large display lines sit inside a .scrim-radial zone.
+   3. .on-photo adds only a whisper of depth, never carries legibility alone. */
 .on-photo {
-  text-shadow:
-    0 2px 24px rgba(24, 28, 23, 0.55),
-    0 1px 6px rgba(24, 28, 23, 0.4);
+  text-shadow: 0 1px 16px rgba(24, 28, 23, 0.4);
+}
+
+/* Estate nameplate: solid pine chip with a brass edge */
+.tag {
+  display: inline-block;
+  background: #1c4229;
+  color: #fbfaf6;
+  border-left: 2px solid #dcb96a;
+  padding: 0.6rem 1.15rem;
+  font-family: var(--font-jost), system-ui, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  font-size: 0.65rem;
+  font-weight: 500;
+  box-shadow: 0 4px 18px rgba(24, 28, 23, 0.3);
+}
+
+/* Soft elliptical darkening behind centered display text on photos */
+.scrim-radial {
+  position: relative;
+}
+.scrim-radial::before {
+  content: "";
+  position: absolute;
+  inset: -3rem -4rem;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(24, 28, 23, 0.5) 0%,
+    rgba(24, 28, 23, 0.28) 45%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+.scrim-radial > * {
+  position: relative;
 }
 
 /* Grain overlay to keep large photos from feeling flat-digital */
@@ -179,12 +215,23 @@ body {
   position: relative;
 }
 
-/* Button with sliding fill */
+/* Button with sliding fill + inner invitation keyline */
 .btn-fill {
   position: relative;
   isolation: isolate;
   overflow: hidden;
   transition: color 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.btn-fill::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 1px solid rgba(220, 185, 106, 0.45);
+  pointer-events: none;
+  transition: border-color 0.45s;
+}
+.btn-fill:hover::after {
+  border-color: rgba(220, 185, 106, 0.85);
 }
 .btn-fill::before {
   content: "";
@@ -213,6 +260,43 @@ body {
 .btn-fill:hover::before {
   transform: translateY(0);
   opacity: 1;
+}
+
+/* Editorial underline form field */
+.field-line {
+  width: 100%;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(32, 40, 31, 0.3);
+  padding: 0.65rem 0;
+  font-family: var(--font-lora), Georgia, serif;
+  font-size: 1.05rem;
+  color: #20281f;
+  transition: border-color 0.35s;
+}
+.field-line::placeholder {
+  color: rgba(32, 40, 31, 0.38);
+  font-style: italic;
+}
+.field-line:focus {
+  outline: none;
+  border-bottom-color: #a97e2f;
+  box-shadow: 0 1px 0 0 #a97e2f;
+}
+
+/* Invitation card: hairline frame with inner brass echo */
+.card-invite {
+  position: relative;
+  background: #fbfaf6;
+  border: 1px solid rgba(32, 40, 31, 0.18);
+  box-shadow: 0 24px 60px rgba(32, 40, 31, 0.12);
+}
+.card-invite::after {
+  content: "";
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(169, 126, 47, 0.35);
+  pointer-events: none;
 }
 
 /* Underline sweep for inline links */

@@ -40,12 +40,14 @@ export default function QuoteBand({
       </motion.div>
       <div className="absolute inset-0 bg-ink/55" />
       <div className="grain absolute inset-0" />
-      <div className="relative mx-auto max-w-4xl px-6 py-28 text-center md:py-44">
+      <div className="scrim-radial relative mx-auto max-w-4xl px-6 py-28 text-center md:py-44">
         <p className="font-display on-photo text-3xl font-light italic leading-snug md:text-[2.75rem] md:leading-[1.25]">
           &ldquo;{quote}&rdquo;
         </p>
-        <p className="label on-photo mt-10 text-brass-soft">
-          {name} · {role}
+        <p className="mt-10">
+          <span className="tag">
+            {name} · {role}
+          </span>
         </p>
       </div>
     </section>

@@ -50,13 +50,15 @@ export default function CtaBand({
       <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/35 to-ink/30" />
       <div className="grain absolute inset-0" />
       <div className="relative mx-auto flex min-h-[80vh] max-w-4xl flex-col items-center justify-center px-6 py-28 text-center">
-        <Reveal>
-          <p className="label on-photo mb-6 text-brass-soft">{eyebrow}</p>
+        <Reveal className="scrim-radial">
+          <p className="mb-7">
+            <span className="tag">{eyebrow}</span>
+          </p>
           <h2 className="font-display on-photo text-5xl font-light leading-[1.05] md:text-7xl">
             {glued}
           </h2>
           {body && (
-            <p className="on-photo mx-auto mt-6 max-w-xl leading-relaxed opacity-95">
+            <p className="on-photo mx-auto mt-6 max-w-xl leading-relaxed">
               {body}
             </p>
           )}

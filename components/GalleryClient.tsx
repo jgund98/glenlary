@@ -54,28 +54,30 @@ export default function GalleryClient() {
     <div>
       {/* Filters */}
       <div className="sticky top-16 z-30 -mx-5 border-b border-ink/10 bg-cream/95 px-5 py-4 backdrop-blur-sm md:top-20 md:mx-0 md:px-0">
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 md:flex-wrap md:overflow-visible">
-          {galleryCats.map((c) => (
-            <button
-              key={c.key}
-              onClick={() => setCat(c.key)}
-              className={`label whitespace-nowrap px-4 py-2.5 transition-colors duration-300 md:px-5 ${
-                cat === c.key
-                  ? "bg-pine text-cream"
-                  : "border border-ink/20 text-ink/70 hover:border-ink/50 hover:text-ink"
-              }`}
-            >
-              {c.label}
-            </button>
-          ))}
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex gap-2 overflow-x-auto pb-1 md:flex-wrap md:overflow-visible">
+            {galleryCats.map((c) => (
+              <button
+                key={c.key}
+                onClick={() => setCat(c.key)}
+                className={`label whitespace-nowrap px-4 py-2.5 transition-colors duration-300 md:px-5 ${
+                  cat === c.key
+                    ? "border-l-2 border-l-brass-soft bg-pine text-cream"
+                    : "border border-ink/20 text-ink/70 hover:border-ink/50 hover:text-ink"
+                }`}
+              >
+                {c.label}
+              </button>
+            ))}
+          </div>
           <button
             onClick={() => {
               setLightbox(0);
               setPlaying(true);
             }}
-            className="label ml-auto hidden whitespace-nowrap border border-brass px-5 py-2.5 text-brass transition-colors duration-300 hover:bg-brass hover:text-cream md:block"
+            className="label hidden whitespace-nowrap border border-brass px-5 py-2.5 text-brass transition-colors duration-300 hover:bg-brass hover:text-cream md:block"
           >
-            ▸ Watch as a Film
+            ▸ Slideshow
           </button>
         </div>
       </div>

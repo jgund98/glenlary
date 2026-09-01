@@ -197,13 +197,13 @@ export default function WeddingsPage() {
             <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
               <Link
                 href="/tour"
-                className="label bg-pine px-9 py-4 text-cream transition-colors hover:bg-moss"
+                className="label btn-fill btn-fill-light bg-pine px-9 py-4 text-cream"
               >
                 Book a Private Tour
               </Link>
               <a
                 href={`mailto:${site.email}?subject=Rates%20and%20availability%20at%20GlenLary`}
-                className="label border border-ink/40 px-9 py-4 transition-colors hover:bg-ink hover:text-cream"
+                className="label btn-fill btn-fill-dark border border-ink/40 px-9 py-4"
               >
                 Request Rates
               </a>

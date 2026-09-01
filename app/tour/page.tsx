@@ -75,7 +75,7 @@ export default async function TourPage({
                   sizes="(min-width: 1024px) 33vw, 100vw"
                 />
               </div>
-              <div className="mt-8 space-y-6 border border-ink/15 bg-parchment p-8">
+              <div className="card-invite mt-8 space-y-6 p-8">
                 <div>
                   <p className="label text-brass">Find us</p>
                   <p className="font-display mt-2 text-2xl font-light">

@@ -66,10 +66,10 @@ export default function Nav() {
             ))}
             <Link
               href="/tour"
-              className={`label border px-5 py-3 transition-colors duration-300 ${
+              className={`label btn-fill border px-5 py-3 ${
                 solid
-                  ? "border-ink/40 hover:bg-ink hover:text-cream"
-                  : "border-cream/60 hover:bg-cream hover:text-ink"
+                  ? "btn-fill-dark border-ink/40"
+                  : "btn-fill-light border-cream/60"
               }`}
             >
               Book a Tour

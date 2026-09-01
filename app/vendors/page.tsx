@@ -51,7 +51,7 @@ export default function VendorsPage() {
                     sizes="(min-width: 1024px) 33vw, 100vw"
                   />
                 </div>
-                <div className="mt-10 border border-ink/15 bg-parchment p-8">
+                <div className="card-invite mt-10 p-8">
                   <p className="font-display text-2xl font-light leading-snug">
                     Bringing your own team?
                   </p>

@@ -37,7 +37,6 @@ export default function Arrival() {
   const t2Ref = useRef<HTMLDivElement>(null);
   const t3Ref = useRef<HTMLDivElement>(null);
   const cueRef = useRef<HTMLDivElement>(null);
-  const frameRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     let raf = 0;
@@ -98,7 +97,6 @@ export default function Arrival() {
       if (t3Ref.current)
         t3Ref.current.style.pointerEvents = p > 0.72 ? "auto" : "none";
       set(cueRef.current, ramp(p, [0, 0.08], [1, 0]));
-      set(frameRef.current, ramp(p, [0, 0.14], [1, 0]));
     };
 
     const onScroll = () => {
@@ -167,21 +165,15 @@ export default function Arrival() {
 
         <div className="grain absolute inset-0" />
 
-        {/* invitation frame */}
-        <div
-          ref={frameRef}
-          className="pointer-events-none absolute inset-3 border border-cream/30 md:inset-5"
-        >
-          <div className="absolute inset-1 border border-cream/15" />
-        </div>
-
         {/* Stage 1 text */}
         <div
           ref={t1Ref}
           className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-cream"
         >
-          <p className="label mb-8 opacity-90">
-            Paris, Kentucky · A working horse farm since 1840
+          <p className="mb-8">
+            <span className="tag">
+              Paris, Kentucky · A working horse farm since 1840
+            </span>
           </p>
           <h1 className="flex flex-col items-center">
             <span className="font-brand -mr-[0.55em] text-base tracking-[0.55em] opacity-90 md:-mr-[0.7em] md:text-xl md:tracking-[0.7em]">

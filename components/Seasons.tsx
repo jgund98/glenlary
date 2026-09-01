@@ -74,7 +74,7 @@ export default function Seasons() {
               onClick={() => setActive(i)}
               className={`label px-5 py-3 transition-colors duration-300 md:px-7 ${
                 i === active
-                  ? "bg-pine text-cream"
+                  ? "border-l-2 border-l-brass-soft bg-pine text-cream"
                   : "border border-ink/25 text-ink/85 hover:border-ink/60 hover:text-ink"
               }`}
             >

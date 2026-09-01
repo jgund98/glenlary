@@ -23,10 +23,10 @@ const MONTHS: MonthInfo[] = [
   { label: "June", photo: "/images/great-oak.jpg", alt: "The great oak in full canopy", sunset: "9:05", line: "The oak in full canopy and the longest light of the year." },
   { label: "July", photo: "/images/pool-cocktails.jpg", alt: "Cocktail hour by the pool at dusk", sunset: "9:00", line: "Long evenings, cocktails by the pool, fireflies after." },
   { label: "August", photo: "/images/pastures-golden.jpg", alt: "Golden light across the pastures", pos: "center 65%", sunset: "8:30", line: "Deep summer, golden by seven, warm past midnight." },
-  { label: "September", photo: "/images/couple-sunset.jpg", alt: "A couple at golden hour", pos: "center 35%", sunset: "7:45", line: "The light photographers cross state lines for." },
+  { label: "September", photo: "/images/manor-ceremony-lawn.jpg", alt: "Ceremony chairs waiting on the manor lawn", pos: "center 60%", sunset: "7:45", line: "The light photographers cross state lines for." },
   { label: "October", photo: "/images/drive-autumn-couple.jpg", alt: "The long drive in autumn", sunset: "7:00", line: "The maples on the drive catch fire. So will the photos." },
   { label: "November", photo: "/images/pond-autumn-swan.jpg", alt: "The pond in late autumn", sunset: "5:30", line: "Bare branches, honey light, and the farm to yourselves." },
-  { label: "December", photo: "/images/couple-winter-steps.jpg", alt: "A winter couple on the manor steps", pos: "center 30%", sunset: "5:20", line: "Evergreen and candlelight, with snow if you are lucky." },
+  { label: "December", photo: "/images/cabin-snow.jpg", alt: "The log cabin under fresh snow", pos: "center 55%", sunset: "5:20", line: "Evergreen and candlelight, with snow if you are lucky." },
 ];
 
 const clean = (v: string) =>
@@ -94,7 +94,7 @@ export default function PictureYourDay() {
                       onClick={() => setMonthIdx(i)}
                       className={`label px-3 py-2 transition-colors duration-300 ${
                         i === monthIdx
-                          ? "bg-cream text-ink"
+                          ? "border-l-2 border-l-brass bg-cream text-ink"
                           : "border border-cream/30 text-cream/80 hover:border-cream/70 hover:text-cream"
                       }`}
                     >
@@ -124,7 +124,7 @@ export default function PictureYourDay() {
                     sizes="(min-width: 1024px) 40vw, 100vw"
                   />
                 ))}
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/10 to-ink/25" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/25 to-ink/20" />
                 <div className="absolute inset-x-0 bottom-0 px-6 pb-10 text-center">
                   <p className="font-brand on-photo text-5xl font-medium tracking-[0.1em]">
                     {yourA}
@@ -133,13 +133,15 @@ export default function PictureYourDay() {
                     </span>
                     {yourB}
                   </p>
-                  <p className="label on-photo mt-4 text-brass-soft">
-                    {m.label} {nextYear} · The GlenLary Estate
+                  <p className="mt-4">
+                    <span className="tag">
+                      {m.label} {nextYear} · GlenLary
+                    </span>
                   </p>
                   <p className="font-display on-photo mx-auto mt-4 max-w-xs text-lg font-light italic leading-snug">
                     {m.line}
                   </p>
-                  <p className="label on-photo mt-4 text-cream/85">
+                  <p className="label on-photo mt-3 text-cream">
                     Sunset around {m.sunset} in the evening
                   </p>
                 </div>

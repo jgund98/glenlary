@@ -90,9 +90,7 @@ export default function WeddingReel() {
       <div className="grain absolute inset-0" />
 
       <div className="absolute inset-x-0 top-0 flex justify-center pt-24 md:pt-28">
-        <p className="label on-photo text-brass-soft">
-          Real weddings at GlenLary
-        </p>
+        <span className="tag">Real weddings at GlenLary</span>
       </div>
 
       <div className="absolute inset-x-0 bottom-0 flex flex-col items-center gap-8 px-6 pb-12 text-center md:pb-16">
