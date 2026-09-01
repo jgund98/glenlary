@@ -6,34 +6,40 @@ import { useEffect, useRef, useState } from "react";
 
 const slides = [
   {
-    src: "/images/couple-horse-fence.jpg",
-    alt: "A bride and groom greeting one of GlenLary's horses at the fence",
-    caption: "The horses always come to see",
-    pos: "center 45%",
-  },
-  {
-    src: "/images/ceremony-vows.jpg",
-    alt: "Vows beneath the great oak before a full lawn of guests",
-    caption: "Three hundred of your favorite people, one old oak",
+    src: "/images/ceremony-bluegrass-wide.jpg",
+    alt: "A ceremony on the lawn with the bluegrass rolling out behind it",
+    caption: "Vows against eighty acres of bluegrass",
     pos: "center 55%",
   },
   {
-    src: "/images/couple-barn-kiss.jpg",
-    alt: "A kiss between the hay bales in the barn",
-    caption: "Stolen minutes in the hay barn",
+    src: "/images/tent-pool-night.jpg",
+    alt: "The sailcloth tent glowing over the pool after dark",
+    caption: "The tent, once the sun goes down",
+    pos: "center 50%",
+  },
+  {
+    src: "/images/barn-aisle.jpg",
+    alt: "The black barn with an aisle runner leading to its doors",
+    caption: "An aisle to the black barn doors",
+    pos: "center 55%",
+  },
+  {
+    src: "/images/tent-lights-wide.jpg",
+    alt: "Inside the sailcloth tent, tables set beneath string lights",
+    caption: "Dinner under sailcloth and string light",
+    pos: "center 55%",
+  },
+  {
+    src: "/images/pool-cocktails-manor.jpg",
+    alt: "Cocktail hour around the pool with the manor behind",
+    caption: "Cocktail hour at the pool",
     pos: "center 45%",
   },
   {
-    src: "/images/couple-fence-lane.jpg",
-    alt: "A first look on the fence-lined lane",
-    caption: "A first look on the lane",
-    pos: "center 40%",
-  },
-  {
-    src: "/images/couple-sunset.jpg",
-    alt: "A couple in golden light over the pastures",
-    caption: "Golden hour, every single time",
-    pos: "center 35%",
+    src: "/images/ceremony-sunset-manor.jpg",
+    alt: "Ceremony chairs before the manor at golden hour",
+    caption: "Golden hour on the manor lawn",
+    pos: "center 50%",
   },
 ];
 
