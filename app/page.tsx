@@ -9,47 +9,10 @@ import GhostWord from "@/components/GhostWord";
 import Marquee from "@/components/Marquee";
 import StickyTour from "@/components/StickyTour";
 import WeddingReel from "@/components/WeddingReel";
+import Backdrops from "@/components/Backdrops";
 import PictureYourDay from "@/components/PictureYourDay";
+import AlbumDrop from "@/components/AlbumDrop";
 import { testimonials } from "@/lib/site";
-
-const spaces = [
-  {
-    title: "The Lary Manor",
-    note: "Built 1840",
-    body: "Ceremonies before the columns, cocktails in the parlor, and a bridal suite upstairs with nearly two centuries of stories below.",
-    image: "/images/manor-lawn-party.jpg",
-    position: "center 55%",
-    href: "/estate#manor",
-    tall: false,
-  },
-  {
-    title: "The Black Barn",
-    note: "Rustic, reimagined",
-    body: "Kentucky's iconic black barn, swept, strung with greenery chandeliers, and set for a dinner nobody wants to end.",
-    image: "/images/bridesmaids-barn.jpg",
-    position: "center 40%",
-    href: "/estate#barn",
-    tall: true,
-  },
-  {
-    title: "The Great Oak",
-    note: "The ceremony lawn",
-    body: "One tree, three hundred guests, and the whole bluegrass horizon behind your vows.",
-    image: "/images/ceremony-oak-crowd.jpg",
-    position: "center 50%",
-    href: "/estate#grounds",
-    tall: true,
-  },
-  {
-    title: "The Tented Lawn",
-    note: "Sailcloth & chandeliers",
-    body: "Crystal under canvas beside the pool, from the first toast to the last song under the stars.",
-    image: "/images/reception-toast-bride.jpg",
-    position: "center 45%",
-    href: "/estate#grounds",
-    tall: false,
-  },
-];
 
 const dayPreview = [
   {
@@ -127,74 +90,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Backdrops */}
-      <section className="bg-parchment">
-        <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
-          <Reveal>
-            <div className="flex flex-wrap items-end justify-between gap-6">
-              <div>
-                <p className="label text-brass">Four settings, one estate</p>
-                <MaskReveal
-                  className="font-display mt-4 max-w-xl text-4xl font-light leading-tight md:text-6xl"
-                  delay={0.08}
-                >
-                  Choose your backdrop
-                </MaskReveal>
-              </div>
-              <Link href="/estate" className="label link-sweep pb-1">
-                Explore the estate
-              </Link>
-            </div>
-          </Reveal>
-
-          <div className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-12">
-            {spaces.map((s, i) => (
-              <Reveal
-                key={s.title}
-                delay={i * 0.08}
-                className={
-                  i === 0
-                    ? "lg:col-span-7"
-                    : i === 1
-                      ? "lg:col-span-5"
-                      : i === 2
-                        ? "lg:col-span-5"
-                        : "lg:col-span-7"
-                }
-              >
-                <Link href={s.href} className="group block">
-                  <div
-                    className={`relative overflow-hidden ${
-                      s.tall ? "aspect-[4/5] md:aspect-[3/4]" : "aspect-[4/3]"
-                    }`}
-                  >
-                    <Image
-                      src={s.image}
-                      alt={s.title}
-                      fill
-                      className="object-cover transition-transform duration-[1400ms] ease-out group-hover:scale-[1.05]"
-                      style={{ objectPosition: s.position }}
-                      sizes="(min-width: 1024px) 50vw, 100vw"
-                    />
-                    <div className="absolute inset-0 bg-ink/0 transition-colors duration-700 group-hover:bg-ink/10" />
-                  </div>
-                  <div className="flex flex-col gap-1.5 pt-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
-                    <h3 className="font-display text-3xl font-light">
-                      {s.title}
-                    </h3>
-                    <span className="label whitespace-nowrap text-brass">
-                      {s.note}
-                    </span>
-                  </div>
-                  <p className="mt-2 max-w-md text-sm leading-relaxed text-ink/85">
-                    {s.body}
-                  </p>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
+      <Backdrops />
 
       <WeddingReel />
 
@@ -261,12 +157,12 @@ export default function Home() {
       </section>
 
       <QuoteBand
-        image="/images/party-columns-color.jpg"
-        alt="A full wedding party before the manor's columns"
+        image="/images/party-porch-bw.jpg"
+        alt="A wedding party across the manor's double gallery"
         quote={testimonials[0].quote}
         name={testimonials[0].name}
         role={testimonials[0].role}
-        position="center 30%"
+        position="center 35%"
       />
 
       {/* Occasions marquee */}
@@ -282,17 +178,18 @@ export default function Home() {
         />
       </section>
 
+      <AlbumDrop />
+
       {/* Estate life */}
       <section className="overflow-hidden bg-pine text-cream">
         <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-24 md:px-8 md:py-32 lg:grid-cols-12 lg:gap-0">
           <Reveal className="relative lg:col-span-5">
             <div className="relative aspect-[3/4] overflow-hidden">
               <Image
-                src="/images/horse-feeding.jpg"
-                alt="Feeding one of GlenLary's horses at the fence line, black barn behind"
+                src="/images/horse-portrait.jpg"
+                alt="One of GlenLary's horses leaning over the four-board fence"
                 fill
                 className="object-cover"
-                style={{ objectPosition: "12% center" }}
                 sizes="(min-width: 1024px) 40vw, 100vw"
               />
             </div>

@@ -23,8 +23,8 @@ const MONTHS: MonthInfo[] = [
   { label: "June", photo: "/images/great-oak.jpg", alt: "The great oak in full canopy", sunset: "9:05", line: "The oak in full canopy and the longest light of the year." },
   { label: "July", photo: "/images/pool-cocktails.jpg", alt: "Cocktail hour by the pool at dusk", sunset: "9:00", line: "Long evenings, cocktails by the pool, fireflies after." },
   { label: "August", photo: "/images/pastures-golden.jpg", alt: "Golden light across the pastures", pos: "center 65%", sunset: "8:30", line: "Deep summer, golden by seven, warm past midnight." },
-  { label: "September", photo: "/images/manor-ceremony-lawn.jpg", alt: "Ceremony chairs waiting on the manor lawn", pos: "center 60%", sunset: "7:45", line: "The light photographers cross state lines for." },
-  { label: "October", photo: "/images/drive-autumn-couple.jpg", alt: "The long drive in autumn", sunset: "7:00", line: "The maples on the drive catch fire. So will the photos." },
+  { label: "September", photo: "/images/barn-summer-lane.jpg", alt: "The white drive curving past the black barn", pos: "center 55%", sunset: "7:45", line: "The light photographers cross state lines for." },
+  { label: "October", photo: "/images/gates-autumn.jpg", alt: "The estate gates in autumn color", pos: "center 60%", sunset: "7:00", line: "The maples on the drive catch fire. So will the photos." },
   { label: "November", photo: "/images/pond-autumn-swan.jpg", alt: "The pond in late autumn", sunset: "5:30", line: "Bare branches, honey light, and the farm to yourselves." },
   { label: "December", photo: "/images/cabin-snow.jpg", alt: "The log cabin under fresh snow", pos: "center 55%", sunset: "5:20", line: "Evergreen and candlelight, with snow if you are lucky." },
 ];

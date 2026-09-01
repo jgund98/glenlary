@@ -3,7 +3,12 @@
 import Image from "next/image";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import Reveal from "@/components/Reveal";
 
+/**
+ * Editorial quote: words live on a solid pine panel, the photograph answers
+ * beside them. Nothing sits on top of the image.
+ */
 export default function QuoteBand({
   image,
   alt,
@@ -24,31 +29,51 @@ export default function QuoteBand({
     target: ref,
     offset: ["start end", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
 
   return (
-    <section ref={ref} className="relative overflow-hidden bg-ink text-cream">
-      <motion.div style={{ y }} className="absolute -inset-y-[12%] inset-x-0">
-        <Image
-          src={image}
-          alt={alt}
-          fill
-          className="object-cover"
-          style={{ objectPosition: position }}
-          sizes="100vw"
-        />
-      </motion.div>
-      <div className="absolute inset-0 bg-ink/55" />
-      <div className="grain absolute inset-0" />
-      <div className="scrim-radial relative mx-auto max-w-4xl px-6 py-28 text-center md:py-44">
-        <p className="font-display on-photo text-3xl font-light italic leading-snug md:text-[2.75rem] md:leading-[1.25]">
-          &ldquo;{quote}&rdquo;
-        </p>
-        <p className="mt-10">
-          <span className="tag">
-            {name} · {role}
-          </span>
-        </p>
+    <section ref={ref} className="bg-pine text-cream">
+      <div className="grid lg:grid-cols-12">
+        {/* The words, on solid ground */}
+        <div className="relative flex items-center lg:col-span-7">
+          <div className="relative w-full px-6 py-20 sm:px-10 md:px-14 md:py-28 lg:py-32 xl:px-20">
+            <Reveal>
+              <span
+                aria-hidden
+                className="font-display block text-8xl font-light italic leading-[0.5] text-brass-soft"
+              >
+                &ldquo;
+              </span>
+              <blockquote className="font-display mt-6 max-w-2xl text-2xl font-light italic leading-[1.45] text-cream sm:text-3xl md:text-[2.1rem]">
+                {quote}
+              </blockquote>
+              <figcaption className="mt-9">
+                <span className="tag !border-l-brass-soft !bg-cream/[0.07]">
+                  {name} · {role}
+                </span>
+              </figcaption>
+            </Reveal>
+          </div>
+          {/* hairline detail echoing the invitation frame */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-4 border border-cream/10 md:inset-6"
+          />
+        </div>
+
+        {/* The photograph, untouched */}
+        <div className="relative min-h-[340px] overflow-hidden sm:min-h-[420px] lg:col-span-5 lg:min-h-[560px]">
+          <motion.div style={{ y }} className="absolute -inset-y-[8%] inset-x-0">
+            <Image
+              src={image}
+              alt={alt}
+              fill
+              className="object-cover"
+              style={{ objectPosition: position }}
+              sizes="(min-width: 1024px) 42vw, 100vw"
+            />
+          </motion.div>
+        </div>
       </div>
     </section>
   );

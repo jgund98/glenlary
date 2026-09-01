@@ -135,10 +135,11 @@ export default function EstatePage() {
             <Reveal delay={0.18} className="lg:col-span-3">
               <div className="relative aspect-[3/4] overflow-hidden lg:mt-16">
                 <Image
-                  src="/images/party-porch-bw.jpg"
-                  alt="A wedding party across the manor's double gallery"
+                  src="/images/manor-balcony.jpg"
+                  alt="Newlyweds on the manor's upper gallery"
                   fill
                   className="object-cover"
+                  style={{ objectPosition: "center 40%" }}
                   sizes="(min-width: 1024px) 25vw, 100vw"
                 />
               </div>
@@ -338,8 +339,9 @@ export default function EstatePage() {
       <Seasons />
 
       <CtaBand
-        image="/images/drive-autumn-couple.jpg"
-        alt="The long drive in autumn, manor in the distance"
+        image="/images/gates-autumn.jpg"
+        alt="The estate gates in autumn color"
+        position="center 55%"
         eyebrow="See it with your own eyes"
         title={"The drive alone is worth the trip"}
         body="Private tours run seven days a week. Bring your people, bring your questions, and plan to stay a little longer than you meant to."

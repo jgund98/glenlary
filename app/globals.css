@@ -48,6 +48,20 @@ body {
   font-family: var(--font-jost), system-ui, sans-serif;
 }
 
+/* Handwritten captions for the album polaroids */
+.font-hand {
+  font-family: var(--font-caveat), "Segoe Script", cursive;
+}
+
+/* A physical print: white border, heavy bottom lip, soft table shadow */
+.polaroid {
+  background: #ffffff;
+  padding: 10px 10px 44px;
+  box-shadow:
+    0 18px 42px rgba(24, 28, 23, 0.28),
+    0 4px 10px rgba(24, 28, 23, 0.18);
+}
+
 /* Brand wordmark: all-caps Playfair, matching the estate's existing logo */
 .font-brand {
   font-family: var(--font-playfair), Georgia, serif;

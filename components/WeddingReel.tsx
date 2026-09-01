@@ -24,10 +24,10 @@ const slides = [
     pos: "center 45%",
   },
   {
-    src: "/images/getaway-car-just-married.jpg",
-    alt: "The just-married car heading down the long drive",
-    caption: "Just married, down the long drive",
-    pos: "center 60%",
+    src: "/images/couple-fence-lane.jpg",
+    alt: "A first look on the fence-lined lane",
+    caption: "A first look on the lane",
+    pos: "center 40%",
   },
   {
     src: "/images/couple-sunset.jpg",
@@ -37,7 +37,7 @@ const slides = [
   },
 ];
 
-const HOLD = 4200;
+const HOLD = 3300;
 
 /** A modern take on the old site's rotating hero: real weddings, full bleed. */
 export default function WeddingReel() {
@@ -67,7 +67,7 @@ export default function WeddingReel() {
       {slides.map((s, i) => (
         <div
           key={s.src}
-          className="absolute inset-0 transition-opacity duration-[1400ms] ease-in-out"
+          className="absolute inset-0 transition-opacity duration-[950ms] ease-in-out"
           style={{ opacity: i === active ? 1 : 0 }}
           aria-hidden={i !== active}
         >
@@ -79,7 +79,7 @@ export default function WeddingReel() {
             style={{
               objectPosition: s.pos,
               transform: i === active ? "scale(1)" : "scale(1.05)",
-              transition: "transform 5.2s ease-out",
+              transition: "transform 4.2s ease-out",
             }}
             sizes="100vw"
             priority={i === 0}

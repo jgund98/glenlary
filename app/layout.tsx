@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Lora, Jost, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Lora, Jost, Playfair_Display, Caveat } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
@@ -32,6 +32,12 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 
+const caveat = Caveat({
+  subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-caveat",
+});
+
 export const metadata: Metadata = {
   metadataBase: new URL("https://eventsatglenlary.com"),
   title: {
@@ -55,7 +61,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${lora.variable} ${jost.variable} ${playfair.variable}`}
+      className={`${cormorant.variable} ${lora.variable} ${jost.variable} ${playfair.variable} ${caveat.variable}`}
     >
       <body>
         <script

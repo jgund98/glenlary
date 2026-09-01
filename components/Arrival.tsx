@@ -170,6 +170,7 @@ export default function Arrival() {
           ref={t1Ref}
           className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-cream"
         >
+          <div className="scrim-radial flex flex-col items-center">
           <p className="mb-8">
             <span className="tag">
               Paris, Kentucky · A working horse farm since 1840
@@ -186,6 +187,7 @@ export default function Arrival() {
               Estate
             </span>
           </h1>
+          </div>
         </div>
 
         {/* Stage 2 text */}
