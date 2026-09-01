@@ -34,7 +34,7 @@ export default function PageHero({
         <p className="mb-6">
           <span className="tag">{eyebrow}</span>
         </p>
-        <h1 className="font-display on-photo max-w-4xl text-5xl font-light leading-[1.02] md:text-8xl">
+        <h1 className="font-display on-photo balance max-w-4xl text-5xl font-light leading-[1.02] md:text-8xl">
           {title}
         </h1>
         {sub && (

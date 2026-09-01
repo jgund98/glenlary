@@ -115,6 +115,10 @@ body {
   }
 }
 
+.balance {
+  text-wrap: balance;
+}
+
 .hairline {
   border-color: var(--line);
 }
@@ -212,13 +216,17 @@ body {
 .scrim-radial::before {
   content: "";
   position: absolute;
-  inset: -3rem -4rem;
+  inset: -6rem -7rem;
   background: radial-gradient(
-    ellipse at center,
-    rgba(22, 32, 26, 0.52) 0%,
-    rgba(22, 32, 26, 0.3) 45%,
-    transparent 72%
+    ellipse 115% 95% at center,
+    rgba(22, 32, 26, 0.46) 0%,
+    rgba(22, 32, 26, 0.3) 38%,
+    rgba(22, 32, 26, 0.12) 62%,
+    rgba(22, 32, 26, 0.03) 80%,
+    transparent 95%
   );
+  /* blurred so the ellipse can never show an edge behind the type */
+  filter: blur(36px);
   pointer-events: none;
 }
 .scrim-radial > * {

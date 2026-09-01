@@ -11,6 +11,7 @@ import StickyTour from "@/components/StickyTour";
 import WeddingReel from "@/components/WeddingReel";
 import Backdrops from "@/components/Backdrops";
 import AlbumDrop from "@/components/AlbumDrop";
+import Residents from "@/components/Residents";
 import { testimonials } from "@/lib/site";
 
 const dayPreview = [
@@ -193,61 +194,13 @@ export default function Home() {
 
       <AlbumDrop />
 
-      {/* Estate life */}
-      <section className="overflow-hidden bg-pine text-cream">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-24 md:px-8 md:py-32 lg:grid-cols-12 lg:gap-0">
-          <Reveal className="relative lg:col-span-5">
-            <div className="relative aspect-[3/4] overflow-hidden">
-              <Image
-                src="/images/horse-portrait.jpg"
-                alt="One of GlenLary's horses leaning over the four-board fence"
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 40vw, 100vw"
-              />
-            </div>
-            <div className="absolute -bottom-6 -right-4 hidden w-48 rotate-2 border border-cream/20 bg-ink/60 p-3 backdrop-blur-sm md:block lg:-right-10 lg:w-56">
-              <div className="relative aspect-square overflow-hidden">
-                <Image
-                  src="/images/bride-flower-girls-horse.jpg"
-                  alt="A bride and her flower girls meeting a paint horse at the fence"
-                  fill
-                  className="object-cover"
-                  style={{ objectPosition: "35% center" }}
-                  sizes="220px"
-                />
-              </div>
-            </div>
-          </Reveal>
-          <div className="lg:col-span-6 lg:col-start-7">
-            <Reveal delay={0.1}>
-              <p className="label text-brass-soft">A farm first, always</p>
-              <h2 className="font-display mt-4 text-4xl font-light leading-tight md:text-6xl">
-                Your other wedding guests have four legs
-              </h2>
-              <p className="mt-6 max-w-lg leading-loose opacity-85">
-                GlenLary is no set piece. It is a working horse farm, and the
-                residents like to make an appearance: at the fence during
-                portraits, across the paddock during cocktail hour, silhouetted
-                in the pasture as the sun goes down. Couples plan around a
-                thousand details. The horses are the one nobody forgets.
-              </p>
-              <Link
-                href="/estate"
-                className="label btn-fill btn-fill-light mt-10 inline-block border border-cream/60 px-8 py-4"
-              >
-                Meet the Estate
-              </Link>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+      <Residents />
 
       <CtaBand
         image="/images/ceremony-sunset-manor.jpg"
         alt="Ceremony chairs before the manor at golden hour"
         eyebrow="Private tours, seven days a week"
-        title={"Come stand where it happens"}
+        title={"Come stand where it happens"}
         body="Photographs only get you so far. Walk the drive, climb the porch steps, and watch the light fall across the pastures. You will know."
         cta="Book a Private Tour"
         position="center 30%"

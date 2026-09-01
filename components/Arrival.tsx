@@ -197,46 +197,44 @@ export default function Arrival() {
           </div>
         </div>
 
-        {/* Stage 2 text */}
+        {/* Stage 2 text — high in the sky on phones, centered on desktop */}
         <div
           ref={t2Ref}
           style={{ opacity: 0 }}
-          className="pointer-events-none absolute inset-0 flex items-end justify-center px-6 pb-28 text-center text-cream md:items-center md:pb-0"
+          className="pointer-events-none absolute inset-0 flex items-start justify-center px-6 pt-[22vh] text-center text-cream md:items-center md:pt-0"
         >
-          <p
-            className="font-display max-w-xl text-3xl font-light italic leading-snug md:text-5xl"
-            style={{ textShadow: "0 2px 28px rgba(29,35,28,0.65), 0 1px 8px rgba(29,35,28,0.45)" }}
-          >
-            Past the black barn, under old trees, along a mile of four-board
-            fence&hellip;
+          <p className="font-display scrim-radial balance max-w-xl text-3xl font-light italic leading-snug md:text-5xl">
+            <span className="on-photo">
+              Past the black barn, under old trees, along a mile of four-board
+              fence&hellip;
+            </span>
           </p>
         </div>
 
-        {/* Stage 3 text */}
+        {/* Stage 3 text — above the manor roofline on phones */}
         <div
           ref={t3Ref}
           style={{ opacity: 0, pointerEvents: "none" }}
-          className="absolute inset-0 flex flex-col items-center justify-end px-6 pb-16 text-center text-cream md:pb-24"
+          className="absolute inset-0 flex flex-col items-center justify-start px-6 pt-[18vh] text-center text-cream md:justify-end md:pb-24 md:pt-0"
         >
-          <p
-            className="font-display text-4xl font-light italic leading-tight md:text-6xl"
-            style={{ textShadow: "0 2px 28px rgba(29,35,28,0.6), 0 1px 8px rgba(29,35,28,0.4)" }}
-          >
-            &hellip;until the manor comes into view.
-          </p>
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:gap-4">
-            <Link
-              href="/tour"
-              className="label btn-fill btn-fill-dark bg-cream px-8 py-4 text-ink"
-            >
-              Book a Private Tour
-            </Link>
-            <Link
-              href="/estate"
-              className="label btn-fill btn-fill-light border border-cream/70 px-8 py-4"
-            >
-              Wander the Estate
-            </Link>
+          <div className="scrim-radial">
+            <p className="font-display on-photo balance text-4xl font-light italic leading-tight md:text-6xl">
+              &hellip;until the manor comes into view.
+            </p>
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center sm:gap-4">
+              <Link
+                href="/tour"
+                className="label btn-fill btn-fill-dark bg-cream px-8 py-4 text-ink"
+              >
+                Book a Private Tour
+              </Link>
+              <Link
+                href="/estate"
+                className="label btn-fill btn-fill-light border border-cream/70 px-8 py-4"
+              >
+                Wander the Estate
+              </Link>
+            </div>
           </div>
         </div>
 

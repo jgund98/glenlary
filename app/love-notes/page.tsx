@@ -85,10 +85,10 @@ export default function LoveNotesPage() {
       </section>
 
       <CtaBand
-        image="/images/party-porch-bw.jpg"
-        alt="A wedding party across the manor's double gallery"
+        image="/images/tent-exterior-sky.jpg"
+        alt="The sailcloth tent raised on the lawn"
         eyebrow="Write yours here"
-        title={"The next note could be signed by you"}
+        title={"The next note could be yours"}
         body="Every one of these stories started the same way: with a drive up to the gates. Book yours."
       />
     </>

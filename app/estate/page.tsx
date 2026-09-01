@@ -71,7 +71,7 @@ export default function EstatePage() {
                 />
               </div>
             </div>
-            <p className="label mt-6 text-ink-soft">
+            <p className="label balance mt-6 max-w-xs text-ink-soft">
               The manor porch, behind its 180-year-old shade
             </p>
           </Reveal>
@@ -343,7 +343,7 @@ export default function EstatePage() {
         alt="The estate gates in autumn color"
         position="center 55%"
         eyebrow="See it with your own eyes"
-        title={"The drive alone is worth the trip"}
+        title={"The drive alone is worth the trip"}
         body="Private tours run seven days a week. Bring your people, bring your questions, and plan to stay a little longer than you meant to."
       />
     </>

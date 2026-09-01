@@ -71,7 +71,7 @@ export default function VendorsPage() {
         image="/images/barn-tables.jpg"
         alt="Dinner tables set beneath the black barn doors"
         eyebrow="Assemble your dream team"
-        title={"Great days are group projects"}
+        title={"Great days are group projects"}
         body="Tell us your vision on the tour and we will point you to the people who can build it."
       />
     </>

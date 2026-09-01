@@ -54,11 +54,11 @@ export default function CtaBand({
           <p className="mb-7">
             <span className="tag">{eyebrow}</span>
           </p>
-          <h2 className="font-display on-photo text-5xl font-light leading-[1.05] md:text-7xl">
+          <h2 className="font-display on-photo balance mx-auto max-w-3xl text-5xl font-light leading-[1.05] md:text-7xl">
             {glued}
           </h2>
           {body && (
-            <p className="on-photo mx-auto mt-6 max-w-xl leading-relaxed">
+            <p className="on-photo balance mx-auto mt-6 max-w-xl leading-relaxed">
               {body}
             </p>
           )}
