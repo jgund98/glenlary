@@ -171,8 +171,8 @@ export default function Home() {
       </section>
 
       <QuoteBand
-        image="/images/party-porch-bw.jpg"
-        alt="A wedding party across the manor's double gallery"
+        image="/images/manor-guests-seated.jpg"
+        alt="Guests seated before the manor"
         quote={testimonials[0].quote}
         name={testimonials[0].name}
         role={testimonials[0].role}

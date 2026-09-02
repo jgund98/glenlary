@@ -30,10 +30,10 @@ const frames = [
     lift: "lg:translate-y-10",
   },
   {
-    src: "/images/couple-horse-bw.jpg",
-    alt: "Newlyweds at the fence line with a horse, in black and white",
+    src: "/images/bride-flower-girls-horse.jpg",
+    alt: "A bride and her flower girls meeting a paint horse at the fence",
     caption: "in the pasture, as the sun goes",
-    pos: "center 45%",
+    pos: "center 40%",
     tall: false,
     drift: -12,
     lift: "lg:-translate-y-2",

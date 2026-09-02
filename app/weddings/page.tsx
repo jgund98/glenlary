@@ -173,8 +173,8 @@ export default function WeddingsPage() {
       </section>
 
       <QuoteBand
-        image="/images/couple-columns-bw.jpg"
-        alt="A couple beneath the manor columns"
+        image="/images/couple-golden-field.jpg"
+        alt="Golden-hour portraits on the estate lawn"
         quote={testimonials[2].quote}
         name={testimonials[2].name}
         role={testimonials[2].role}

@@ -179,8 +179,8 @@ export default function EstatePage() {
             <Reveal delay={0.12} className="flex flex-col justify-between gap-8 lg:col-span-4">
               <div className="relative hidden aspect-[4/3] overflow-hidden lg:block">
                 <Image
-                  src="/images/couple-hay-barn.jpg"
-                  alt="Portraits in the hay barn light"
+                  src="/images/barn-lounge.jpg"
+                  alt="A velvet lounge inside the black barn"
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 33vw, 100vw"
@@ -219,8 +219,8 @@ export default function EstatePage() {
             <Reveal delay={0.16} className="lg:col-span-4">
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src="/images/couple-barn-kiss.jpg"
-                  alt="A kiss between the hay bales"
+                  src="/images/barn-aisle.jpg"
+                  alt="An aisle runner to the black barn doors"
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 33vw, 100vw"

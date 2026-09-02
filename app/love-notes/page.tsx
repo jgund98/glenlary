@@ -14,11 +14,11 @@ export const metadata: Metadata = {
 };
 
 const interleaved = [
-  { src: "/images/reception-laugh-bw.jpg", alt: "A toast that landed at the reception" },
+  { src: "/images/joy-applause.jpg", alt: "The couple applauding during the toasts" },
   { src: "/images/couple-walk-bw.jpg", alt: "Newlyweds walking the drive at sunset" },
   { src: "/images/bridesmaids-barn.jpg", alt: "The bridal party walking from the black barn" },
   { src: "/images/getaway-car-just-married.jpg", alt: "The just-married car heading down the drive" },
-  { src: "/images/reception-toast-bride.jpg", alt: "The bride taking the microphone" },
+  { src: "/images/guests-cheering.jpg", alt: "The room on its feet" },
 ];
 
 export default function LoveNotesPage() {

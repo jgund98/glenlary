@@ -38,8 +38,8 @@ const chapters: Chapter[] = [
     time: "6:00 pm",
     title: "Cocktails as the light turns gold",
     body: "Bourbon by the pool, drinks on the porch, the photographer stealing you away for twenty minutes while golden hour does what golden hour does at GlenLary.",
-    image: { src: "/images/pool-cocktails.jpg", alt: "Cocktail hour beside the pool at dusk" },
-    second: { src: "/images/couple-sunset.jpg", alt: "Golden-hour portraits over the pastures" },
+    image: { src: "/images/pool-cocktails-manor.jpg", alt: "Cocktail hour beside the pool at dusk" },
+    second: { src: "/images/couple-golden-field.jpg", alt: "Golden-hour portraits over the pastures" },
   },
   {
     time: "8:15 pm",
@@ -52,8 +52,8 @@ const chapters: Chapter[] = [
     time: "10:30 pm",
     title: "The floor fills and stays full",
     body: "The band kicks, the string lights blur, and the farm's famous quiet gives way for a few loud, perfect hours. Out here, the music plays as late as you can.",
-    image: { src: "/images/reception-party-bw.jpg", alt: "The dance floor under string lights" },
-    second: { src: "/images/band-bw.jpg", alt: "The band mid-set" },
+    image: { src: "/images/dancefloor-lights.jpg", alt: "The dance floor under string lights" },
+    second: { src: "/images/band-playing.jpg", alt: "The band mid-set" },
   },
   {
     time: "11:47 pm",
