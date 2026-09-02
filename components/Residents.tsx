@@ -16,27 +16,24 @@ const frames = [
     alt: "One of GlenLary's horses at the four-board fence",
     caption: "at the fence, during portraits",
     pos: "center",
-    tall: true,
     drift: -24,
-    lift: "lg:-translate-y-8",
+    lift: "lg:-translate-y-6",
   },
   {
     src: "/images/couple-horse.jpg",
     alt: "A bride and groom greeting a horse over the fence",
     caption: "across the paddock, at cocktail hour",
     pos: "center 40%",
-    tall: false,
     drift: 16,
-    lift: "lg:translate-y-10",
+    lift: "lg:translate-y-6",
   },
   {
     src: "/images/bride-flower-girls-horse.jpg",
     alt: "A bride and her flower girls meeting a paint horse at the fence",
     caption: "in the pasture, as the sun goes",
     pos: "center 40%",
-    tall: false,
     drift: -12,
-    lift: "lg:-translate-y-2",
+    lift: "lg:-translate-y-1",
   },
 ];
 
@@ -85,7 +82,7 @@ export default function Residents() {
           </p>
         </div>
 
-        <div className="mt-10 grid grid-cols-2 items-end gap-4 md:gap-8 lg:grid-cols-3 lg:gap-10">
+        <div className="mt-10 grid grid-cols-2 items-start gap-4 md:gap-8 lg:grid-cols-3 lg:gap-10">
           {frames.map((f, i) => (
             <div
               key={f.src}
@@ -97,11 +94,8 @@ export default function Residents() {
                 }}
                 className="will-change-transform"
               >
-                <div
-                  className={`elev-3 relative overflow-hidden ${
-                    f.tall ? "aspect-[3/4]" : "aspect-[4/3]"
-                  }`}
-                >
+                {/* one ratio across the strip so no corner is left empty */}
+                <div className="elev-3 relative aspect-[4/5] overflow-hidden">
                   <Image
                     src={f.src}
                     alt={f.alt}

@@ -62,7 +62,7 @@ export default function TourForm({ presetWhen = "" }: { presetWhen?: string }) {
     .join(" ");
 
   return (
-    <div className="card-invite">
+    <div className="card-invite flex h-full flex-col">
       <div className="relative border-b border-ink/10 px-7 pb-7 pt-8 text-center md:px-12">
         <span className="tag">Request your private tour</span>
         <p className="font-display mt-5 min-h-[2.25rem] text-2xl font-light italic leading-snug text-pine md:text-[1.7rem]">
@@ -81,7 +81,7 @@ export default function TourForm({ presetWhen = "" }: { presetWhen?: string }) {
         />
       </div>
 
-      <form onSubmit={onSubmit} className="space-y-9 px-7 py-9 md:px-12 md:py-11">
+      <form onSubmit={onSubmit} className="flex flex-1 flex-col space-y-9 px-7 py-9 md:px-12 md:py-11">
         <div className="grid gap-9 sm:grid-cols-2 sm:gap-x-10">
           <label className="block">
             <span className="label mb-1 block text-brass">Your names</span>
@@ -129,7 +129,7 @@ export default function TourForm({ presetWhen = "" }: { presetWhen?: string }) {
               name="type"
               value={type}
               onChange={(e) => setType(e.target.value)}
-              className="field-line cursor-pointer appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%2210%22><path d=%22M5 1l4 4-4 4-4-4z%22 fill=%22%23a97e2f%22/></svg>')] bg-[right_0.25rem_center] bg-no-repeat pr-8"
+              className="field-line cursor-pointer appearance-none bg-[url('data:image/svg+xml;utf8,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2210%22 height=%2210%22><path d=%22M5 1l4 4-4 4-4-4z%22 fill=%22%23966b22%22/></svg>')] bg-[right_0.25rem_center] bg-no-repeat pr-8"
             >
               <option>Wedding</option>
               <option>Vow renewal</option>
@@ -181,7 +181,7 @@ export default function TourForm({ presetWhen = "" }: { presetWhen?: string }) {
           />
         </label>
 
-        <div className="pt-1">
+        <div className="mt-auto pt-1">
           <button
             type="submit"
             className="label btn-fill btn-fill-light w-full bg-pine px-9 py-5 text-cream"

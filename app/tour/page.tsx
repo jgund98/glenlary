@@ -51,13 +51,13 @@ export default async function TourPage({
 
           {/* invitation on the left, the estate's calling card on the right,
               both cards starting on the same line */}
-          <div className="mt-14 grid items-start gap-8 lg:grid-cols-12 lg:gap-10">
-            <Reveal className="lg:col-span-7">
+          <div className="mt-14 grid gap-8 lg:grid-cols-12 lg:items-stretch lg:gap-10">
+            <Reveal className="lg:col-span-7 lg:h-full">
               <TourForm presetWhen={when ?? ""} />
             </Reveal>
 
-            <Reveal delay={0.12} className="lg:col-span-5">
-              <div className="card-invite overflow-hidden">
+            <Reveal delay={0.12} className="lg:col-span-5 lg:h-full">
+              <div className="card-invite flex h-full flex-col overflow-hidden">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src="/images/gates-allee.jpg"
@@ -72,7 +72,7 @@ export default async function TourPage({
                   </div>
                 </div>
 
-                <div className="space-y-7 p-8 md:p-9">
+                <div className="flex flex-1 flex-col space-y-7 p-8 md:p-9">
                   <div>
                     <p className="label text-brass">Find us</p>
                     <p className="font-display mt-2 text-2xl font-light">
@@ -113,7 +113,7 @@ export default async function TourPage({
                       </a>
                     </div>
                   </div>
-                  <figure className="border-t border-ink/12 pt-7">
+                  <figure className="mt-auto border-t border-ink/12 pt-7">
                     <blockquote className="font-display text-lg font-light italic leading-relaxed text-ink-soft">
                       &ldquo;From the minute you pull up the long driveway, the
                       sprawling grounds just take your breath away.&rdquo;
