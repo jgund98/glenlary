@@ -120,7 +120,7 @@ export const gallery: GalleryItem[] = [
   { src: "/images/joy-applause.jpg", alt: "A toast that landed", cat: "tent", w: 3, h: 2 },
   { src: "/images/dancefloor-lights.jpg", alt: "The dance floor under string lights", cat: "tent", w: 3, h: 2 },
   { src: "/images/band-playing.jpg", alt: "The band at full tilt", cat: "tent", w: 3, h: 2 },
-  { src: "/images/sky-lanterns.jpg", alt: "Sky lanterns rising over the send-off", cat: "tent", w: 2, h: 3 },
+  { src: "/images/tent-night-glow.jpg", alt: "The sailcloth tent glowing on the lawn after dark", cat: "tent", w: 3, h: 2 },
     { src: "/images/pool-tent.jpg", alt: "The tent raised beside the pool", cat: "tent", w: 3, h: 2 },
   { src: "/images/bar-trailer-night.jpg", alt: "The bar glowing after dark", cat: "tent", w: 3, h: 2 },
   // Grounds

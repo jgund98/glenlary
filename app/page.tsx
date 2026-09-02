@@ -29,9 +29,9 @@ const dayPreview = [
   },
   {
     time: "Almost midnight",
-    caption: "Lanterns over the send-off",
-    image: "/images/sky-lanterns.jpg",
-    position: "center 40%",
+    caption: "The tent glowing past midnight",
+    image: "/images/tent-night-glow.jpg",
+    position: "center 55%",
   },
 ];
 
@@ -173,10 +173,10 @@ export default function Home() {
       <QuoteBand
         image="/images/manor-guests-seated.jpg"
         alt="Guests seated before the manor"
+        position="center 78%"
         quote={testimonials[0].quote}
         name={testimonials[0].name}
         role={testimonials[0].role}
-        position="center 35%"
       />
 
       {/* Occasions marquee */}

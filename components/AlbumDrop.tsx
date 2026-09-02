@@ -29,7 +29,7 @@ const prints: Print[] = [
   { src: "/images/bridesmaids-navy.jpg", alt: "The bridal party in navy at the shutters", caption: "the whole crew", x: 29, y: -25, r: 5, z: 2, pos: "center 30%" },
   { src: "/images/groom-manor-door.jpg", alt: "The groom waiting at the manor door", caption: "the nerves", x: 19, y: -31, r: -4, z: 3, pos: "center 30%" },
   { src: "/images/couple-two-horses.jpg", alt: "Bride and groom with two of the horses", caption: "the witnesses", x: -31, y: 16, r: 6, z: 3, pos: "24% 40%" },
-  { src: "/images/sky-lanterns.jpg", alt: "Sky lanterns over the send-off", caption: "almost midnight", x: -20, y: 25, r: -5, z: 4, pos: "center 35%" },
+  { src: "/images/tent-night-glow.jpg", alt: "The tent glowing on the lawn after dark", caption: "almost midnight", x: -20, y: 25, r: -5, z: 4, pos: "center 35%" },
   { src: "/images/pool-entrance.jpg", alt: "The grand entrance by the pool", caption: "the grand entrance", x: 31, y: 13, r: -6, z: 4, pos: "center 35%" },
   { src: "/images/cake-magnolia.jpg", alt: "A magnolia-trimmed cake", caption: "the cake", x: 23, y: 25, r: 4, z: 5, pos: "center 55%" },
   { src: "/images/first-dance.jpg", alt: "The first dance under the tent", caption: "the first dance", x: -8, y: -19, r: 2, z: 6, pos: "center 30%" },

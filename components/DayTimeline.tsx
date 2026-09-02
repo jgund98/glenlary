@@ -57,9 +57,9 @@ const chapters: Chapter[] = [
   },
   {
     time: "11:47 pm",
-    title: "Lanterns over the bluegrass",
-    body: "Sky lanterns climbing past the manor's roofline into a sky with no city glow to dim it, a vintage car idling on the drive, and a night nobody on the lawn will ever quite get over.",
-    image: { src: "/images/sky-lanterns.jpg", alt: "Sky lanterns rising at the send-off", tall: true },
+    title: "The tent still glowing",
+    body: "Canvas lit from within on a lawn with no city glow to dim the sky, a vintage car idling on the drive, and a night nobody out here will ever quite get over.",
+    image: { src: "/images/tent-night-glow.jpg", alt: "The sailcloth tent glowing on the lawn after dark" },
     second: { src: "/images/bar-trailer-night.jpg", alt: "The bar glowing after dark" },
   },
 ];
