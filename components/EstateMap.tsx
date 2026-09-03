@@ -27,10 +27,13 @@ type Place = {
   alt: string;
   pos?: string;
   cat: string;
-  x: number; // viewBox coords (720 x 900)
+  x: number; // the feature itself, viewBox coords (720 x 900)
   y: number;
-  lx?: number; // label offset
+  px: number; // where the numbered pin sits, beside the drawing
+  py: number;
+  lx?: number; // label offset from the pin
   ly?: number;
+  end?: boolean; // label reads leftward from the pin
 };
 
 const places: Place[] = [
@@ -47,8 +50,11 @@ const places: Place[] = [
     cat: "grounds",
     x: 168,
     y: 104,
-    lx: 22,
-    ly: 20,
+    px: 122,
+    py: 150,
+    lx: -24,
+    ly: 6,
+    end: true,
   },
   {
     key: "pond",
@@ -63,8 +69,10 @@ const places: Place[] = [
     cat: "grounds",
     x: 262,
     y: 418,
-    lx: 40,
-    ly: 4,
+    px: 262,
+    py: 364,
+    lx: 24,
+    ly: 6,
   },
   {
     key: "oak",
@@ -80,7 +88,9 @@ const places: Place[] = [
     cat: "ceremony",
     x: 306,
     y: 512,
-    lx: 34,
+    px: 354,
+    py: 478,
+    lx: 24,
     ly: 6,
   },
   {
@@ -97,8 +107,11 @@ const places: Place[] = [
     cat: "manor",
     x: 204,
     y: 596,
-    lx: -14,
-    ly: -30,
+    px: 136,
+    py: 590,
+    lx: -24,
+    ly: 6,
+    end: true,
   },
   {
     key: "tent",
@@ -114,7 +127,9 @@ const places: Place[] = [
     cat: "tent",
     x: 318,
     y: 606,
-    lx: 30,
+    px: 394,
+    py: 598,
+    lx: 24,
     ly: 6,
   },
   {
@@ -131,8 +146,11 @@ const places: Place[] = [
     cat: "grounds",
     x: 238,
     y: 668,
-    lx: -12,
-    ly: 32,
+    px: 204,
+    py: 708,
+    lx: -24,
+    ly: 6,
+    end: true,
   },
   {
     key: "barn",
@@ -147,7 +165,9 @@ const places: Place[] = [
     cat: "barn",
     x: 372,
     y: 716,
-    lx: 34,
+    px: 418,
+    py: 750,
+    lx: 24,
     ly: 6,
   },
   {
@@ -163,8 +183,10 @@ const places: Place[] = [
     cat: "grounds",
     x: 516,
     y: 388,
-    lx: -96,
-    ly: -12,
+    px: 556,
+    py: 352,
+    lx: 24,
+    ly: 6,
   },
 ];
 
@@ -640,13 +662,32 @@ export default function EstateMap({
                 ))}
               </g>
 
+              {/* callouts: a thin leader from each pin to the place itself */}
+              <g>
+                {places.map((p, i) => (
+                  <g key={p.key}>
+                    <line
+                      x1={p.px}
+                      y1={p.py}
+                      x2={p.x}
+                      y2={p.y}
+                      stroke="#966b22"
+                      strokeWidth={i === active ? 1.5 : 1}
+                      strokeDasharray="2 3"
+                    />
+                    <circle cx={p.x} cy={p.y} r={i === active ? 4 : 3} fill="#966b22" stroke="#fbfaf7" strokeWidth="1.2" />
+                  </g>
+                ))}
+              </g>
+
               {/* hand-lettered labels */}
               <g className="hidden md:block">
                 {places.map((p, i) => (
                   <text
                     key={p.key}
-                    x={p.x + (p.lx ?? 22)}
-                    y={p.y + (p.ly ?? 6)}
+                    x={p.px + (p.lx ?? 24)}
+                    y={p.py + (p.ly ?? 6)}
+                    textAnchor={p.end ? "end" : "start"}
                     className="map-label"
                     data-on={i === active}
                     fontSize={i === active ? 20 : 17}
@@ -727,11 +768,11 @@ export default function EstateMap({
                   aria-pressed={on}
                   aria-label={p.name}
                   style={{
-                    left: `${(p.x / 720) * 100}%`,
-                    top: `${(p.y / 900) * 100}%`,
+                    left: `${(p.px / 720) * 100}%`,
+                    top: `${(p.py / 900) * 100}%`,
                     animationDelay: `${0.5 + i * 0.16}s`,
                   }}
-                  className={`map-pin absolute flex h-9 w-9 items-center justify-center rounded-full border font-label text-[11px] tracking-[0.12em] shadow-[0_2px_10px_rgba(22,32,26,0.22)] transition-colors duration-300 md:h-9 md:w-9 ${
+                  className={`map-pin absolute flex h-8 w-8 items-center justify-center rounded-full border font-label text-[10px] tracking-[0.12em] shadow-[0_2px_10px_rgba(22,32,26,0.22)] transition-colors duration-300 md:h-9 md:w-9 md:text-[11px] ${
                     on
                       ? "border-brass-soft bg-pine text-cream"
                       : "border-brass bg-cream text-pine hover:bg-pine hover:text-cream"
