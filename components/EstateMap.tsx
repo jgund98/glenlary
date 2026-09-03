@@ -168,8 +168,6 @@ const places: Place[] = [
   },
 ];
 
-const TENT = places.findIndex((p) => p.key === "tent");
-
 const catLabel: Record<string, string> = {
   grounds: "the grounds",
   manor: "the manor",
@@ -220,8 +218,6 @@ export default function EstateMap({
 }) {
   const [active, setActive] = useState(0);
   const [inView, setInView] = useState(false);
-  const [manualDusk, setManualDusk] = useState<boolean | null>(null);
-  const dusk = manualDusk ?? active >= TENT;
   const ref = useRef<HTMLDivElement>(null);
   const routeRef = useRef<SVGPathElement>(null);
   const markerRef = useRef<HTMLDivElement>(null);
@@ -232,10 +228,8 @@ export default function EstateMap({
   const raf = useRef(0);
   const place = places[active];
 
-  const choose = useCallback((i: number) => {
-    setActive(i);
-    setManualDusk(null);
-  }, []);
+  const choose = useCallback((i: number) => setActive(i), []);
+  const touchY = useRef<number | null>(null);
   // On phones a tap opens the stop full-screen; desktop keeps the side card.
   const openStop = useCallback(
     (i: number) => {
@@ -355,9 +349,7 @@ export default function EstateMap({
         {/* Map */}
         <div
           ref={ref}
-          className={`estate-map relative lg:col-span-7 ${inView ? "map-in" : ""} ${
-            dusk ? "is-dusk" : ""
-          }`}
+          className={`estate-map relative lg:col-span-7 ${inView ? "map-in" : ""}`}
         >
           <div ref={panelRef} className="elev-2 relative overflow-hidden">
             <svg
@@ -723,26 +715,6 @@ export default function EstateMap({
               <span className="absolute inset-[6px] rounded-full border-[1.6px] border-brass bg-cream" />
             </div>
 
-            {/* day / golden hour */}
-            <button
-              type="button"
-              onClick={() => setManualDusk(!dusk)}
-              aria-pressed={dusk}
-              className={`label absolute right-3 top-3 flex items-center gap-2 border px-3 py-2 text-[10px] transition-colors duration-500 ${
-                dusk
-                  ? "border-brass-soft/60 bg-pine-deep/70 text-brass-soft"
-                  : "border-ink/20 bg-cream/80 text-ink-soft hover:text-ink"
-              }`}
-            >
-              <span
-                aria-hidden
-                className={`block h-2.5 w-2.5 rounded-full transition-colors duration-500 ${
-                  dusk ? "bg-brass-soft" : "bg-brass"
-                }`}
-              />
-              {dusk ? "Golden hour" : "Daylight"}
-            </button>
-
             {/* pins */}
             {places.map((p, i) => {
               const on = i === active;
@@ -759,7 +731,7 @@ export default function EstateMap({
                     top: `${(p.y / 900) * 100}%`,
                     animationDelay: `${0.5 + i * 0.16}s`,
                   }}
-                  className={`map-pin absolute flex h-8 w-8 items-center justify-center rounded-full border font-label text-[11px] tracking-[0.12em] shadow-[0_2px_10px_rgba(22,32,26,0.22)] transition-colors duration-300 md:h-9 md:w-9 ${
+                  className={`map-pin absolute flex h-9 w-9 items-center justify-center rounded-full border font-label text-[11px] tracking-[0.12em] shadow-[0_2px_10px_rgba(22,32,26,0.22)] transition-colors duration-300 md:h-9 md:w-9 ${
                     on
                       ? "border-brass-soft bg-pine text-cream"
                       : "border-brass bg-cream text-pine hover:bg-pine hover:text-cream"
@@ -836,25 +808,43 @@ export default function EstateMap({
         </div>
       </div>
 
-      {/* Phone: the stop, full screen */}
+      {/* Phone: the stop, full screen. Close with the X, the button below,
+          the Escape key, or a swipe down from the top. Nothing navigates. */}
       {sheet && (
         <div
           role="dialog"
           aria-modal="true"
           aria-label={place.name}
-          className="map-sheet fixed inset-0 z-[70] flex flex-col bg-cream text-ink lg:hidden"
+          className="map-sheet fixed inset-0 z-[70] flex flex-col overflow-y-auto overscroll-contain bg-cream text-ink lg:hidden"
+          onTouchStart={(e) => {
+            touchY.current = e.touches[0].clientY;
+          }}
+          onTouchMove={(e) => {
+            if (touchY.current === null) return;
+            const dy = e.touches[0].clientY - touchY.current;
+            if (dy > 90 && e.currentTarget.scrollTop <= 0) {
+              touchY.current = null;
+              setSheet(false);
+            }
+          }}
+          onTouchEnd={() => {
+            touchY.current = null;
+          }}
         >
-          <div className="flex items-center justify-between border-b border-ink/10 px-5 py-3">
+          <div className="sticky top-0 z-10 flex items-center justify-between border-b border-ink/10 bg-cream/95 px-5 py-3 backdrop-blur-sm">
             <span className="label text-brass">Stop {place.n} of 08</span>
             <button
               type="button"
               onClick={() => setSheet(false)}
-              className="label border border-ink/20 px-4 py-2 text-ink-soft"
+              aria-label="Close"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-ink/20 text-ink transition-colors active:bg-pine active:text-cream"
             >
-              Close
+              <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden>
+                <path d="M2 2 L14 14 M14 2 L2 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              </svg>
             </button>
           </div>
-          <div key={place.key} className="gallery-item relative min-h-0 flex-1">
+          <div key={place.key} className="gallery-item relative h-[42svh] min-h-[240px] w-full shrink-0">
             <Image
               src={place.image}
               alt={place.alt}
@@ -865,41 +855,36 @@ export default function EstateMap({
               style={{ objectPosition: place.pos ?? "center" }}
             />
           </div>
-          <div className="px-5 pb-6 pt-5">
+          <div className="flex flex-1 flex-col px-5 pb-6 pt-4">
             <span className="font-display text-base italic text-ink-soft">{place.where}</span>
             <h3 className="font-display balance mt-1 text-3xl font-light leading-tight text-pine">
               {place.name}
             </h3>
             <p className="mt-3 leading-relaxed text-ink-soft">{place.blurb}</p>
-            <div className="mt-6 flex items-center justify-between gap-4">
+            <div className="mt-auto flex items-center justify-between gap-3 pt-6">
               <button
                 type="button"
-                onClick={() => {
-                  setSheet(false);
-                  onExplore?.(place.cat);
-                }}
-                className="label btn-fill btn-fill-light bg-pine px-6 py-4 text-cream"
+                aria-label="Previous stop"
+                onClick={() => choose((active + places.length - 1) % places.length)}
+                className="label flex h-12 w-14 items-center justify-center border border-ink/20 text-ink-soft active:bg-pine active:text-cream"
               >
-                See {catLabel[place.cat]}
+                ←
               </button>
-              <div className="flex gap-2">
-                <button
-                  type="button"
-                  aria-label="Previous stop"
-                  onClick={() => choose((active + places.length - 1) % places.length)}
-                  className="label border border-ink/20 px-4 py-3 text-ink-soft"
-                >
-                  ←
-                </button>
-                <button
-                  type="button"
-                  aria-label="Next stop"
-                  onClick={() => choose((active + 1) % places.length)}
-                  className="label border border-ink/20 px-4 py-3 text-ink-soft"
-                >
-                  →
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={() => setSheet(false)}
+                className="label btn-fill btn-fill-light flex-1 bg-pine px-5 py-4 text-center text-cream"
+              >
+                Back to the map
+              </button>
+              <button
+                type="button"
+                aria-label="Next stop"
+                onClick={() => choose((active + 1) % places.length)}
+                className="label flex h-12 w-14 items-center justify-center border border-ink/20 text-ink-soft active:bg-pine active:text-cream"
+              >
+                →
+              </button>
             </div>
           </div>
         </div>
