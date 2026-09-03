@@ -414,12 +414,66 @@ body {
 }
 
 /* ---------- Estate map (gallery) ---------- */
-.map-drive {
-  stroke-dasharray: 1700;
-  stroke-dashoffset: 1700;
+.estate-map {
+  --m-paper: #efeadc;
+  --m-out: #e7e2d3; /* neighbouring land */
+  --m-field: #dfe6cd;
+  --m-field2: #d2ddbf;
+  --m-lawn: #e6ecd2;
+  --m-tree: #9db58c;
+  --m-tree2: #7a9a6f;
+  --m-tree3: #5c7f5c;
+  --m-shadow: rgba(22, 32, 26, 0.16);
+  --m-water: #cbdfe1;
+  --m-water2: #a9c6ca;
+  --m-road: #e2d9c6;
+  --m-drive: #e9dcc1;
+  --m-line: #b9ae94;
+  --m-fence: #8f8973;
+  --m-ink: #16201a;
+  --m-soft: #4a5650;
+  --m-house: #fbfaf7;
+  --m-roof: #3f6d4e;
+  --m-barn: #262b26;
+  --m-cabin: #a86f4c;
+  --m-glow: 0;
+}
+.estate-map.is-dusk {
+  --m-paper: #0d2418;
+  --m-out: #0b1f14;
+  --m-field: #133223;
+  --m-field2: #10291d;
+  --m-lawn: #173927;
+  --m-tree: #0c2a1b;
+  --m-tree2: #0a2317;
+  --m-tree3: #071b11;
+  --m-shadow: rgba(0, 0, 0, 0.35);
+  --m-water: #1c3b43;
+  --m-water2: #2f5a63;
+  --m-road: #1e3125;
+  --m-drive: #2a3d2e;
+  --m-line: #3f5544;
+  --m-fence: #5f6a5c;
+  --m-ink: #fbfaf7;
+  --m-soft: #d9d3c2;
+  --m-house: #eae4d2;
+  --m-roof: #2d4b39;
+  --m-barn: #101512;
+  --m-cabin: #7a4f36;
+  --m-glow: 1;
+}
+.estate-map svg * {
+  transition:
+    fill 0.9s ease,
+    stroke 0.9s ease,
+    opacity 0.9s ease;
+}
+.estate-map .map-drive {
+  stroke-dasharray: 2400;
+  stroke-dashoffset: 2400;
 }
 .map-in .map-drive {
-  animation: driveIn 2.8s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards;
+  animation: driveIn 3s cubic-bezier(0.4, 0, 0.2, 1) 0.2s forwards;
 }
 @keyframes driveIn {
   to {
@@ -444,7 +498,7 @@ body {
   position: absolute;
   inset: -7px;
   border-radius: 9999px;
-  border: 1px solid var(--color-brass);
+  border: 1px solid var(--color-brass-soft);
   animation: pinPulse 2.2s ease-out infinite;
 }
 @keyframes pinPulse {
@@ -457,8 +511,67 @@ body {
     opacity: 0;
   }
 }
+.map-you-halo {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: youPulse 2.4s ease-out infinite;
+}
+@keyframes youPulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.1);
+    opacity: 0;
+  }
+}
+.map-sheet {
+  animation: sheetIn 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@keyframes sheetIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.map-glow {
+  opacity: var(--m-glow);
+}
+.firefly {
+  opacity: 0;
+}
+.is-dusk .firefly {
+  animation: firefly 3.6s ease-in-out infinite;
+}
+@keyframes firefly {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.95;
+  }
+  60% {
+    opacity: 0.4;
+  }
+}
+.map-label {
+  font-family: var(--font-caveat), "Segoe Script", cursive;
+  fill: var(--m-ink);
+}
+.map-label[data-on="true"] {
+  fill: var(--color-brass);
+}
+.is-dusk .map-label[data-on="true"] {
+  fill: var(--color-brass-soft);
+}
 @media (prefers-reduced-motion: reduce) {
-  .map-drive {
+  .estate-map .map-drive {
     stroke-dashoffset: 0;
     animation: none;
   }
@@ -468,7 +581,11 @@ body {
     transform: translate(-50%, -50%);
     animation: none;
   }
-  .map-pin[data-active="true"]::after {
+  .map-pin[data-active="true"]::after,
+  .is-dusk .firefly {
     animation: none;
+  }
+  .is-dusk .firefly {
+    opacity: 0.7;
   }
 }

@@ -28,9 +28,9 @@ const dayPreview = [
     position: "center 52%",
   },
   {
-    time: "Almost midnight",
-    caption: "The tent glowing past midnight",
-    image: "/images/tent-night-glow.jpg",
+    time: "Half past six",
+    caption: "Sailcloth up, supper on the lawn",
+    image: "/images/tent-exterior-sky.jpg",
     position: "center 55%",
   },
 ];
