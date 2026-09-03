@@ -1,9 +1,39 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import Link from "next/link";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { gallery, galleryCats } from "@/lib/site";
+import { gallery, galleryCats, type GalleryItem } from "@/lib/site";
+import EstateMap from "./EstateMap";
+
+type PhotoCell = { g: GalleryItem; i: number };
+type Cell = PhotoCell | { filler: "tour" | "notes"; ratio: number };
+
+function FillerTile({ kind, ratio }: { kind: "tour" | "notes"; ratio: number }) {
+  const tour = kind === "tour";
+  return (
+    <Link
+      href={tour ? "/tour" : "/love-notes"}
+      style={{ aspectRatio: `1 / ${ratio}` }}
+      className={`gallery-item group flex w-full flex-col items-center justify-center px-5 text-center ${
+        tour ? "bg-pine text-cream" : "elev-1 bg-parchment text-pine"
+      }`}
+    >
+      <span className={`label ${tour ? "text-brass-soft" : "text-brass"}`}>
+        {tour ? "Your chapter next" : "In their words"}
+      </span>
+      <span className="font-display balance mt-2 text-xl font-light italic leading-snug md:text-2xl">
+        {tour ? "Picture yourselves here" : "Every couple says the same thing"}
+      </span>
+      <span
+        className={`label link-sweep mt-3 pb-0.5 text-[10px] ${tour ? "text-cream/80" : "text-ink-soft"}`}
+      >
+        {tour ? "Book a tour" : "Read the love notes"}
+      </span>
+    </Link>
+  );
+}
 
 export default function GalleryClient() {
   const [cat, setCat] = useState<string>("all");
@@ -14,6 +44,94 @@ export default function GalleryClient() {
     () => (cat === "all" ? gallery : gallery.filter((g) => g.cat === cat)),
     [cat]
   );
+
+  // Two columns on phones, three from md up. Decided on the client so the
+  // photos can be dealt shortest-column-first and every column ends together.
+  const [cols, setCols] = useState(3);
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const apply = () => setCols(mq.matches ? 3 : 2);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+
+  const columns = useMemo(() => {
+    const unit = (g: GalleryItem) => g.h / g.w + 0.05; // height per unit width, plus gap
+    const heights = new Array<number>(cols).fill(0);
+    const buckets: Cell[][] = Array.from({ length: cols }, () => []);
+    const photo = (c: Cell): c is PhotoCell => "g" in c;
+    items.forEach((g, i) => {
+      let k = 0;
+      for (let c = 1; c < cols; c++) if (heights[c] < heights[k]) k = c;
+      buckets[k].push({ g, i });
+      heights[k] += unit(g);
+    });
+    // Level the columns: try every single move or swap between two columns
+    // and keep the one that narrows the spread most, until nothing helps.
+    const spreadOf = (h: number[]) => Math.max(...h) - Math.min(...h);
+    for (let iter = 0; iter < 60; iter++) {
+      let best: { s: number; a: number; c: number; xi: number; yi?: number } | null = null;
+      let bestS = spreadOf(heights);
+      for (let a = 0; a < cols; a++) {
+        for (let c = 0; c < cols; c++) {
+          if (a === c) continue;
+          buckets[a].forEach((x, xi) => {
+            if (!photo(x)) return;
+            const u = unit(x.g);
+            const h1 = [...heights];
+            h1[a] -= u;
+            h1[c] += u;
+            const s1 = spreadOf(h1);
+            if (s1 < bestS - 1e-6) {
+              bestS = s1;
+              best = { s: s1, a, c, xi };
+            }
+            buckets[c].forEach((y, yi) => {
+              if (!photo(y)) return;
+              const v = unit(y.g);
+              const h2 = [...heights];
+              h2[a] += v - u;
+              h2[c] += u - v;
+              const s2 = spreadOf(h2);
+              if (s2 < bestS - 1e-6) {
+                bestS = s2;
+                best = { s: s2, a, c, xi, yi };
+              }
+            });
+          });
+        }
+      }
+      if (!best) break;
+      const { a, c, xi, yi } = best as { a: number; c: number; xi: number; yi?: number };
+      const x = buckets[a][xi] as PhotoCell;
+      if (yi === undefined) {
+        buckets[a].splice(xi, 1);
+        buckets[c].push(x);
+        heights[a] -= unit(x.g);
+        heights[c] += unit(x.g);
+      } else {
+        const y = buckets[c][yi] as PhotoCell;
+        buckets[a][xi] = y;
+        buckets[c][yi] = x;
+        heights[a] += unit(y.g) - unit(x.g);
+        heights[c] += unit(x.g) - unit(y.g);
+      }
+    }
+    // Most frames are 3:2 or 2:3, so a column can still end one landscape
+    // short. Instead of a hole, that column closes on an invitation tile.
+    const top = Math.max(...heights);
+    let tiles = 0;
+    heights
+      .map((h, c) => ({ c, deficit: top - h }))
+      .sort((p, q) => q.deficit - p.deficit)
+      .forEach(({ c, deficit }) => {
+        if (deficit < 0.3 || tiles >= 2) return;
+        buckets[c].push({ filler: tiles === 0 ? "tour" : "notes", ratio: deficit - 0.05 });
+        tiles += 1;
+      });
+    return buckets;
+  }, [items, cols]);
 
   const close = useCallback(() => {
     setLightbox(null);
@@ -50,8 +168,28 @@ export default function GalleryClient() {
     };
   }, [lightbox, close, step]);
 
+  // From the map card: filter the grid and glide down to it
+  const gridRef = useRef<HTMLDivElement>(null);
+  const explore = useCallback((c: string) => {
+    setCat(c);
+    requestAnimationFrame(() => {
+      const el = gridRef.current;
+      if (!el) return;
+      const top = el.getBoundingClientRect().top + window.scrollY - 72;
+      const w = window as unknown as {
+        __lenis?: { scrollTo: (t: number, o?: { duration?: number }) => void };
+      };
+      if (w.__lenis) w.__lenis.scrollTo(top, { duration: 1.4 });
+      else window.scrollTo({ top, behavior: "smooth" });
+    });
+  }, []);
+
   return (
     <div>
+      <EstateMap onExplore={explore} />
+
+      <div ref={gridRef} aria-hidden className="h-px" />
+
       {/* Filters */}
       <div className="sticky top-16 z-30 -mx-5 border-b border-ink/10 bg-cream/95 px-5 py-4 backdrop-blur-sm md:top-20 md:mx-0 md:px-0">
         <div className="flex gap-2 overflow-x-auto pb-1 md:flex-wrap md:overflow-visible">
@@ -84,33 +222,44 @@ export default function GalleryClient() {
         </div>
       </div>
 
-      {/* Masonry via CSS columns; remounts per filter with a CSS stagger */}
-      <div key={cat} className="mt-10 columns-2 gap-4 md:columns-3 md:gap-6">
-        {items.map((g, i) => (
-          <button
-            key={g.src}
-            onClick={() => setLightbox(i)}
-            className="gallery-item group mb-4 block w-full break-inside-avoid overflow-hidden text-left md:mb-6"
-            style={{ animationDelay: `${Math.min(i, 14) * 0.045}s` }}
-            aria-label={`Open photo: ${g.alt}`}
-          >
-            <div
-              className="relative w-full overflow-hidden"
-              style={{ aspectRatio: `${g.w} / ${g.h}` }}
-            >
-              <Image
-                src={g.src}
-                alt={g.alt}
-                fill
-                className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
-                sizes="(min-width: 768px) 33vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/0 to-ink/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <p className="font-display absolute inset-x-0 bottom-0 translate-y-2 p-4 text-base font-light italic leading-snug text-cream opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                {g.alt}
-              </p>
-            </div>
-          </button>
+      {/* Masonry: photos dealt into height-balanced columns so no column
+          ends early and leaves a hole; remounts per filter with a CSS stagger */}
+      <div key={`${cat}-${cols}`} className="mt-10 flex gap-4 md:gap-6">
+        {columns.map((col, ci) => (
+          <div key={ci} className="flex min-w-0 flex-1 flex-col gap-4 md:gap-6">
+            {col.map((cell) => {
+              if (!("g" in cell)) {
+                return <FillerTile key={cell.filler} kind={cell.filler} ratio={cell.ratio} />;
+              }
+              const { g, i } = cell;
+              return (
+              <button
+                key={g.src}
+                onClick={() => setLightbox(i)}
+                className="gallery-item group block w-full overflow-hidden text-left"
+                style={{ animationDelay: `${Math.min(i, 14) * 0.045}s` }}
+                aria-label={`Open photo: ${g.alt}`}
+              >
+                <div
+                  className="relative w-full overflow-hidden"
+                  style={{ aspectRatio: `${g.w} / ${g.h}` }}
+                >
+                  <Image
+                    src={g.src}
+                    alt={g.alt}
+                    fill
+                    className="object-cover transition-transform duration-[1200ms] ease-out group-hover:scale-[1.04]"
+                    sizes="(min-width: 768px) 33vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/0 to-ink/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <p className="font-display absolute inset-x-0 bottom-0 translate-y-2 p-4 text-base font-light italic leading-snug text-cream opacity-0 transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                    {g.alt}
+                  </p>
+                </div>
+              </button>
+              );
+            })}
+          </div>
         ))}
       </div>
 

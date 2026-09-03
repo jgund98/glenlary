@@ -20,9 +20,9 @@ const frames = [
     lift: "lg:-translate-y-6",
   },
   {
-    src: "/images/couple-horse.jpg",
-    alt: "A bride and groom greeting a horse over the fence",
-    caption: "across the paddock, at cocktail hour",
+    src: "/images/rings-horse.jpg",
+    alt: "Wedding rings resting beside a small gold horse",
+    caption: "the ring bearer, naturally",
     pos: "center 40%",
     drift: 16,
     lift: "lg:translate-y-6",

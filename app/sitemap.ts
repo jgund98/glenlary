@@ -8,7 +8,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/weddings`, priority: 0.9 },
     { url: `${base}/gallery`, priority: 0.8 },
     { url: `${base}/tour`, priority: 0.9 },
-    { url: `${base}/vendors`, priority: 0.6 },
     { url: `${base}/love-notes`, priority: 0.6 },
   ];
 }

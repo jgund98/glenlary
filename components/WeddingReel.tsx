@@ -30,16 +30,16 @@ const slides = [
     pos: "center 55%",
   },
   {
-    src: "/images/pool-cocktails-manor.jpg",
-    alt: "Cocktail hour around the pool with the manor behind",
-    caption: "Cocktail hour at the pool",
+    src: "/images/manor-processional.jpg",
+    alt: "The processional crossing the lawn before the manor",
+    caption: "The processional, the manor looking on",
     pos: "center 45%",
   },
   {
-    src: "/images/ceremony-sunset-manor.jpg",
-    alt: "Ceremony chairs before the manor at golden hour",
-    caption: "Golden hour on the manor lawn",
-    pos: "center 50%",
+    src: "/images/manor-doors-exit.jpg",
+    alt: "A bride and her father stepping out the manor doors",
+    caption: "Down the manor steps, right on time",
+    pos: "center 40%",
   },
 ];
 

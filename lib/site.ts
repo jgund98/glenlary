@@ -13,7 +13,6 @@ export const nav = [
   { href: "/estate", label: "The Estate" },
   { href: "/weddings", label: "Weddings & Events" },
   { href: "/gallery", label: "Gallery" },
-  { href: "/vendors", label: "Vendors" },
   { href: "/love-notes", label: "Love Notes" },
 ];
 
@@ -62,15 +61,6 @@ export const testimonials = [
     name: "Kristen Becker",
     role: "Estate guest",
   },
-];
-
-export const vendors = [
-  { category: "Event Coordination", names: ["Shelly Fortune Events", "Alicia Collins", "Refined Social Events & Design"] },
-  { category: "Photography", names: ["Melanie Mauer", "Samantha Moore Photography", "Malicote Photography"] },
-  { category: "Catering", names: ["Dupree Catering", "Apiary Fine Events", "Selma's Catering"] },
-  { category: "Floral Design", names: ["Marti Heard Designs"] },
-  { category: "Stationery", names: ["Five Dot Design"] },
-  { category: "Hair & Makeup", names: ["Kristin Gray"] },
 ];
 
 export const gallery: GalleryItem[] = [

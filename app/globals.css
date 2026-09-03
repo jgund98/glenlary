@@ -412,3 +412,63 @@ body {
     opacity: 1;
   }
 }
+
+/* ---------- Estate map (gallery) ---------- */
+.map-drive {
+  stroke-dasharray: 1700;
+  stroke-dashoffset: 1700;
+}
+.map-in .map-drive {
+  animation: driveIn 2.8s cubic-bezier(0.4, 0, 0.2, 1) 0.25s forwards;
+}
+@keyframes driveIn {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.map-pin {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.6);
+}
+.map-in .map-pin {
+  animation: pinIn 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes pinIn {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+.map-pin[data-active="true"]::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border-radius: 9999px;
+  border: 1px solid var(--color-brass);
+  animation: pinPulse 2.2s ease-out infinite;
+}
+@keyframes pinPulse {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .map-drive {
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  .map-pin,
+  .map-in .map-pin {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    animation: none;
+  }
+  .map-pin[data-active="true"]::after {
+    animation: none;
+  }
+}

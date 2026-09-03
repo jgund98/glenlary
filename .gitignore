@@ -10,3 +10,6 @@ dev-server.log
 .vercel
 
 .vercel
+shots-map/
+shots-sweep/
+tsconfig.tsbuildinfo

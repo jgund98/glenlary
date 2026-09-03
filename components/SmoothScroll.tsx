@@ -31,10 +31,12 @@ export default function SmoothScroll() {
       raf = requestAnimationFrame(loop);
     };
     raf = requestAnimationFrame(loop);
+    (window as unknown as { __lenis?: Lenis }).__lenis = lenis;
 
     return () => {
       cancelAnimationFrame(raf);
       lenis.destroy();
+      delete (window as unknown as { __lenis?: Lenis }).__lenis;
     };
   }, []);
 
