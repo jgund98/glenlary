@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Barn, Cabin, Manor, Pool, Stables, Tent } from "./estate-map-icons";
 
 /**
  * The lay of the land: a hand-drawn map of the farm with the places a
@@ -568,83 +569,14 @@ export default function EstateMap({
                 )}
               </g>
 
-              {/* the manor: white house, green roof ridge, columns to the north */}
-              <g transform="translate(206 598) scale(1.28) translate(-206 -598)">
-              <ellipse cx="230" cy="612" rx="34" ry="8" fill="url(#houseGlow)" className="map-glow" />
-              <rect x="184" y="584" width="44" height="28" rx="1" fill="var(--m-house)" stroke="var(--m-ink)" strokeOpacity="0.55" strokeWidth="0.9" />
-              <path d="M184 598 L228 598" stroke="var(--m-roof)" strokeWidth="1.2" />
-              <rect x="184" y="584" width="44" height="6" fill="var(--m-roof)" fillOpacity="0.9" />
-              {[190, 199, 208, 217].map((x) => (
-                <rect key={x} x={x} y="581" width="2.4" height="4" fill="var(--m-house)" stroke="var(--m-ink)" strokeOpacity="0.5" strokeWidth="0.5" />
-              ))}
-              <circle cx="192" cy="586" r="1.4" fill="var(--m-ink)" fillOpacity="0.7" />
-              <circle cx="222" cy="586" r="1.4" fill="var(--m-ink)" fillOpacity="0.7" />
-              <g className="map-glow" fill="#e0b963">
-                {[190, 199, 208, 217].map((x) => (
-                  <rect key={x} x={x} y="603" width="3" height="4" />
-                ))}
-              </g>
+              {/* the buildings, drawn as little elevations */}
+              <g transform="translate(206 616)"><Manor /></g>
+              <g transform="translate(268 606)"><Pool /></g>
+              <g transform="translate(324 622)"><Tent /></g>
+              <g transform="translate(238 686)"><Cabin /></g>
+              <g transform="translate(372 736)"><Barn /></g>
+              <g transform="translate(514 400)"><Stables /></g>
 
-              </g>
-              {/* pool and lounge chairs */}
-              <g transform="translate(261 601) scale(1.22) translate(-261 -601)">
-              <rect x="248" y="592" width="26" height="13" rx="2" fill="var(--m-water)" stroke="var(--m-water2)" strokeWidth="1.2" />
-              <rect x="252" y="609" width="5" height="2.4" fill="var(--m-house)" />
-              <rect x="260" y="609" width="5" height="2.4" fill="var(--m-house)" />
-              <rect x="268" y="609" width="5" height="2.4" fill="var(--m-house)" />
-
-              </g>
-              {/* the tent, glowing after dark */}
-              <g transform="translate(322 604) scale(1.22) translate(-322 -604)">
-              <ellipse cx="318" cy="612" rx="46" ry="26" fill="url(#tentGlow)" className="map-glow" />
-              <path
-                d="M292 606 L302 586 L312 606 L322 586 L332 606 L342 586 L352 606 L352 616 C342 620 302 620 292 616 Z"
-                fill="var(--m-house)"
-                stroke="#966b22"
-                strokeWidth="1"
-                strokeLinejoin="round"
-              />
-              <g stroke="#966b22" strokeWidth="0.7">
-                <path d="M302 586 L302 580" />
-                <path d="M322 586 L322 580" />
-                <path d="M342 586 L342 580" />
-              </g>
-              <g fill="#b5583f">
-                <path d="M302 580 L307 582 L302 584 Z" />
-                <path d="M322 580 L327 582 L322 584 Z" />
-                <path d="M342 580 L347 582 L342 584 Z" />
-              </g>
-
-              </g>
-              {/* the log cabin */}
-              <g transform="translate(238 667) scale(1.25) translate(-238 -667)">
-              <rect x="228" y="660" width="20" height="14" rx="1" fill="var(--m-cabin)" stroke="var(--m-ink)" strokeOpacity="0.5" strokeWidth="0.8" />
-              <path d="M228 667 L248 667" stroke="var(--m-ink)" strokeOpacity="0.35" strokeWidth="0.8" />
-              <circle cx="244" cy="663" r="1.5" fill="var(--m-ink)" fillOpacity="0.7" />
-              <rect x="236" y="671" width="4" height="3" fill="#e0b963" className="map-glow" />
-
-              </g>
-              {/* the black barn with its green roof and white doors */}
-              <g transform="translate(376 706) scale(1.22) translate(-376 -706)">
-              <rect x="352" y="694" width="42" height="24" rx="1" fill="var(--m-barn)" />
-              <path d="M352 706 L394 706" stroke="var(--m-roof)" strokeWidth="1.6" />
-              <rect x="352" y="694" width="42" height="5" fill="var(--m-roof)" />
-              <g stroke="var(--m-house)" strokeWidth="0.9">
-                <path d="M370 710 L376 716 M376 710 L370 716" />
-              </g>
-              <rect x="400" y="700" width="14" height="10" fill="none" stroke="var(--m-fence)" strokeWidth="0.8" strokeDasharray="2 2" />
-              <rect x="360" y="722" width="4" height="4" fill="#e0b963" className="map-glow" />
-
-              </g>
-              {/* stables, round pen and run-in sheds on the east side */}
-              <g transform="translate(512 384) scale(1.2) translate(-512 -384)">
-              <rect x="498" y="366" width="34" height="16" rx="1" fill="var(--m-barn)" fillOpacity="0.85" />
-              <rect x="498" y="366" width="34" height="4" fill="var(--m-roof)" />
-              <rect x="506" y="390" width="22" height="11" rx="1" fill="var(--m-barn)" fillOpacity="0.7" />
-              <circle cx="480" cy="392" r="12" fill="none" stroke="var(--m-fence)" strokeWidth="1.2" strokeDasharray="2 3" />
-              <rect x="540" y="330" width="16" height="9" fill="var(--m-barn)" fillOpacity="0.6" />
-
-              </g>
               {/* horses in the paddocks */}
               <g fill="var(--m-tree3)">
                 {horses.map(([x, y, dir], i) => (
@@ -885,16 +817,17 @@ export default function EstateMap({
               </svg>
             </button>
           </div>
-          <div key={place.key} className="gallery-item relative h-[42svh] min-h-[240px] w-full shrink-0">
-            <Image
-              src={place.image}
-              alt={place.alt}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-              style={{ objectPosition: place.pos ?? "center" }}
-            />
+          <div key={place.key} className="relative h-[46svh] min-h-[260px] w-full shrink-0 bg-parchment p-3">
+            <div className="relative h-full w-full">
+              <Image
+                src={place.image}
+                alt={place.alt}
+                fill
+                priority
+                sizes="100vw"
+                className="object-contain"
+              />
+            </div>
           </div>
           <div className="flex flex-1 flex-col px-5 pb-6 pt-4">
             <span className="font-display text-base italic text-ink-soft">{place.where}</span>
