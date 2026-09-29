@@ -17,7 +17,7 @@ export default function NotFound() {
           This lane doesn&rsquo;t lead anywhere
         </h1>
         <p className="mx-auto mt-6 max-w-md leading-relaxed opacity-85">
-          Eighty acres, and you found the one path we didn&rsquo;t build. Head
+          Over eighty acres, and you found the one path we didn&rsquo;t build. Head
           back toward the manor.
         </p>
         <Link

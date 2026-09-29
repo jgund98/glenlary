@@ -64,7 +64,7 @@ export default function TourForm({ presetWhen = "" }: { presetWhen?: string }) {
   return (
     <div className="card-invite flex h-full flex-col">
       <div className="relative border-b border-ink/10 px-7 pb-7 pt-8 text-center md:px-12">
-        <span className="tag">Request your private tour</span>
+        <span className="tag tag-center tag-ink">Request your private tour</span>
         <p className="font-display mt-5 min-h-[2.25rem] text-2xl font-light italic leading-snug text-pine md:text-[1.7rem]">
           {summary ? (
             <>

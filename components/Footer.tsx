@@ -12,7 +12,7 @@ export default function Footer() {
             </p>
             <p className="label mt-3 opacity-60">Est. 1840 · Bourbon County, Kentucky</p>
             <p className="mt-6 max-w-sm text-sm leading-relaxed opacity-90">
-              A working horse farm and historic manor on eighty acres of
+              A working horse farm and historic manor on more than eighty acres of
               bluegrass in Paris, Kentucky, twenty minutes from Lexington.
             </p>
           </div>

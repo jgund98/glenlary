@@ -21,7 +21,7 @@ const spaces = [
     numeral: "II",
     title: "The Black Barn",
     note: "Rustic, reimagined",
-    body: "Kentucky's iconic black barn, swept, strung with greenery chandeliers, and set for a dinner nobody wants to end.",
+    body: "A black Kentucky tobacco barn, swept, strung with greenery chandeliers, and set for a dinner nobody wants to end.",
     image: "/images/bridesmaids-barn.jpg",
     alt: "The bridal party walking from the black barn",
     pos: "center 40%",

@@ -13,7 +13,7 @@ import { testimonials } from "@/lib/site";
 export const metadata: Metadata = {
   title: "The Estate",
   description:
-    "Eighty acres of Kentucky bluegrass, the 1840 Lary Manor, the black barn, and a restored log cabin. Tour the grounds of the GlenLary Estate in Paris, Kentucky.",
+    "More than eighty acres of Kentucky bluegrass, the 1840 Lary Manor, a black tobacco barn, and a restored log cabin. Tour the grounds of the GlenLary Estate in Paris, Kentucky.",
 };
 
 export default function EstatePage() {
@@ -25,7 +25,7 @@ export default function EstatePage() {
         alt="The Lary Manor at golden hour beneath the old trees"
         eyebrow="Paris, Kentucky · Bourbon County"
         title="The Estate"
-        sub="Eighty acres of rolling bluegrass in the heart of horse country, twenty minutes from Lexington and nearly two centuries deep in Kentucky history."
+        sub="More than eighty acres of rolling bluegrass in the heart of horse country, twenty minutes from Lexington and nearly two centuries deep in Kentucky history."
       />
 
       {/* History intro */}
@@ -46,12 +46,12 @@ export default function EstatePage() {
               <span data-keep>built from it.</span>
             </MaskReveal>
             <p className="mt-6 max-w-lg leading-loose text-ink-soft">
-              The Lary Manor rose in 1840 and has watched nearly two centuries
-              of Kentucky pass its columns: wars and derbies, droughts and
-              christenings, and generation after generation of the Lary family,
-              who still welcome every event here personally. The log cabin
-              nearby is older still, reclaimed and restored to its rustic
-              charm.
+              The Lary Manor was raised in 1840, and it has always been a
+              home before anything else. Generation after generation of
+              families have gathered beneath its columns to mark the days that
+              matter most, and the Lary family carries that on today,
+              welcoming every event here personally. The log cabin nearby is
+              older still, reclaimed and restored to its rustic charm.
             </p>
             <p className="mt-4 max-w-lg leading-loose text-ink-soft">
               What you feel when you arrive is not a venue that opened for the
@@ -95,12 +95,15 @@ export default function EstatePage() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="relative mt-12 aspect-[16/9] overflow-hidden md:aspect-[21/9]">
+            {/* head-on and level; kept near its native 3:2 so neither the
+                roof railing nor the front steps get cropped */}
+            <div className="relative mt-12 aspect-[3/2] overflow-hidden md:aspect-[8/5]">
               <Image
-                src="/images/manor-front.jpg"
-                alt="The Lary Manor in full summer, flag flying"
+                src="/images/manor-balcony.jpg"
+                alt="The Lary Manor's columns and double gallery, newlyweds on the upper porch"
                 fill
                 className="object-cover"
+                style={{ objectPosition: "center 45%" }}
                 sizes="100vw"
               />
             </div>
@@ -135,11 +138,11 @@ export default function EstatePage() {
             <Reveal delay={0.18} className="lg:col-span-3">
               <div className="relative aspect-[3/4] overflow-hidden lg:mt-16">
                 <Image
-                  src="/images/manor-balcony.jpg"
-                  alt="Newlyweds on the manor's upper gallery"
+                  src="/images/groom-manor-door.jpg"
+                  alt="The groom waiting at the manor's front door"
                   fill
                   className="object-cover"
-                  style={{ objectPosition: "center 40%" }}
+                  style={{ objectPosition: "55% center" }}
                   sizes="(min-width: 1024px) 25vw, 100vw"
                 />
               </div>
@@ -169,7 +172,7 @@ export default function EstatePage() {
               <div className="relative aspect-[16/10] overflow-hidden">
                 <Image
                   src="/images/barn-moody.jpg"
-                  alt="The black barn under a dramatic Kentucky sky"
+                  alt="The black tobacco barn under a dramatic Kentucky sky"
                   fill
                   className="object-cover"
                   sizes="(min-width: 1024px) 66vw, 100vw"
@@ -187,11 +190,11 @@ export default function EstatePage() {
                 />
               </div>
               <p className="leading-loose opacity-90">
-                Every horse farm in the bluegrass paints its barns black. Ours
-                just happens to set a beautiful table. Greenery chandeliers in
-                the rafters, velvet lounges in the stalls' old footprint, and a
-                gallery porch made for one very long dinner as the pastures go
-                dark.
+                A Kentucky tobacco barn, black as the old curing barns of the
+                bluegrass, that now sets a beautiful table. Greenery
+                chandeliers in the rafters, velvet lounges across the old barn
+                floor, and a covered porch made for one very long dinner as the
+                pastures go dark.
               </p>
             </Reveal>
             <Reveal className="lg:col-span-4">
@@ -237,11 +240,11 @@ export default function EstatePage() {
           <Reveal className="lg:col-span-5">
             <div className="arch arch-frame relative mx-6 aspect-[3/4.2] overflow-hidden md:mx-10 lg:mx-4">
               <Image
-                src="/images/cabin.jpg"
-                alt="The restored log cabin in summer"
+                src="/images/cabin-porch.jpg"
+                alt="The two-story log cabin and its wide front porch"
                 fill
                 className="object-cover"
-                style={{ objectPosition: "42% 44%" }}
+                style={{ objectPosition: "58% 60%" }}
                 sizes="(min-width: 1024px) 40vw, 100vw"
               />
             </div>
@@ -253,18 +256,20 @@ export default function EstatePage() {
                   III.
                 </span>
                 <div>
-                  <p className="label text-brass">The groom's quarters</p>
+                  <p className="label text-brass">Get ready here, stay the night</p>
                   <h2 className="font-display mt-2 text-4xl font-light md:text-6xl">
                     The Cabin
                   </h2>
                 </div>
               </div>
               <p className="mt-6 max-w-lg leading-loose text-ink-soft">
-                Reclaimed log walls, a hunting-lodge easiness, and a kitchen
-                guests describe as &ldquo;was this in a magazine?&rdquo; The
-                cabin gives the groom and his groomsmen their own corner of the
-                farm for the morning, and gives weekend guests a reason to
-                fight over room assignments.
+                Raised in 1790, the log cabin is the oldest building on the
+                farm: two stories of reclaimed log walls, a wide front porch,
+                and a kitchen guests describe as &ldquo;was this in a
+                magazine?&rdquo; On the wedding morning it gives the groom and
+                his groomsmen their own corner of the farm. After the last
+                dance it is a guest house, and weekend guests end up fighting
+                over room assignments.
               </p>
               <p className="mt-4 max-w-lg leading-loose text-ink-soft">
                 Between the manor and the cabin, the estate sleeps nineteen, so
@@ -293,7 +298,7 @@ export default function EstatePage() {
                 IV.
               </span>
               <div>
-                <p className="label text-brass">Eighty acres of backdrop</p>
+                <p className="label text-brass">Over eighty acres of backdrop</p>
                 <h2 className="font-display mt-2 text-4xl font-light md:text-6xl">
                   The Grounds
                 </h2>

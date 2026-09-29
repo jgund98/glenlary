@@ -45,11 +45,11 @@ export const metadata: Metadata = {
     template: "%s · The GlenLary Estate",
   },
   description:
-    "A working horse farm and 1840 manor on 80 acres of Kentucky bluegrass, 20 minutes from Lexington. Weddings, galas, and private events at the GlenLary Estate in Paris, Kentucky.",
+    "A working horse farm and 1840 manor on more than 80 acres of Kentucky bluegrass, 20 minutes from Lexington. Weddings, galas, and private events at the GlenLary Estate in Paris, Kentucky.",
   openGraph: {
     title: "The GlenLary Estate",
     description:
-      "Eighty acres of bluegrass. A manor built in 1840. One extraordinary day. Weddings and events in Kentucky horse country.",
+      "Over eighty acres of bluegrass. A manor built in 1840. One extraordinary day. Weddings and events in Kentucky horse country.",
     images: ["/images/manor-spring.jpg"],
     type: "website",
   },
@@ -72,7 +72,7 @@ export default function RootLayout({
               "@type": "EventVenue",
               name: "The GlenLary Estate",
               description:
-                "A working horse farm and 1840 manor on 80 acres of Kentucky bluegrass, hosting weddings, galas, and private events.",
+                "A working horse farm and 1840 manor on more than 80 acres of Kentucky bluegrass, hosting weddings, galas, and private events.",
               foundingDate: "1840",
               email: "elizabeth@eventsatglenlary.com",
               url: "https://eventsatglenlary.com",

@@ -59,7 +59,7 @@ export default function Home() {
               className="font-display block text-[2rem] font-light leading-[1.2] sm:text-4xl md:text-6xl"
               delay={0.08}
             >
-              Eighty acres of bluegrass.
+              Over eighty acres of bluegrass.
             </MaskReveal>
             <MaskReveal
               className="font-display block text-[2rem] font-light leading-[1.2] sm:text-4xl md:text-6xl"
@@ -197,13 +197,13 @@ export default function Home() {
       <Residents />
 
       <CtaBand
-        image="/images/ceremony-sunset-manor.jpg"
-        alt="Ceremony chairs before the manor at golden hour"
+        image="/images/gates-allee.jpg"
+        alt="The white gates and the long drive to the manor"
         eyebrow="Private tours, seven days a week"
         title={"Come stand where it happens"}
         body="Photographs only get you so far. Walk the drive, climb the porch steps, and watch the light fall across the pastures. You will know."
         cta="Book a Private Tour"
-        position="center 30%"
+        position="center 60%"
       />
     </>
   );

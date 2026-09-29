@@ -165,49 +165,63 @@ body {
 }
 
 /* Legibility on photography, the system:
-   1. Small/label type NEVER floats on a photo — it sits on a solid .tag plaque.
+   1. Small/label type on a photo only ever sits inside a darkened zone (a
+      gradient or .scrim-radial) and is set as a quiet .tag eyebrow. No solid
+      plaques: the client found the pine slab stark and in-your-face.
    2. Large display lines sit inside a .scrim-radial zone.
    3. .on-photo adds only a whisper of depth, never carries legibility alone. */
 .on-photo {
   text-shadow: 0 1px 10px rgba(22, 32, 26, 0.24);
 }
 
-/* Hero eyebrow on mobile: no slab, just fine caps over the scrim */
+/* Eyebrow: fine letterspaced caps led by a short brass-soft rule.
+   .tag-center adds the matching rule on the right for centered lines;
+   .tag-ink is the light-surface version (brass, per the two-gold law). */
+.tag,
 .tag-hero {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
   font-family: var(--font-jost), system-ui, sans-serif;
   text-transform: uppercase;
-  letter-spacing: 0.34em;
-  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  font-size: 0.66rem;
   font-weight: 500;
-  color: #e0b963;
-  padding-left: 0.34em;
+  line-height: 1.4;
+  color: #fbfaf7;
+  text-shadow: 0 1px 8px rgba(22, 32, 26, 0.35);
+}
+.tag::before,
+.tag-hero::before,
+.tag-center::after,
+.tag-hero::after {
+  content: "";
+  flex: none;
+  width: 1.75rem;
+  height: 1px;
+  background: #e0b963;
+}
+/* the last letter's tracking would push the right rule out of balance */
+.tag-center::after,
+.tag-hero::after {
+  margin-left: -0.3em;
+}
+.tag-hero {
+  font-size: 0.62rem;
+  letter-spacing: 0.34em;
 }
 @media (min-width: 768px) {
   .tag-hero {
-    background: #10331f;
-    color: #fbfaf7;
-    border-left: 2px solid #e0b963;
-    padding: 0.6rem 1.15rem;
-    font-size: 0.65rem;
-    letter-spacing: 0.28em;
-    box-shadow: var(--e2);
+    font-size: 0.7rem;
   }
 }
-
-/* Estate nameplate: solid pine chip with a brass edge */
-.tag {
-  display: inline-block;
-  background: #10331f;
-  color: #fbfaf7;
-  border-left: 2px solid #e0b963;
-  padding: 0.6rem 1.15rem;
-  font-family: var(--font-jost), system-ui, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  font-size: 0.65rem;
-  font-weight: 500;
-  box-shadow: var(--e2);
+.tag-ink {
+  color: #966b22;
+  text-shadow: none;
+}
+.tag-ink::before,
+.tag-ink::after {
+  background: #966b22;
 }
 
 /* Soft elliptical darkening behind centered display text on photos */

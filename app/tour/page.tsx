@@ -89,7 +89,7 @@ export default async function TourPage({
                       {site.email}
                     </a>
                     <p className="mt-1 text-sm text-ink-soft">
-                      Elizabeth Lary, events director
+                      Elizabeth Lary, Events Director
                     </p>
                   </div>
                   <div className="border-t border-ink/12 pt-7">

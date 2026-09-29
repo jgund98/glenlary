@@ -19,7 +19,7 @@ const seasons = [
     label: "Summer",
     heading: "Long evenings, longer toasts",
     body: "Ceremonies under the great oak's full canopy, cocktail hour by the pool, fireflies over the pastures as dinner runs late under the tent. Summer is the estate at full volume.",
-    main: { src: "/images/manor-front.jpg", alt: "The Lary Manor in high summer" },
+    main: { src: "/images/tent-exterior-sky.jpg", alt: "The sailcloth tent in the summer sun" },
     side: { src: "/images/great-oak.jpg", alt: "The great oak over the ceremony lawn" },
   },
   {

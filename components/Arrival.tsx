@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 
 /**
  * The Arrival: a scroll-driven drive onto the estate.
- * Gates -> the lane past the black barn -> the manor reveal.
+ * Gates -> down the drive between the fences -> the manor reveal.
  *
  * Opacity/transform are written directly in a rAF scroll handler:
  * framer-motion v13's scroll-linked keyframe opacities freeze
@@ -140,7 +140,7 @@ export default function Arrival() {
           <div ref={laneImgRef} className="absolute inset-0 will-change-transform">
             <Image
               src="/images/barn-lane.jpg"
-              alt="The lane past the black barn and four-board fences"
+              alt="Four-board fences along the farm lane"
               fill
               className="object-cover"
               sizes="100vw"
@@ -171,18 +171,6 @@ export default function Arrival() {
           className="pointer-events-none absolute inset-0 flex flex-col items-center justify-center px-6 text-center text-cream"
         >
           <div className="scrim-radial flex flex-col items-center">
-          <p className="mb-7 md:mb-8">
-            {/* short on phones, full on desktop; the wrapper owns display so
-                .tag-hero's own inline-block cannot defeat `hidden` */}
-            <span className="block md:hidden">
-              <span className="tag-hero">Paris, Kentucky · Est. 1840</span>
-            </span>
-            <span className="hidden md:block">
-              <span className="tag-hero">
-                Paris, Kentucky · A working horse farm since 1840
-              </span>
-            </span>
-          </p>
           <h1 className="flex flex-col items-center">
             <span className="font-brand -mr-[0.55em] text-base tracking-[0.55em] opacity-90 md:-mr-[0.7em] md:text-xl md:tracking-[0.7em]">
               The
@@ -194,6 +182,20 @@ export default function Arrival() {
               Estate
             </span>
           </h1>
+          {/* the eyebrow sits under the wordmark, quiet: the old pine slab
+              above it read as stark. Short on phones, full on desktop; the
+              wrapper owns display so .tag-hero's inline-flex cannot defeat
+              `hidden` */}
+          <p className="mt-9 md:mt-11">
+            <span className="block md:hidden">
+              <span className="tag-hero">Paris, Kentucky · Est. 1840</span>
+            </span>
+            <span className="hidden md:block">
+              <span className="tag-hero">
+                Paris, Kentucky · A working horse farm since 1840
+              </span>
+            </span>
+          </p>
           </div>
         </div>
 
@@ -205,8 +207,8 @@ export default function Arrival() {
         >
           <p className="font-display scrim-radial balance max-w-xl text-3xl font-light italic leading-snug md:text-5xl">
             <span className="on-photo">
-              Past the black barn, under old trees, along a mile of four-board
-              fence&hellip;
+              Down the drive, under old trees, between the four-board
+              fences&hellip;
             </span>
           </p>
         </div>

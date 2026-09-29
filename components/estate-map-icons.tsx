@@ -140,7 +140,13 @@ export function Cabin() {
 export function Barn() {
   return (
     <g>
-      <ellipse cx="2" cy="2" rx="32" ry="4.5" fill="var(--m-shadow)" />
+      <ellipse cx="-6" cy="2" rx="40" ry="4.5" fill="var(--m-shadow)" />
+      {/* the covered porch down the west side, where the long tables go */}
+      <rect x="-44" y="-12" width="18" height="12" fill="var(--m-ink)" fillOpacity="0.5" />
+      <path d="M-26 -19 L-47 -12 L-47 -10 L-26 -16 Z" fill="var(--m-roof)" {...ink} strokeWidth="0.4" />
+      {[-44, -38, -32].map((x) => (
+        <rect key={x} x={x - 0.6} y="-11.5" width="1.2" height="11.5" fill="var(--m-barn)" />
+      ))}
       {/* black board walls, green gable roof, cupola */}
       <rect x="-26" y="-26" width="52" height="26" fill="var(--m-barn)" />
       {[-20, -14, -8, 8, 14, 20].map((x) => (

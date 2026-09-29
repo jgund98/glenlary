@@ -36,9 +36,9 @@ const occasions = [
   },
   {
     title: "Corporate & film",
-    body: "Retreats, launches, and productions have all set up on the farm. Eighty private acres hold a crew and its ambitions comfortably.",
-    image: "/images/clear-tent.jpg",
-    alt: "A clear-top tent with a checkered dance floor",
+    body: "Retreats, launches, and productions have all set up on the farm. More than eighty private acres hold a crew and its ambitions comfortably.",
+    image: "/images/barn-front.jpg",
+    alt: "The black barn dressed for an evening event",
   },
 ];
 
@@ -78,7 +78,7 @@ export default function WeddingsPage() {
         alt="A king's table set under the sailcloth tent"
         eyebrow="Weddings · Galas · Private events"
         title="Weddings & Events"
-        sub="One event at a time, one family behind it, and eighty acres arranged around your day."
+        sub="One event at a time, one family behind it, and more than eighty acres arranged around your day."
       />
 
       {/* Intro */}

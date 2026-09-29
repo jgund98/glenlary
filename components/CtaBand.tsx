@@ -52,7 +52,7 @@ export default function CtaBand({
       <div className="relative mx-auto flex min-h-[80vh] max-w-4xl flex-col items-center justify-center px-6 py-28 text-center">
         <Reveal className="scrim-radial">
           <p className="mb-7">
-            <span className="tag">{eyebrow}</span>
+            <span className="tag tag-center">{eyebrow}</span>
           </p>
           <h2 className="font-display on-photo balance mx-auto max-w-3xl text-5xl font-light leading-[1.05] md:text-7xl">
             {glued}

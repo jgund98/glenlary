@@ -75,7 +75,6 @@ export const gallery: GalleryItem[] = [
   { src: "/images/ceremony-drapes-bw.jpg", alt: "The bride arriving through draped panels", cat: "ceremony", w: 3, h: 2 },
   { src: "/images/vows-bw.jpg", alt: "A quiet moment during the vows", cat: "ceremony", w: 3, h: 2 },
   // Manor
-  { src: "/images/manor-front.jpg", alt: "The Lary Manor in full summer", cat: "manor", w: 3, h: 2 },
   { src: "/images/manor-lawn-party.jpg", alt: "A reception spilling across the manor's front lawn", cat: "manor", w: 3, h: 2 },
   { src: "/images/party-columns-color.jpg", alt: "The whole wedding party before the columns", cat: "manor", w: 3, h: 2 },
   { src: "/images/manor-ceremony-lawn.jpg", alt: "Ceremony chairs set before the manor", cat: "manor", w: 3, h: 2 },
@@ -102,7 +101,6 @@ export const gallery: GalleryItem[] = [
     { src: "/images/bridesmaids-barn.jpg", alt: "The bridal party walking from the black barn", cat: "barn", w: 3, h: 2 },
   // Tent
   { src: "/images/tent-chandeliers.jpg", alt: "Crystal chandeliers under the sailcloth tent", cat: "tent", w: 3, h: 2 },
-  { src: "/images/clear-tent.jpg", alt: "A clear-top tent with a checkered dance floor", cat: "tent", w: 3, h: 2 },
   { src: "/images/pool-party-manor.jpg", alt: "Cocktail hour around the pool", cat: "tent", w: 3, h: 2 },
   { src: "/images/tent-long-table.jpg", alt: "A king's table running the length of the tent", cat: "tent", w: 3, h: 2 },
   { src: "/images/tent-dinner.jpg", alt: "Dinner service under the tent", cat: "tent", w: 3, h: 2 },
@@ -133,9 +131,8 @@ export const gallery: GalleryItem[] = [
       { src: "/images/couple-veil-field.jpg", alt: "The veil catching the breeze", cat: "grounds", w: 2, h: 3 },
   { src: "/images/couple-snow.jpg", alt: "A winter wedding across the white fields", cat: "grounds", w: 3, h: 2 },
   { src: "/images/manor-snow.jpg", alt: "The manor after a snowfall", cat: "grounds", w: 3, h: 2 },
-  { src: "/images/cabin.jpg", alt: "The 1790s log cabin", cat: "grounds", w: 2, h: 3 },
   { src: "/images/gates-allee.jpg", alt: "The white gates and the long allee to the manor", cat: "grounds", w: 3, h: 2 },
-  { src: "/images/barn-summer-lane.jpg", alt: "The drive curving past the black barn", cat: "grounds", w: 2, h: 3 },
+  { src: "/images/barn-summer-lane.jpg", alt: "The lane curving up to the black barn", cat: "grounds", w: 2, h: 3 },
   { src: "/images/fence-portraits.jpg", alt: "Portraits along the four-board fence", cat: "grounds", w: 3, h: 2 },
   { src: "/images/ceremony-vista.jpg", alt: "Vows above the long view of the farm", cat: "ceremony", w: 3, h: 2 },
   { src: "/images/manor-processional.jpg", alt: "The processional before the manor", cat: "ceremony", w: 3, h: 2 },
