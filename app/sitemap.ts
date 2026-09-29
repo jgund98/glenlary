@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://eventsatglenlary.com";
+  const base = siteUrl;
   return [
     { url: `${base}/`, priority: 1 },
     { url: `${base}/estate`, priority: 0.9 },

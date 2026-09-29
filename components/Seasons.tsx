@@ -61,7 +61,7 @@ export default function Seasons() {
     >
       <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
         <Reveal>
-          <p className="label text-brass">Four estates for the price of one</p>
+          <p className="label text-brass">One estate, four seasons</p>
           <h2 className="font-display mt-4 max-w-2xl text-4xl font-light leading-tight md:text-6xl">
             Pick your season
           </h2>

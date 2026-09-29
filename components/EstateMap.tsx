@@ -49,9 +49,9 @@ const places: Place[] = [
     short: "the gates",
     where: "On Austerlitz Road",
     blurb:
-      "A stone gate at the top of the farm and a long drive running south between the fences. Everything opens up in front of you at once.",
+      "A white gate at the top of the farm and a long drive running south between the fences. Everything opens up in front of you at once.",
     image: "/images/gates-allee.jpg",
-    alt: "The stone gates and tree-lined drive",
+    alt: "The white gates and the long drive to the manor",
     cat: "grounds",
     x: 168,
     y: 104,

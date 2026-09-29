@@ -21,8 +21,9 @@ export default function EstatePage() {
     <>
       <StickyTour />
       <PageHero
-        image="/images/manor-golden-hero.jpg"
-        alt="The Lary Manor at golden hour beneath the old trees"
+        image="/images/manor-drive-trees.jpg"
+        alt="The Lary Manor at the end of the drive, framed by two old trees"
+        position="100% center"
         eyebrow="Paris, Kentucky · Bourbon County"
         title="The Estate"
         sub="More than eighty acres of rolling bluegrass in the heart of horse country, twenty minutes from Lexington and nearly two centuries deep in Kentucky history."

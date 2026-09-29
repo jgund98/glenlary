@@ -51,7 +51,7 @@ const chapters: Chapter[] = [
   {
     time: "10:30 pm",
     title: "The floor fills and stays full",
-    body: "The band kicks, the string lights blur, and the farm's famous quiet gives way for a few loud, perfect hours. Out here, the music plays as late as you can.",
+    body: "The band kicks, the string lights blur, and the farm's famous quiet gives way for a few loud, perfect hours. Nobody wants the last song to come.",
     image: { src: "/images/dancefloor-lights.jpg", alt: "The dance floor under string lights" },
     second: { src: "/images/band-playing.jpg", alt: "The band mid-set" },
   },

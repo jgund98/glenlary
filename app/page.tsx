@@ -29,7 +29,7 @@ const dayPreview = [
   },
   {
     time: "Half past six",
-    caption: "Sailcloth up, supper on the lawn",
+    caption: "Sailcloth up, cocktails on the lawn",
     image: "/images/tent-exterior-sky.jpg",
     position: "center 55%",
   },

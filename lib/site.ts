@@ -1,3 +1,11 @@
+// Absolute base for sitemap, robots, schema and social previews. Vercel sets
+// VERCEL_PROJECT_PRODUCTION_URL to the project's production domain, so this is
+// glenlary.vercel.app today and becomes eventsatglenlary.com on its own once
+// that domain is attached to the project.
+export const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
+  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+  : "https://eventsatglenlary.com";
+
 export const site = {
   name: "The GlenLary Estate",
   tagline: "Kentucky's storied wedding estate, est. 1840",
@@ -115,7 +123,7 @@ export const gallery: GalleryItem[] = [
   { src: "/images/gates-wreath.jpg", alt: "The estate gates hung with a wreath", cat: "grounds", w: 3, h: 2 },
   { src: "/images/estate-approach.jpg", alt: "The manor at the end of the long drive", cat: "grounds", w: 3, h: 2 },
   { src: "/images/manor-spring.jpg", alt: "The manor across the spring lawn", cat: "grounds", w: 3, h: 2 },
-  { src: "/images/barn-lane.jpg", alt: "The lane past the black barn", cat: "grounds", w: 2, h: 3 },
+  { src: "/images/barn-lane.jpg", alt: "The lane down to the black barn", cat: "grounds", w: 2, h: 3 },
   { src: "/images/pond-autumn-swan.jpg", alt: "The pond in autumn, swan included", cat: "grounds", w: 3, h: 2 },
   { src: "/images/pond-spring.jpg", alt: "The pond against a big bluegrass sky", cat: "grounds", w: 2, h: 3 },
   { src: "/images/pastures-golden.jpg", alt: "Golden hour over the pastures", cat: "grounds", w: 3, h: 2 },

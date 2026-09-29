@@ -5,6 +5,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Intro from "@/components/Intro";
 import SmoothScroll from "@/components/SmoothScroll";
+import { siteUrl } from "@/lib/site";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -39,7 +40,7 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://eventsatglenlary.com"),
+  metadataBase: new URL(siteUrl),
   title: {
     default: "The GlenLary Estate · Historic Kentucky Wedding Venue",
     template: "%s · The GlenLary Estate",
@@ -75,7 +76,7 @@ export default function RootLayout({
                 "A working horse farm and 1840 manor on more than 80 acres of Kentucky bluegrass, hosting weddings, galas, and private events.",
               foundingDate: "1840",
               email: "elizabeth@eventsatglenlary.com",
-              url: "https://eventsatglenlary.com",
+              url: siteUrl,
               address: {
                 "@type": "PostalAddress",
                 addressLocality: "Paris",

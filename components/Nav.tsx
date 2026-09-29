@@ -140,8 +140,8 @@ export default function Nav() {
         </div>
         <div className="relative h-36">
           <Image
-            src="/images/manor-golden-hero.jpg"
-            alt="The Lary Manor at golden hour"
+            src="/images/manor-drive-trees.jpg"
+            alt="The Lary Manor at the end of the drive"
             fill
             className="object-cover"
             sizes="100vw"

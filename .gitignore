@@ -1,15 +1,10 @@
 node_modules/
 .next/
-shots/
-shots-final/
-shots-interact/
-shots-polish/
-shots-wow/
-shots-sharp/
 dev-server.log
 .vercel
 
 .vercel
-shots-map/
-shots-sweep/
 tsconfig.tsbuildinfo
+
+# verification screenshots
+shots*/
