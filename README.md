@@ -3,7 +3,7 @@
 Website for The GlenLary Estate, a wedding and event venue on a historic horse
 farm in Paris, Kentucky. Next.js 16, Tailwind 4, framer-motion, Lenis.
 
-- **Live:** https://glenlary.vercel.app (Vercel project `glenlary`)
+- **Live:** https://glenlary.smwolf.com (also https://glenlary.vercel.app), Vercel project `glenlary`
 - **Deploys:** every push to `main` builds and goes live automatically.
 - **Pages:** `/` `/estate` `/weddings` `/gallery` `/love-notes` `/tour`
 
@@ -41,7 +41,8 @@ switch it over:
 3. Nothing in the code changes. The sitemap, robots file, structured data and
    social preview images build their URLs from Vercel's production domain
    (`siteUrl` in `lib/site.ts`), so they follow the domain automatically on
-   the next deploy.
+   the next deploy. If glenlary.smwolf.com stays attached, set
+   eventsatglenlary.com as the primary production domain so it wins.
 
 ## Known limits
 
