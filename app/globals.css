@@ -56,7 +56,8 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* no scroll-behavior: smooth. Next's route-change scroll reset obeys it,
+     so a new page would appear at the old offset and glide up. */
 }
 
 body {
@@ -231,17 +232,22 @@ body {
 .scrim-radial::before {
   content: "";
   position: absolute;
-  inset: -6rem -7rem;
+  inset: -9rem -12rem;
+  /* no filter: blur() here. A filtered box is re-composited on every frame
+     the text moves, which phones cannot afford. The long soft tail does the
+     same job of hiding the ellipse's edge. */
   background: radial-gradient(
-    ellipse 115% 95% at center,
-    rgba(22, 32, 26, 0.46) 0%,
-    rgba(22, 32, 26, 0.3) 38%,
-    rgba(22, 32, 26, 0.12) 62%,
-    rgba(22, 32, 26, 0.03) 80%,
-    transparent 95%
+    /* closest-side: the ellipse reaches transparent exactly at the box edge,
+       so no side of the box can ever show */
+    closest-side,
+    rgba(22, 32, 26, 0.5) 0%,
+    rgba(22, 32, 26, 0.38) 26%,
+    rgba(22, 32, 26, 0.22) 48%,
+    rgba(22, 32, 26, 0.1) 66%,
+    rgba(22, 32, 26, 0.035) 82%,
+    rgba(22, 32, 26, 0.008) 93%,
+    transparent 100%
   );
-  /* blurred so the ellipse can never show an edge behind the type */
-  filter: blur(36px);
   pointer-events: none;
 }
 .scrim-radial > * {
@@ -255,7 +261,10 @@ body {
   inset: 0;
   pointer-events: none;
   opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  /* a fixed 240px stitched tile, repeated: rasterised once, not per screen */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240' viewBox='0 0 240 240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  background-repeat: repeat;
 }
 
 /* Gallery items fade-rise in as a filter set mounts */
@@ -601,5 +610,87 @@ body {
   }
   .is-dusk .firefly {
     opacity: 0.7;
+  }
+}
+
+/* ---------- The Arrival, scroll-driven on the compositor ----------
+   Mirrors the ramps in components/Arrival.tsx (the JS fallback). The section
+   names a view timeline; `contain 0%` is the moment the sticky panel docks
+   and `contain 100%` the moment it releases, which is exactly the JS
+   progress. Browsers without scroll-driven animations skip this block and
+   the rAF handler takes over. Discrete flips (visibility, pointer-events)
+   are placed on their own 0.1% keyframes so they land where the ramp ends
+   instead of halfway between stops. */
+@supports (animation-timeline: scroll()) {
+  .arrival {
+    view-timeline-name: --arrival;
+    view-timeline-axis: block;
+  }
+  .arr {
+    animation-timing-function: linear;
+    animation-fill-mode: both;
+    animation-timeline: --arrival;
+    animation-range: contain 0% contain 100%;
+  }
+  .arr-gates { animation-name: arrGates; }
+  .arr-gates-img { animation-name: arrGatesImg; }
+  .arr-lane { animation-name: arrLane; }
+  .arr-lane-img { animation-name: arrLaneImg; }
+  .arr-manor { animation-name: arrManor; }
+  .arr-manor-img { animation-name: arrManorImg; }
+  .arr-t1 { animation-name: arrT1; }
+  .arr-t2 { animation-name: arrT2; }
+  .arr-t3 { animation-name: arrT3; }
+  .arr-cue { animation-name: arrCue; }
+
+  @keyframes arrGates {
+    0%, 26% { opacity: 1; }
+    36%, 100% { opacity: 0.002; }
+  }
+  @keyframes arrGatesImg {
+    0% { transform: scale(1); }
+    36%, 100% { transform: scale(1.14); }
+  }
+  @keyframes arrLane {
+    0%, 26% { opacity: 0.002; }
+    36%, 58% { opacity: 1; }
+    68%, 100% { opacity: 0.002; }
+  }
+  @keyframes arrLaneImg {
+    0%, 26% { transform: scale(1.05); }
+    68%, 100% { transform: scale(1.18); }
+  }
+  @keyframes arrManor {
+    0%, 58% { opacity: 0.002; }
+    68%, 100% { opacity: 1; }
+  }
+  @keyframes arrManorImg {
+    0%, 58% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+  }
+  @keyframes arrT1 {
+    0% { opacity: 1; transform: translateY(0); }
+    20% { opacity: 1; transform: translateY(-25px); }
+    32% { opacity: 0; transform: translateY(-40px); visibility: visible; }
+    32.1%, 100% { opacity: 0; transform: translateY(-40px); visibility: hidden; }
+  }
+  @keyframes arrT2 {
+    0%, 33.9% { opacity: 0; visibility: hidden; }
+    34% { opacity: 0; visibility: visible; }
+    44%, 54% { opacity: 1; }
+    64% { opacity: 0; visibility: visible; }
+    64.1%, 100% { opacity: 0; visibility: hidden; }
+  }
+  @keyframes arrT3 {
+    0%, 69.9% { opacity: 0; transform: translateY(30px); visibility: hidden; pointer-events: none; }
+    70% { opacity: 0; transform: translateY(30px); visibility: visible; pointer-events: none; }
+    72% { pointer-events: none; }
+    72.1% { pointer-events: auto; }
+    82% { opacity: 1; transform: translateY(6px); }
+    85%, 100% { opacity: 1; transform: translateY(0); pointer-events: auto; }
+  }
+  @keyframes arrCue {
+    0% { opacity: 1; }
+    8%, 100% { opacity: 0; }
   }
 }

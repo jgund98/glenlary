@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import { decodeAll, usePredecode } from "@/lib/predecode";
 
 const slides = [
   {
@@ -50,6 +51,15 @@ export default function WeddingReel() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const timer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  usePredecode(sectionRef);
+  // each newly mounted "next" slide is decoded a full hold before it shows
+  useEffect(() => {
+    decodeAll(sectionRef.current);
+  }, [active]);
+  // outgoing, current and next: three mounted photos, never six
+  const n = slides.length;
+  const live = new Set([(active + n - 1) % n, active, (active + 1) % n]);
 
   useEffect(() => {
     if (paused || window.matchMedia("(prefers-reduced-motion: reduce)").matches)
@@ -65,16 +75,20 @@ export default function WeddingReel() {
 
   return (
     <section
+      ref={sectionRef}
       aria-label="Real weddings at GlenLary"
       className="relative h-[86vh] overflow-hidden bg-ink text-cream md:h-screen"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {slides.map((s, i) => (
+      {slides.map((s, i) =>
+        live.has(i) ? (
         <div
           key={s.src}
           className="absolute inset-0 transition-opacity duration-[950ms] ease-in-out"
-          style={{ opacity: i === active ? 1 : 0 }}
+          // 0.002, not 0: a layer at exactly 0 is never drawn, so the next
+          // slide would pay its full-screen raster the moment it fades in
+          style={{ opacity: i === active ? 1 : 0.002 }}
           aria-hidden={i !== active}
         >
           <Image
@@ -91,7 +105,8 @@ export default function WeddingReel() {
             priority={i === 0}
           />
         </div>
-      ))}
+        ) : null
+      )}
       <div className="absolute inset-0 bg-gradient-to-t from-ink/70 via-ink/10 to-ink/30" />
       <div className="grain absolute inset-0" />
 

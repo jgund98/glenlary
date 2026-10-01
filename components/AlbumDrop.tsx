@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { usePredecode } from "@/lib/predecode";
 
 /**
  * From the Album: as you scroll, real prints toss themselves onto the table
@@ -50,6 +51,7 @@ function glide(t: number) {
 
 export default function AlbumDrop() {
   const sectionRef = useRef<HTMLElement>(null);
+  usePredecode(sectionRef);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const headRef = useRef<HTMLDivElement>(null);
 
@@ -57,6 +59,7 @@ export default function AlbumDrop() {
     let raf = 0;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+    const lastDev: number[] = [];
     const apply = () => {
       raf = 0;
       const sec = sectionRef.current;
@@ -99,10 +102,20 @@ export default function AlbumDrop() {
         el.style.transform = `translate(-50%, -50%) translate(${fx}cqw, ${fy}cqh) rotate(${fr}deg)`;
         el.style.opacity = t > 0.02 ? "1" : "0";
 
-        const img = el.querySelector("img");
-        if (img) {
-          // the print develops: washed and pale, then true color
-          (img as HTMLElement).style.filter = `sepia(${(1 - dev) * 0.5}) brightness(${1.6 - dev * 0.6}) contrast(${0.6 + dev * 0.4}) saturate(${0.3 + dev * 0.7})`;
+        // the print develops: washed and pale, then true color. Quantised
+        // to 24 steps and written only on change: a filter on a composited
+        // image is re-run by the GPU each time its value changes, so this
+        // costs a couple of dozen passes per print instead of one per frame,
+        // and none at all once the print is developed.
+        const q = Math.round(dev * 24) / 24;
+        if (q !== lastDev[i]) {
+          lastDev[i] = q;
+          const img = el.querySelector("img");
+          if (img)
+            (img as HTMLElement).style.filter =
+              q >= 1
+                ? "none"
+                : `sepia(${(1 - q) * 0.5}) brightness(${1.6 - q * 0.6}) contrast(${0.6 + q * 0.4}) saturate(${0.3 + q * 0.7})`;
         }
       });
     };

@@ -14,14 +14,22 @@ export default function StickyTour() {
   const pathname = usePathname();
 
   useEffect(() => {
+    const hero = document.querySelector("main section");
+    let raf = 0;
     const onScroll = () => {
-      const hero = document.querySelector("main section");
-      if (hero) setShow(hero.getBoundingClientRect().bottom < 0);
-      else setShow(window.scrollY > window.innerHeight * 1.2);
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        if (hero) setShow(hero.getBoundingClientRect().bottom < 0);
+        else setShow(window.scrollY > window.innerHeight * 1.2);
+      });
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, [pathname]);
 
   if (pathname === "/tour") return null;

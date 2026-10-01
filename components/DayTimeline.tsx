@@ -106,9 +106,11 @@ export default function DayTimeline() {
   const ref = useRef<HTMLElement>(null);
   const railRef = useRef<HTMLDivElement>(null);
   const starsRef = useRef<HTMLDivElement>(null);
+  const sheetRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     let raf = 0;
+    let lastFg = -1;
 
     const apply = () => {
       raf = 0;
@@ -122,12 +124,23 @@ export default function DayTimeline() {
       const total = rect.height - start + end - vh;
       const p = Math.min(1, Math.max(0, (start - rect.top) / Math.max(1, total)));
 
-      const bg = lerpColor(BG_STOPS, BG_COLORS, p);
-      const fg = lerpColor(FG_STOPS, FG_COLORS, p);
-      el.style.backgroundColor = `rgb(${bg[0]},${bg[1]},${bg[2]})`;
-      el.style.color = `rgb(${fg[0]},${fg[1]},${fg[2]})`;
-      if (railRef.current) {
-        railRef.current.style.backgroundColor = `rgba(${fg[0]},${fg[1]},${fg[2]},0.25)`;
+      for (let k = 1; k < BG_STOPS.length; k++) {
+        const sheet = sheetRefs.current[k - 1];
+        if (!sheet) continue;
+        const span = BG_STOPS[k] - BG_STOPS[k - 1];
+        const t = Math.min(1, Math.max(0, (p - BG_STOPS[k - 1]) / span));
+        sheet.style.opacity = String(t);
+      }
+      const fspan = FG_STOPS[1] - FG_STOPS[0];
+      const fq =
+        Math.round(Math.min(1, Math.max(0, (p - FG_STOPS[0]) / fspan)) * 16) / 16;
+      if (fq !== lastFg) {
+        lastFg = fq;
+        const fg = lerpColor([0, 1], FG_COLORS, fq);
+        el.style.color = `rgb(${fg[0]},${fg[1]},${fg[2]})`;
+        if (railRef.current) {
+          railRef.current.style.backgroundColor = `rgba(${fg[0]},${fg[1]},${fg[2]},0.25)`;
+        }
       }
       if (starsRef.current) {
         const s = Math.min(1, Math.max(0, (p - 0.74) / 0.16));
@@ -155,6 +168,22 @@ export default function DayTimeline() {
       style={{ backgroundColor: "#fafaf7", color: "#1d231c" }}
       className="relative overflow-hidden"
     >
+      {/* dusk sheets, back to front, fading in over the cream base */}
+      {BG_COLORS.slice(1).map((c, i) => (
+        <div
+          key={i}
+          ref={(el) => {
+            sheetRefs.current[i] = el;
+          }}
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundColor: `rgb(${c[0]},${c[1]},${c[2]})`,
+            opacity: 0,
+            willChange: "opacity",
+          }}
+        />
+      ))}
       {/* starfield fading in as the day goes dark */}
       <div
         ref={starsRef}
@@ -162,13 +191,14 @@ export default function DayTimeline() {
         className="pointer-events-none absolute inset-x-0 bottom-0 h-[45%]"
         style={{
           opacity: 0,
+          willChange: "opacity",
           backgroundRepeat: "repeat",
           backgroundSize: "560px 430px",
           backgroundImage:
             "radial-gradient(1px 1px at 12% 18%, rgba(250,250,247,0.9) 50%, transparent 51%), radial-gradient(1.5px 1.5px at 28% 64%, rgba(250,250,247,0.7) 50%, transparent 51%), radial-gradient(1px 1px at 41% 32%, rgba(250,250,247,0.8) 50%, transparent 51%), radial-gradient(2px 2px at 57% 11%, rgba(250,250,247,0.6) 50%, transparent 51%), radial-gradient(1px 1px at 66% 47%, rgba(250,250,247,0.85) 50%, transparent 51%), radial-gradient(1.5px 1.5px at 78% 25%, rgba(250,250,247,0.7) 50%, transparent 51%), radial-gradient(1px 1px at 87% 58%, rgba(250,250,247,0.9) 50%, transparent 51%), radial-gradient(1px 1px at 8% 76%, rgba(250,250,247,0.6) 50%, transparent 51%), radial-gradient(1.5px 1.5px at 49% 82%, rgba(250,250,247,0.65) 50%, transparent 51%), radial-gradient(1px 1px at 93% 85%, rgba(250,250,247,0.75) 50%, transparent 51%), radial-gradient(1px 1px at 21% 41%, rgba(250,250,247,0.5) 50%, transparent 51%), radial-gradient(1px 1px at 71% 71%, rgba(250,250,247,0.55) 50%, transparent 51%)",
         }}
       />
-      <div className="mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
+      <div className="relative mx-auto max-w-7xl px-5 py-24 md:px-8 md:py-32">
         <Reveal>
           <p className="label text-brass">From first light to last lantern</p>
           <h2 className="font-display mt-4 max-w-3xl text-4xl font-light leading-tight md:text-6xl">

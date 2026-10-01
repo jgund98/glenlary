@@ -45,6 +45,7 @@ export default function GhostWord({
       ref={ref}
       aria-hidden
       className={`pointer-events-none absolute select-none font-display italic leading-none ${className}`}
+      style={{ willChange: "transform" }}
     >
       {text}
     </div>

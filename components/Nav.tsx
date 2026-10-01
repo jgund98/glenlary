@@ -12,10 +12,20 @@ export default function Nav() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 60);
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        setScrolled(window.scrollY > 60);
+      });
+    };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   useEffect(() => {
@@ -36,7 +46,7 @@ export default function Nav() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-[background-color,box-shadow,color] duration-500 ${
           solid
-            ? "bg-cream/95 text-ink shadow-[0_1px_0_var(--line)] backdrop-blur-sm"
+            ? "bg-cream/95 text-ink shadow-[0_1px_0_var(--line)]"
             : "bg-transparent text-cream"
         }`}
       >

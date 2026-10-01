@@ -59,6 +59,9 @@ export default function Residents() {
     const onScroll = () => {
       if (!raf) raf = requestAnimationFrame(apply);
     };
+    itemRefs.current.forEach((n) => {
+      if (n) n.style.willChange = "transform";
+    });
     apply();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll, { passive: true });

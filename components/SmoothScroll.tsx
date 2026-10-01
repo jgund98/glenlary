@@ -8,11 +8,15 @@ import Lenis from "lenis";
 export default function SmoothScroll() {
   const pathname = usePathname();
 
-  // every route change starts fresh at the top (anchors excepted)
+  // every route change starts fresh at the top (anchors excepted). Lenis
+  // keeps its own target position and, if a flick was still settling when
+  // the link was tapped, would glide the new page straight back down to the
+  // old offset, so it is told about the jump explicitly.
   useEffect(() => {
-    if (!window.location.hash) {
-      window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
-    }
+    if (window.location.hash) return;
+    const lenis = (window as unknown as { __lenis?: Lenis }).__lenis;
+    if (lenis) lenis.scrollTo(0, { immediate: true, force: true });
+    window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
   }, [pathname]);
 
   useEffect(() => {
