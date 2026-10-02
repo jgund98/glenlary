@@ -41,6 +41,7 @@ type Place = {
   lx?: number; // label offset from the pin
   ly?: number;
   end?: boolean; // label reads leftward from the pin
+  nolabel?: boolean; // pin only, no hand-lettered name
 };
 
 const places: Place[] = [
@@ -68,16 +69,17 @@ const places: Place[] = [
     n: "02",
     name: "The Pond",
     short: "the pond",
-    where: "Beside the drive, above the ceremony lawn",
+    nolabel: true,
+    where: "East of the house",
     blurb:
-      "Still water just off the drive and right above the ceremony lawn, the view behind your guests and the best place on the farm to watch the sun go.",
+      "The big pond east of the house, still water ringed by pasture and the best place on the farm to watch the sun go.",
     image: "/images/pond-spring.jpg",
     alt: "The pond in spring",
     cat: "grounds",
-    x: 264,
-    y: 440,
-    px: 262,
-    py: 372,
+    x: 436,
+    y: 622,
+    px: 470,
+    py: 580,
     lx: 24,
     ly: 6,
   },
@@ -132,8 +134,8 @@ const places: Place[] = [
     alt: "The sailcloth tent set on the lawn",
     pos: "center 60%",
     cat: "tent",
-    x: 238,
-    y: 692,
+    x: 200,
+    y: 678,
     px: 364,
     py: 676,
     lx: 24,
@@ -211,7 +213,7 @@ const catLabel: Record<string, string> = {
 // lane on the east side past the pool and tent to the cabin, the barn lane,
 // then the farm track east and north to the stables.
 const ROUTE =
-  "M194 100 L194 530 C194 552 202 560 216 560 C232 560 246 556 246 548 C268 556 298 574 302 602 L304 692 C304 726 276 742 242 746 C224 748 206 748 194 752 C182 758 190 770 214 780 C240 790 272 794 300 794 C330 794 356 776 360 748 C362 720 380 700 410 698 L470 696 C512 694 536 676 538 636 L538 410 C538 396 528 388 516 388";
+  "M194 100 L194 530 C194 552 202 560 216 560 C232 560 246 556 246 548 C262 556 282 572 284 600 L284 694 C284 726 262 742 236 746 C220 748 206 748 194 752 C182 758 190 770 214 780 C240 790 272 794 300 794 C330 794 356 776 360 748 C362 720 380 700 410 698 L470 696 C512 694 536 676 538 636 L538 410 C538 396 528 388 516 388";
 
 const trees: [number, number, number][] = [
   // west belt along the drive
@@ -598,8 +600,8 @@ export default function EstateMap({
 
               {/* the buildings, drawn as little elevations */}
               <g transform="translate(206 616)"><Manor /></g>
-              <g transform="translate(204 648)"><Pool /></g>
-              <g transform="translate(240 712)"><Tent /></g>
+              <g transform="translate(204 636)"><Pool /></g>
+              <g transform="translate(200 696)"><Tent /></g>
               <g transform="translate(180 748)"><Cabin /></g>
               <g transform="translate(300 812)"><Barn /></g>
               <g transform="translate(514 400)"><Stables /></g>
@@ -641,7 +643,7 @@ export default function EstateMap({
 
               {/* hand-lettered labels */}
               <g className="hidden md:block">
-                {places.map((p, i) => (
+                {places.map((p, i) => p.nolabel ? null : (
                   <text
                     key={p.key}
                     x={p.px + (p.lx ?? 24)}
@@ -659,9 +661,6 @@ export default function EstateMap({
                 </text>
                 <text x="462" y="752" className="map-label" fontSize="16" fill="var(--m-soft)" textAnchor="middle">
                   south pastures
-                </text>
-                <text x="436" y="628" className="map-label" fontSize="14" fill="var(--m-ink)" fillOpacity="0.55" textAnchor="middle">
-                  the big pond
                 </text>
                 <text x="284" y="502" className="map-label" fontSize="14" fill="var(--m-soft)" textAnchor="middle">
                   ceremony lawn
