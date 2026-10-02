@@ -10,7 +10,9 @@ import { Barn, Cabin, Manor, Pool, Stables, Tent } from "./estate-map-icons";
  * Figure 1) and the aerial. North is up. Austerlitz Road runs along the top;
  * the drive enters at the north-west corner and runs down the west side past
  * the pond to the manor, a third of a mile in. The manor faces north up the
- * drive: the great oak and the ceremony lawn are in front of it; behind it
+ * drive, which runs straight from the gate and ends in a turnaround loop by
+ * the great oak; the ceremony lawn sits in front, the big pond to the east;
+ * behind it
  * come the pool, then the tent, with the log cabin beside the tent's west
  * end; the black tobacco barn sits further south down the lane (checked against the aerial and
  * the owner's walk-through). The working stables sit on the east side. Not
@@ -53,9 +55,9 @@ const places: Place[] = [
     image: "/images/gates-allee.jpg",
     alt: "The white gates and the long drive to the manor",
     cat: "grounds",
-    x: 168,
+    x: 194,
     y: 104,
-    px: 122,
+    px: 150,
     py: 150,
     lx: -24,
     ly: 6,
@@ -66,16 +68,16 @@ const places: Place[] = [
     n: "02",
     name: "The Pond",
     short: "the pond",
-    where: "Halfway down the drive",
+    where: "Beside the drive, above the ceremony lawn",
     blurb:
-      "Still water and a four-board fence just off the drive, the backdrop to every ceremony photograph and the best place on the farm to watch the sun go.",
+      "Still water just off the drive and right above the ceremony lawn, the view behind your guests and the best place on the farm to watch the sun go.",
     image: "/images/pond-spring.jpg",
     alt: "The pond in spring",
     cat: "grounds",
-    x: 262,
-    y: 418,
+    x: 264,
+    y: 440,
     px: 262,
-    py: 364,
+    py: 372,
     lx: 24,
     ly: 6,
   },
@@ -91,10 +93,10 @@ const places: Place[] = [
     alt: "The great oak over the fence line and pasture",
     pos: "center 60%",
     cat: "ceremony",
-    x: 212,
+    x: 228,
     y: 516,
-    px: 318,
-    py: 500,
+    px: 322,
+    py: 522,
     lx: 24,
     ly: 6,
   },
@@ -130,10 +132,10 @@ const places: Place[] = [
     alt: "The sailcloth tent set on the lawn",
     pos: "center 60%",
     cat: "tent",
-    x: 236,
-    y: 680,
+    x: 238,
+    y: 692,
     px: 364,
-    py: 670,
+    py: 676,
     lx: 24,
     ly: 6,
   },
@@ -204,11 +206,12 @@ const catLabel: Record<string, string> = {
   barn: "the barn",
 };
 
-// The route the marker follows: gates, down the drive, the manor, round to
-// the pool and tent behind it, the cabin, the barn lane, then the farm track
-// east and north to the stables.
+// The route the marker follows: through the gate, straight down the
+// tree-lined drive, round the turnaround loop in front of the manor, down the
+// lane on the east side past the pool and tent to the cabin, the barn lane,
+// then the farm track east and north to the stables.
 const ROUTE =
-  "M168 104 L174 140 L174 540 C174 566 186 580 206 584 C230 588 244 604 242 624 C240 648 238 664 236 680 C234 700 216 716 196 728 C182 738 190 768 214 778 C240 790 272 794 300 794 C330 794 356 776 360 748 C362 720 380 700 410 698 L470 696 C512 694 536 676 538 636 L538 410 C538 396 528 388 516 388";
+  "M194 100 L194 530 C194 552 202 560 216 560 C232 560 246 556 246 548 C268 556 298 574 302 602 L304 692 C304 726 276 742 242 746 C224 748 206 748 194 752 C182 758 190 770 214 780 C240 790 272 794 300 794 C330 794 356 776 360 748 C362 720 380 700 410 698 L470 696 C512 694 536 676 538 636 L538 410 C538 396 528 388 516 388";
 
 const trees: [number, number, number][] = [
   // west belt along the drive
@@ -221,7 +224,7 @@ const trees: [number, number, number][] = [
   [262, 592, 6], [156, 786, 7], [226, 764, 6],
   // east boundary and the far fields
   [580, 140, 9], [586, 210, 7], [578, 290, 10], [588, 470, 8], [580, 540, 9], [586, 620, 7],
-  [578, 700, 10], [586, 780, 8], [470, 560, 8], [500, 600, 9], [440, 800, 7], [360, 830, 8],
+  [578, 700, 10], [586, 780, 8], [470, 560, 8], [532, 652, 9], [440, 800, 7], [360, 830, 8],
   // north of the road, the neighbours
   [60, 24, 8], [110, 30, 6], [330, 22, 7], [470, 28, 9], [640, 24, 7], [700, 40, 8],
   // west neighbours
@@ -448,7 +451,7 @@ export default function EstateMap({
                   <path d="M372 716 C374 770 370 820 372 858" />
                   <path d="M360 400 C420 396 480 404 530 406 L530 560 L360 566 Z" />
                   <path d="M212 384 L306 380" />
-                  <path d="M180 470 L342 470" strokeOpacity="0.5" />
+                  <path d="M180 488 L342 488" strokeOpacity="0.5" />
                 </g>
                 <g strokeWidth="4" strokeDasharray="1.4 13" strokeOpacity="0.9">
                   <path d="M312 150 C390 146 470 150 552 154" />
@@ -500,7 +503,7 @@ export default function EstateMap({
               <path d={ROUTE} fill="none" stroke="var(--m-drive)" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
               <path d={ROUTE} fill="none" stroke="var(--m-line)" strokeWidth="10.5" strokeOpacity="0.35" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="0.1 0" />
               <path d="M556 106 C558 200 556 300 552 356" fill="none" stroke="var(--m-drive)" strokeWidth="7" strokeLinecap="round" />
-              <ellipse cx="216" cy="600" rx="30" ry="15" fill="none" stroke="var(--m-drive)" strokeWidth="8" />
+              <ellipse cx="216" cy="548" rx="30" ry="12" fill="none" stroke="var(--m-drive)" strokeWidth="8" />
               <ellipse cx="300" cy="792" rx="26" ry="13" fill="none" stroke="var(--m-drive)" strokeWidth="8" />
               <path
                 ref={routeRef}
@@ -516,7 +519,7 @@ export default function EstateMap({
               {/* lanterns along the drive */}
               <g className="map-glow" fill="#e0b963">
                 {[170, 240, 310, 380, 450, 520].map((y) => (
-                  <circle key={y} cx="182" cy={y} r="1.8" />
+                  <circle key={y} cx="181" cy={y} r="1.8" />
                 ))}
               </g>
 
@@ -535,7 +538,8 @@ export default function EstateMap({
                 ))}
               </g>
 
-              {/* the pond */}
+              {/* the pond, just above the ceremony lawn */}
+              <g transform="translate(0 22)">
               <path
                 d="M232 398 C246 380 284 384 296 404 C310 426 296 448 270 452 C242 456 218 432 232 398 Z"
                 fill="var(--m-water)"
@@ -553,22 +557,40 @@ export default function EstateMap({
               </g>
               <circle cx="272" cy="414" r="1.6" fill="var(--m-house)" />
               <circle cx="278" cy="418" r="1.3" fill="var(--m-house)" />
+              </g>
+
+              {/* the big pond, east of the house */}
+              <path
+                d="M370 598 C390 584 440 590 472 604 C500 616 512 640 488 650 C460 660 420 644 396 634 C376 626 358 612 370 598 Z"
+                fill="var(--m-water)"
+                stroke="var(--m-water2)"
+                strokeWidth="1.4"
+              />
+              <g fill="none" stroke="var(--m-water2)" strokeWidth="1" strokeLinecap="round">
+                <path d="M402 610 C408 606 414 606 420 610" />
+                <path d="M446 626 C452 622 458 622 464 626" />
+              </g>
+              <g stroke="var(--m-tree3)" strokeWidth="1" strokeLinecap="round">
+                <path d="M372 596 L370 586" />
+                <path d="M377 594 L377 584" />
+                <path d="M490 650 L494 641" />
+              </g>
 
               {/* the great oak in front of the manor, ceremony chairs beside it */}
-              <ellipse cx="222" cy="528" rx="30" ry="16" fill="var(--m-shadow)" />
-              <circle cx="212" cy="516" r="24" fill="var(--m-tree2)" />
-              <circle cx="202" cy="508" r="14" fill="var(--m-tree3)" fillOpacity="0.75" />
-              <circle cx="222" cy="522" r="12" fill="var(--m-tree)" fillOpacity="0.9" />
+              <ellipse cx="238" cy="526" rx="28" ry="15" fill="var(--m-shadow)" />
+              <circle cx="228" cy="514" r="22" fill="var(--m-tree2)" />
+              <circle cx="219" cy="507" r="13" fill="var(--m-tree3)" fillOpacity="0.75" />
+              <circle cx="237" cy="520" r="11" fill="var(--m-tree)" fillOpacity="0.9" />
               <g fill="var(--m-house)" stroke="var(--m-ink)" strokeOpacity="0.4" strokeWidth="0.5">
                 {[0, 1, 2, 3].map((r) =>
                   [0, 1, 2, 3, 4].map((c) => (
                     <rect
                       key={`${r}-${c}`}
-                      x={244 + c * 6 + (c > 1 ? 6 : 0) + r * 1.5}
+                      x={262 + c * 6 + (c > 1 ? 6 : 0) + r * 1.5}
                       y={528 + r * 6}
                       width="3.4"
                       height="3.4"
-                      transform={`rotate(-10 ${244 + c * 6} ${528 + r * 6})`}
+                      transform={`rotate(-10 ${262 + c * 6} ${528 + r * 6})`}
                     />
                   ))
                 )}
@@ -577,7 +599,7 @@ export default function EstateMap({
               {/* the buildings, drawn as little elevations */}
               <g transform="translate(206 616)"><Manor /></g>
               <g transform="translate(204 648)"><Pool /></g>
-              <g transform="translate(258 708)"><Tent /></g>
+              <g transform="translate(240 712)"><Tent /></g>
               <g transform="translate(180 748)"><Cabin /></g>
               <g transform="translate(300 812)"><Barn /></g>
               <g transform="translate(514 400)"><Stables /></g>
@@ -638,7 +660,10 @@ export default function EstateMap({
                 <text x="462" y="752" className="map-label" fontSize="16" fill="var(--m-soft)" textAnchor="middle">
                   south pastures
                 </text>
-                <text x="262" y="480" className="map-label" fontSize="14" fill="var(--m-soft)" textAnchor="middle">
+                <text x="436" y="628" className="map-label" fontSize="14" fill="var(--m-ink)" fillOpacity="0.55" textAnchor="middle">
+                  the big pond
+                </text>
+                <text x="284" y="502" className="map-label" fontSize="14" fill="var(--m-soft)" textAnchor="middle">
                   ceremony lawn
                 </text>
               </g>
