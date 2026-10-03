@@ -17,22 +17,22 @@ const chapters: Chapter[] = [
     time: "9:04 am",
     title: "The manor wakes up with you",
     body: "Robes, champagne, and your favorite people sprawled across the bridal suite while the gown hangs in the wardrobe and the farm goes about its morning outside the windows. Down at the cabin, the groomsmen have the hunting lodge to themselves.",
-    image: { src: "/images/bridesmaids-robes.jpg", alt: "The bridal party in robes on the manor suite bed" },
+    image: { src: "/images/bride-mirror.jpg", alt: "The bride at the mirror in the bridal suite", tall: true, pos: "center 30%" },
     second: { src: "/images/dress-wardrobe.jpg", alt: "The gown hanging in the bridal suite" },
   },
   {
     time: "2:30 pm",
     title: "A first look on the lane",
     body: "A quiet stretch of four-board fence, one deep breath, and a turn. The horses usually wander over to watch. Nobody minds.",
-    image: { src: "/images/couple-fence-lane.jpg", alt: "A first look on the fence-lined lane" },
+    image: { src: "/images/first-look-tree.jpg", alt: "A first look beneath the trees", tall: true, pos: "center 40%" },
     second: { src: "/images/couple-horse.jpg", alt: "A pause with one of the horses" },
   },
   {
     time: "4:30 pm",
     title: "Vows beneath the great oak",
     body: "Three hundred chairs on the lawn, the bluegrass rolling out behind you, and a tree that has stood over this ground longer than the manor itself. Or say them on the front steps, framed by columns. Either way, there will not be a dry eye or a bad seat.",
-    image: { src: "/images/ceremony-oak-chairs.jpg", alt: "White chairs circled beneath the great oak", pos: "center 65%" },
-    second: { src: "/images/ceremony-vows.jpg", alt: "Vows under the oak" },
+    image: { src: "/images/oak-ceremony-na.jpg", alt: "A ceremony gathered beneath the great oak", pos: "center 55%" },
+    second: { src: "/images/ceremony-tree-chairs.jpg", alt: "Chairs set beneath the great oak" },
   },
   {
     time: "6:00 pm",
@@ -60,7 +60,7 @@ const chapters: Chapter[] = [
     title: "The tent still glowing",
     body: "Canvas lit from within on a lawn with no city glow to dim the sky, a vintage car idling on the drive, and a night nobody out here will ever quite get over.",
     image: { src: "/images/tent-night-glow.jpg", alt: "The sailcloth tent glowing on the lawn after dark" },
-    second: { src: "/images/bar-trailer-night.jpg", alt: "The bar glowing after dark" },
+    second: { src: "/images/vintage-car-lawn.jpg", alt: "A vintage car waiting on the lawn" },
   },
 ];
 

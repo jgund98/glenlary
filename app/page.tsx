@@ -18,13 +18,13 @@ const dayPreview = [
   {
     time: "Nine in the morning",
     caption: "Slow coffee, silk robes, happy nerves",
-    image: "/images/morning-prep.jpg",
+    image: "/images/bride-mirror.jpg",
     position: "center 35%",
   },
   {
     time: "Half past four",
     caption: "Three hundred hearts under one oak",
-    image: "/images/ceremony-oak-crowd.jpg",
+    image: "/images/oak-ceremony-na.jpg",
     position: "center 52%",
   },
   {

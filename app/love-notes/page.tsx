@@ -26,7 +26,7 @@ export default function LoveNotesPage() {
     <>
       <StickyTour />
       <PageHero
-        image="/images/ceremony-oak-crowd.jpg"
+        image="/images/oak-ceremony-na.jpg"
         alt="A ceremony gathered beneath the great oak"
         eyebrow="In their words"
         title="Love Notes"

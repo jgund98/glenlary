@@ -32,7 +32,7 @@ const spaces = [
     title: "The Great Oak",
     note: "The ceremony lawn",
     body: "One tree, three hundred guests, and the whole bluegrass horizon behind your vows.",
-    image: "/images/ceremony-oak-crowd.jpg",
+    image: "/images/oak-ceremony-na.jpg",
     alt: "A ceremony gathered beneath the great oak",
     pos: "center 50%",
     href: "/estate#grounds",

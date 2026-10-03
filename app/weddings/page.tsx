@@ -19,8 +19,8 @@ const occasions = [
   {
     title: "Weddings",
     body: "From sophisticated casual to exclusively formal, against blue Kentucky sky and green pastures. The estate is yours: manor, barn, lawns, and all.",
-    image: "/images/couple-porch.jpg",
-    alt: "Newlyweds on the manor porch",
+    image: "/images/couple-lawn-house.jpg",
+    alt: "Newlyweds on the lawn before the manor",
   },
   {
     title: "Vow renewals & anniversaries",

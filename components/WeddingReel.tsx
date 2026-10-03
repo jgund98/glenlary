@@ -13,6 +13,12 @@ const slides = [
     pos: "center 55%",
   },
   {
+    src: "/images/oak-ceremony-na.jpg",
+    alt: "A ceremony gathered beneath the great oak",
+    caption: "Vows beneath the great oak",
+    pos: "center 55%",
+  },
+  {
     src: "/images/tent-pool-night.jpg",
     alt: "The sailcloth tent glowing over the pool after dark",
     caption: "The tent, once the sun goes down",
@@ -35,6 +41,12 @@ const slides = [
     alt: "The processional crossing the lawn before the manor",
     caption: "The processional, the manor looking on",
     pos: "center 45%",
+  },
+  {
+    src: "/images/getaway-car-just-married.jpg",
+    alt: "The just-married car heading down the drive",
+    caption: "Just married, down the drive",
+    pos: "center 60%",
   },
   {
     src: "/images/manor-doors-exit.jpg",

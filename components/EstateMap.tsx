@@ -10,9 +10,11 @@ import { Barn, Cabin, Manor, Pool, Stables, Tent } from "./estate-map-icons";
  * Figure 1) and the aerial. North is up. Austerlitz Road runs along the top;
  * the drive enters at the north-west corner and runs down the west side past
  * the pond to the manor, a third of a mile in. The manor faces north up the
- * drive, which runs straight from the gate and ends in a turnaround loop by
- * the great oak; the ceremony lawn sits in front, the big pond to the east;
- * behind it
+ * drive, which runs straight down the house's centre line from the gate and
+ * opens into a circle in front of the house; the great oak stands inside the
+ * circle on the west side with the ceremony chairs between it and the house;
+ * a lane leaves the circle, wraps the base of the small pond and runs south
+ * to the barn, with the big pond to its east; behind the house
  * come the pool, then the tent, with the log cabin beside the tent's west
  * end; the black tobacco barn sits further south down the lane (checked against the aerial and
  * the owner's walk-through). The working stables sit on the east side. Not
@@ -56,7 +58,7 @@ const places: Place[] = [
     image: "/images/gates-allee.jpg",
     alt: "The white gates and the long drive to the manor",
     cat: "grounds",
-    x: 194,
+    x: 206,
     y: 104,
     px: 150,
     py: 150,
@@ -88,19 +90,20 @@ const places: Place[] = [
     n: "03",
     name: "The Great Oak",
     short: "the great oak",
-    where: "The lawn in front of the manor",
+    where: "Inside the circle, before the manor",
     blurb:
       "Three hundred chairs fit in its shade. You say your vows here, the manor behind you and the pond and pasture beyond your guests.",
     image: "/images/oak-pasture.jpg",
     alt: "The great oak over the fence line and pasture",
     pos: "center 60%",
     cat: "ceremony",
-    x: 228,
-    y: 516,
-    px: 322,
-    py: 522,
-    lx: 24,
+    x: 172,
+    y: 536,
+    px: 116,
+    py: 520,
+    lx: -24,
     ly: 6,
+    end: true,
   },
   {
     key: "manor",
@@ -115,9 +118,9 @@ const places: Place[] = [
     pos: "center 40%",
     cat: "manor",
     x: 206,
-    y: 596,
-    px: 128,
-    py: 588,
+    y: 606,
+    px: 120,
+    py: 614,
     lx: -24,
     ly: 6,
     end: true,
@@ -135,7 +138,7 @@ const places: Place[] = [
     pos: "center 60%",
     cat: "tent",
     x: 200,
-    y: 678,
+    y: 684,
     px: 364,
     py: 676,
     lx: 24,
@@ -209,11 +212,12 @@ const catLabel: Record<string, string> = {
 };
 
 // The route the marker follows: through the gate, straight down the
-// tree-lined drive, round the turnaround loop in front of the manor, down the
-// lane on the east side past the pool and tent to the cabin, the barn lane,
-// then the farm track east and north to the stables.
+// tree-lined drive on the house's centre line, round the circle in front of
+// the manor, out its east side and round the base of the pond, then south
+// past the pool, tent and cabin to the barn, then the farm track east and
+// north to the stables.
 const ROUTE =
-  "M194 100 L194 530 C194 552 202 560 216 560 C232 560 246 556 246 548 C262 556 282 572 284 600 L284 694 C284 726 262 742 236 746 C220 748 206 748 194 752 C182 758 190 770 214 780 C240 790 272 794 300 794 C330 794 356 776 360 748 C362 720 380 700 410 698 L470 696 C512 694 536 676 538 636 L538 410 C538 396 528 388 516 388";
+  "M206 100 L206 502 C175 502 150 519 150 540 C150 561 175 578 206 578 C237 578 262 561 262 540 C262 520 280 506 300 500 C320 494 336 512 336 560 L330 700 C320 740 310 770 300 794 C330 794 356 776 360 748 C362 720 380 700 410 698 L470 696 C512 694 536 676 538 636 L538 410 C538 396 528 388 516 388";
 
 const trees: [number, number, number][] = [
   // west belt along the drive
@@ -222,8 +226,8 @@ const trees: [number, number, number][] = [
   // around the pond
   [226, 392, 8], [300, 402, 9], [296, 440, 7], [228, 448, 6],
   // the event grounds are heavily treed
-  [176, 572, 9], [160, 640, 8], [158, 690, 7], [336, 700, 8], [352, 640, 7], [338, 568, 8],
-  [262, 592, 6], [156, 786, 7], [226, 764, 6],
+  [150, 588, 9], [160, 640, 8], [158, 690, 7], [352, 706, 8], [356, 640, 7], [354, 560, 8],
+  [268, 598, 6], [156, 786, 7], [226, 764, 6],
   // east boundary and the far fields
   [580, 140, 9], [586, 210, 7], [578, 290, 10], [588, 470, 8], [580, 540, 9], [586, 620, 7],
   [578, 700, 10], [586, 780, 8], [470, 560, 8], [532, 652, 9], [440, 800, 7], [360, 830, 8],
@@ -452,8 +456,7 @@ export default function EstateMap({
                   <path d="M372 858 C440 856 500 860 552 862" />
                   <path d="M372 716 C374 770 370 820 372 858" />
                   <path d="M360 400 C420 396 480 404 530 406 L530 560 L360 566 Z" />
-                  <path d="M212 384 L306 380" />
-                  <path d="M180 488 L342 488" strokeOpacity="0.5" />
+                  <path d="M212 406 L306 402" />
                 </g>
                 <g strokeWidth="4" strokeDasharray="1.4 13" strokeOpacity="0.9">
                   <path d="M312 150 C390 146 470 150 552 154" />
@@ -502,10 +505,14 @@ export default function EstateMap({
               </g>
 
               {/* the drive and the farm track: gravel underlay, brass route */}
+              {/* the circle in front of the house, drawn whole; the route only
+                  runs round three sides of it before the lane leaves */}
+              <ellipse cx="206" cy="540" rx="56" ry="38" fill="none" stroke="var(--m-drive)" strokeWidth="10" />
+              <ellipse cx="206" cy="540" rx="56" ry="38" fill="none" stroke="var(--m-line)" strokeWidth="10.5" strokeOpacity="0.35" />
+              <ellipse cx="206" cy="540" rx="56" ry="38" fill="none" stroke="#966b22" strokeWidth="1.6" />
               <path d={ROUTE} fill="none" stroke="var(--m-drive)" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
               <path d={ROUTE} fill="none" stroke="var(--m-line)" strokeWidth="10.5" strokeOpacity="0.35" strokeLinecap="round" strokeLinejoin="round" strokeDasharray="0.1 0" />
               <path d="M556 106 C558 200 556 300 552 356" fill="none" stroke="var(--m-drive)" strokeWidth="7" strokeLinecap="round" />
-              <ellipse cx="216" cy="548" rx="30" ry="12" fill="none" stroke="var(--m-drive)" strokeWidth="8" />
               <ellipse cx="300" cy="792" rx="26" ry="13" fill="none" stroke="var(--m-drive)" strokeWidth="8" />
               <path
                 ref={routeRef}
@@ -521,7 +528,7 @@ export default function EstateMap({
               {/* lanterns along the drive */}
               <g className="map-glow" fill="#e0b963">
                 {[170, 240, 310, 380, 450, 520].map((y) => (
-                  <circle key={y} cx="181" cy={y} r="1.8" />
+                  <circle key={y} cx="194" cy={y} r="1.8" />
                 ))}
               </g>
 
@@ -541,7 +548,7 @@ export default function EstateMap({
               </g>
 
               {/* the pond, just above the ceremony lawn */}
-              <g transform="translate(0 22)">
+              <g transform="translate(4 28)">
               <path
                 d="M232 398 C246 380 284 384 296 404 C310 426 296 448 270 452 C242 456 218 432 232 398 Z"
                 fill="var(--m-water)"
@@ -579,29 +586,29 @@ export default function EstateMap({
               </g>
 
               {/* the great oak in front of the manor, ceremony chairs beside it */}
-              <ellipse cx="238" cy="526" rx="28" ry="15" fill="var(--m-shadow)" />
-              <circle cx="228" cy="514" r="22" fill="var(--m-tree2)" />
-              <circle cx="219" cy="507" r="13" fill="var(--m-tree3)" fillOpacity="0.75" />
-              <circle cx="237" cy="520" r="11" fill="var(--m-tree)" fillOpacity="0.9" />
+              <ellipse cx="180" cy="546" rx="22" ry="11" fill="var(--m-shadow)" />
+              <circle cx="172" cy="536" r="18" fill="var(--m-tree2)" />
+              <circle cx="164" cy="529" r="10" fill="var(--m-tree3)" fillOpacity="0.75" />
+              <circle cx="180" cy="541" r="9" fill="var(--m-tree)" fillOpacity="0.9" />
               <g fill="var(--m-house)" stroke="var(--m-ink)" strokeOpacity="0.4" strokeWidth="0.5">
                 {[0, 1, 2, 3].map((r) =>
                   [0, 1, 2, 3, 4].map((c) => (
                     <rect
                       key={`${r}-${c}`}
-                      x={262 + c * 6 + (c > 1 ? 6 : 0) + r * 1.5}
-                      y={528 + r * 6}
+                      x={190 + c * 6 + (c > 1 ? 6 : 0) + r * 1.5}
+                      y={546 + r * 6}
                       width="3.4"
                       height="3.4"
-                      transform={`rotate(-10 ${262 + c * 6} ${528 + r * 6})`}
+                      transform={`rotate(-10 ${190 + c * 6} ${546 + r * 6})`}
                     />
                   ))
                 )}
               </g>
 
               {/* the buildings, drawn as little elevations */}
-              <g transform="translate(206 616)"><Manor /></g>
-              <g transform="translate(204 636)"><Pool /></g>
-              <g transform="translate(200 696)"><Tent /></g>
+              <g transform="translate(206 624)"><Manor /></g>
+              <g transform="translate(204 640)"><Pool /></g>
+              <g transform="translate(200 702)"><Tent /></g>
               <g transform="translate(180 748)"><Cabin /></g>
               <g transform="translate(300 812)"><Barn /></g>
               <g transform="translate(514 400)"><Stables /></g>
@@ -661,9 +668,6 @@ export default function EstateMap({
                 </text>
                 <text x="462" y="752" className="map-label" fontSize="16" fill="var(--m-soft)" textAnchor="middle">
                   south pastures
-                </text>
-                <text x="284" y="502" className="map-label" fontSize="14" fill="var(--m-soft)" textAnchor="middle">
-                  ceremony lawn
                 </text>
               </g>
 
