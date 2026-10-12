@@ -519,10 +519,53 @@ body {
 .map-pin[data-active="true"]::after {
   content: "";
   position: absolute;
-  inset: -7px;
+  inset: -1px;
   border-radius: 9999px;
   border: 1px solid var(--color-brass-soft);
   animation: pinPulse 2.2s ease-out infinite;
+}
+/* until the first tap, the unvisited pins take turns sending out a soft
+   ring, a slow wave around the map that says "these are buttons" */
+.map-hint .map-pin[data-active="false"]::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 9999px;
+  border: 1.5px solid var(--color-brass);
+  opacity: 0;
+  animation: pinPing 6s ease-out infinite;
+  animation-delay: var(--ping-delay, 1.6s);
+  pointer-events: none;
+}
+@keyframes pinPing {
+  0% {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  4% {
+    opacity: 0.85;
+  }
+  22% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.75);
+    opacity: 0;
+  }
+}
+.map-tap-hint {
+  opacity: 0;
+  animation: tapHintIn 0.8s ease-out 2.2s forwards;
+}
+.map-tap-hint.opacity-0 {
+  animation: none;
+  opacity: 0;
+}
+@keyframes tapHintIn {
+  to {
+    opacity: 1;
+  }
 }
 @keyframes pinPulse {
   0% {
@@ -605,8 +648,13 @@ body {
     animation: none;
   }
   .map-pin[data-active="true"]::after,
+  .map-hint .map-pin[data-active="false"]::before,
   .is-dusk .firefly {
     animation: none;
+  }
+  .map-tap-hint {
+    animation: none;
+    opacity: 1;
   }
   .is-dusk .firefly {
     opacity: 0.7;

@@ -261,12 +261,17 @@ export default function EstateMap({
   const markerRef = useRef<HTMLDivElement>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const [sheet, setSheet] = useState(false);
+  // until the first tap the pins ripple and a hand-lettered hint shows
+  const [touched, setTouched] = useState(false);
   const offsets = useRef<number[]>([]);
   const current = useRef(0);
   const raf = useRef(0);
   const place = places[active];
 
-  const choose = useCallback((i: number) => setActive(i), []);
+  const choose = useCallback((i: number) => {
+    setActive(i);
+    setTouched(true);
+  }, []);
   const touchY = useRef<number | null>(null);
   // On phones a tap opens the stop full-screen; desktop keeps the side card.
   const openStop = useCallback(
@@ -374,8 +379,9 @@ export default function EstateMap({
             Over eighty acres, and where the day happens
           </h2>
           <p className="mt-5 leading-relaxed text-ink-soft">
-            Touch a place to see it. Laid out from the county plat and the
-            aerial, so you can picture the walk before you take it.
+            Tap any number on the map to see that spot. Laid out from the
+            county plat and the aerial, so you can picture the walk before
+            you take it.
           </p>
         </div>
         <p className="font-hand text-2xl text-ink-soft md:pb-1">
@@ -387,7 +393,7 @@ export default function EstateMap({
         {/* Map */}
         <div
           ref={ref}
-          className={`estate-map relative lg:col-span-7 ${inView ? "map-in" : ""}`}
+          className={`estate-map relative lg:col-span-7 ${inView ? "map-in" : ""} ${touched ? "" : "map-hint"}`}
         >
           <div ref={panelRef} className="elev-2 relative overflow-hidden">
             <svg
@@ -709,6 +715,44 @@ export default function EstateMap({
               </g>
             </svg>
 
+            {/* "tap a number": part of the drawing, gone after the first tap */}
+            <div
+              aria-hidden
+              className={`map-tap-hint pointer-events-none absolute flex items-start gap-1 transition-opacity duration-500 ${
+                touched ? "opacity-0" : ""
+              }`}
+              style={{ left: `${(18 / 720) * 100}%`, top: `${(178 / 900) * 100}%` }}
+            >
+              <span className="font-hand text-[15px] leading-none text-brass md:text-[19px]">
+                tap a number
+              </span>
+              {/* phones: no place labels, so the pin sits right above the note; the arrow curls back up to it */}
+              <svg
+                viewBox="0 0 30 30"
+                className="-mt-4 h-[24px] w-[24px] text-brass md:hidden"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M6 27 C 20 26, 22 12, 8 4" />
+                <path d="M8 11 L8 4 L15 4" />
+              </svg>
+              <svg
+                viewBox="0 0 40 30"
+                className="-mt-4 hidden h-[28px] w-[38px] text-brass md:block"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M3 26 C 14 24, 26 18, 34 6" />
+                <path d="M27 7 L34 6 L33 13" />
+              </svg>
+            </div>
+
             {/* you, on the drive */}
             <div
               ref={markerRef}
@@ -736,14 +780,19 @@ export default function EstateMap({
                     left: `${(p.px / 720) * 100}%`,
                     top: `${(p.py / 900) * 100}%`,
                     animationDelay: `${0.5 + i * 0.16}s`,
+                    ["--ping-delay" as string]: `${1.6 + i * 0.75}s`,
                   }}
-                  className={`map-pin absolute flex h-8 w-8 items-center justify-center rounded-full border font-label text-[10px] tracking-[0.12em] shadow-[0_2px_10px_rgba(22,32,26,0.22)] transition-colors duration-300 md:h-9 md:w-9 md:text-[11px] ${
-                    on
-                      ? "border-brass-soft bg-pine text-cream"
-                      : "border-brass bg-cream text-pine hover:bg-pine hover:text-cream"
-                  }`}
+                  className="map-pin group absolute flex h-11 w-11 items-center justify-center rounded-full"
                 >
-                  {p.n}
+                  <span
+                    className={`relative flex h-8 w-8 items-center justify-center rounded-full border font-label text-[10px] tracking-[0.12em] shadow-[0_2px_10px_rgba(22,32,26,0.22)] transition-colors duration-300 md:h-9 md:w-9 md:text-[11px] ${
+                      on
+                        ? "border-brass-soft bg-pine text-cream"
+                        : "border-brass bg-cream text-pine group-hover:bg-pine group-hover:text-cream"
+                    }`}
+                  >
+                    {p.n}
+                  </span>
                 </button>
               );
             })}
