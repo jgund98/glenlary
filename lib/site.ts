@@ -1,10 +1,7 @@
-// Absolute base for sitemap, robots, schema and social previews. Vercel sets
-// VERCEL_PROJECT_PRODUCTION_URL to the project's production domain, so this is
-// glenlary.vercel.app today and becomes eventsatglenlary.com on its own once
-// that domain is attached to the project.
-export const siteUrl = process.env.VERCEL_PROJECT_PRODUCTION_URL
-  ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-  : "https://eventsatglenlary.com";
+// Absolute base for sitemap, robots, schema and social previews. The real
+// domain is live on Vercel (2026-10-15), so it is fixed here rather than read
+// from VERCEL_PROJECT_PRODUCTION_URL, which still named the temporary host.
+export const siteUrl = "https://eventsatglenlary.com";
 
 export const site = {
   name: "The GlenLary Estate",

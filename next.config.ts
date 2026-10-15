@@ -44,6 +44,14 @@ const oldQueries: [string, string][] = [
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      // the temporary hosts forward to the real domain, path and all, so
+      // search engines and shared links consolidate on one site
+      ...["glenlary.smwolf.com", "glenlary.vercel.app"].map((host) => ({
+        source: "/:path*",
+        has: [{ type: "host" as const, value: host }],
+        destination: "https://eventsatglenlary.com/:path*",
+        permanent: true,
+      })),
       // /gallery itself is a live page, so only its old child pages redirect.
       { source: "/gallery/:path+", destination: "/gallery", permanent: true },
       ...oldPaths.map(([from, to]) => ({

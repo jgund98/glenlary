@@ -3,7 +3,7 @@
 Website for The GlenLary Estate, a wedding and event venue on a historic horse
 farm in Paris, Kentucky. Next.js 16, Tailwind 4, framer-motion, Lenis.
 
-- **Live:** https://glenlary.smwolf.com (also https://glenlary.vercel.app), Vercel project `glenlary`
+- **Live:** https://eventsatglenlary.com (www and the old temporary hosts glenlary.smwolf.com / glenlary.vercel.app forward to it), Vercel project `glenlary`
 - **Deploys:** every push to `main` builds and goes live automatically.
 - **Pages:** `/` `/estate` `/weddings` `/gallery` `/love-notes` `/tour`
 
@@ -29,20 +29,15 @@ npm run build && npm run start   # judge styling on the production build
 To add a gallery photo, drop it in `public/images/` and add one line to the
 gallery list in `lib/site.ts` with its category and orientation (`w`/`h`).
 
-## Before pointing eventsatglenlary.com here
+## Domain
 
-`eventsatglenlary.com` still serves the old WordPress site from GoDaddy. To
-switch it over:
-
-1. In Vercel → project `glenlary` → Settings → Domains, add
-   `eventsatglenlary.com` and `www.eventsatglenlary.com`.
-2. At GoDaddy DNS, set the records Vercel shows (A record for the apex, CNAME
-   for `www`).
-3. Nothing in the code changes. The sitemap, robots file, structured data and
-   social preview images build their URLs from Vercel's production domain
-   (`siteUrl` in `lib/site.ts`), so they follow the domain automatically on
-   the next deploy. If glenlary.smwolf.com stays attached, set
-   eventsatglenlary.com as the primary production domain so it wins.
+eventsatglenlary.com went live on Vercel on 2026-10-15. DNS stays at GoDaddy
+(nameservers ns41/ns42.domaincontrol.com) with the A records and the `www`
+CNAME that Vercel lists under project `glenlary` → Settings → Domains. The
+apex is primary; `www` 308s to it. The SSL certificate was issued with
+`vercel certs issue eventsatglenlary.com www.eventsatglenlary.com` and renews
+itself. `siteUrl` in `lib/site.ts` is fixed to https://eventsatglenlary.com, and
+`next.config.ts` forwards the temporary hosts plus every old WordPress URL.
 
 ## Known limits
 
