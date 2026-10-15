@@ -41,10 +41,13 @@ itself. `siteUrl` in `lib/site.ts` is fixed to https://eventsatglenlary.com, and
 
 ## Known limits
 
-- **Tour form:** "Request your tour" opens the visitor's email app with a
-  pre-filled message to elizabeth@eventsatglenlary.com. It does not store or
-  send anything on its own. If a server-sent form is wanted later, wire it to
-  an email service (only the API key belongs in Vercel env vars).
+- **Tour form:** posts to `/api/tour`, which emails the request through Brevo
+  (Epic client email protocol) from noreply@epicdevsolutions.com to
+  jgundyt@gmail.com (default in `lib/lead-email.ts`; override with
+  `LEAD_TO_EMAIL`). The ONLY env var is `BREVO_API_KEY`. Health check, no mail
+  sent: `GET /api/tour?verify=1`. Email preview: `LEAD_PREVIEW=1 npm start` then
+  `/api/tour/preview`. If a send fails the visitor gets a one-tap prefilled
+  email to Elizabeth instead, so no request is lost.
 - **Photo rules:** photos of Elizabeth's own earlier wedding must never appear
   on the site. Every current image has been checked.
 

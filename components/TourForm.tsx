@@ -5,48 +5,75 @@ import { site } from "@/lib/site";
 
 export default function TourForm({ presetWhen = "" }: { presetWhen?: string }) {
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [failed, setFailed] = useState(false);
+  const [fallbackHref, setFallbackHref] = useState("");
   const [names, setNames] = useState("");
   const [type, setType] = useState("Wedding");
   const [when, setWhen] = useState(presetWhen);
   const [guests, setGuests] = useState("");
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (sending) return;
     const f = new FormData(e.currentTarget);
+    setSending(true);
+    setFailed(false);
     const email = String(f.get("email") || "");
     const phone = String(f.get("phone") || "");
     const vision = String(f.get("vision") || "");
-
-    const subject = `Private tour request · ${names || "New inquiry"}`;
-    const lines: string[] = [
-      `Hello Elizabeth,`,
-      ``,
-      `We would love to tour the GlenLary Estate.`,
-      ``,
+    // if sending fails, the visitor can still send it all as a prefilled email
+    const lines = [
+      "Hello Elizabeth,",
+      "",
+      "We would love to tour the GlenLary Estate.",
+      "",
       `Names: ${names}`,
       `Email: ${email}`,
+      ...(phone ? [`Phone: ${phone}`] : []),
+      `Celebration: ${type}`,
+      ...(when ? [`Timing in mind: ${when}`] : []),
+      ...(guests ? [`Estimated guests: ${guests}`] : []),
+      ...(vision ? ["", "About our day:", vision] : []),
     ];
-    if (phone) lines.push(`Phone: ${phone}`);
-    lines.push(`Celebration: ${type}`);
-    if (when) lines.push(`Timing in mind: ${when}`);
-    if (guests) lines.push(`Estimated guests: ${guests}`);
-    if (vision) lines.push(``, `About our day:`, vision);
-
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(lines.join("\n"))}`;
-    setSent(true);
+    const subject = `Private tour request · ${names || "New inquiry"}`;
+    setFallbackHref(
+      `mailto:${site.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(lines.join("\n"))}`
+    );
+    try {
+      const res = await fetch("/api/tour", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          names,
+          email,
+          phone,
+          type,
+          when,
+          guests,
+          vision,
+          company: String(f.get("company") || ""),
+        }),
+      });
+      if (!res.ok) throw new Error(String(res.status));
+      setSent(true);
+    } catch {
+      // nothing is lost: the form keeps every answer and offers a direct email
+      setFailed(true);
+    } finally {
+      setSending(false);
+    }
   }
 
   if (sent) {
     return (
       <div className="card-invite p-10 text-center md:p-14">
         <p className="font-display text-4xl font-light italic text-pine">
-          Almost there
+          Thank you
         </p>
         <p className="mx-auto mt-4 max-w-sm leading-relaxed text-ink-soft">
-          Your request is on its way. Elizabeth will be in touch shortly to set
-          your tour date.
+          Your request is in. Elizabeth will be in touch shortly to set your
+          tour date.
         </p>
       </div>
     );
@@ -81,7 +108,14 @@ export default function TourForm({ presetWhen = "" }: { presetWhen?: string }) {
         />
       </div>
 
-      <form onSubmit={onSubmit} className="flex flex-1 flex-col space-y-9 px-7 py-9 md:px-12 md:py-11">
+      <form onSubmit={onSubmit} className="relative flex flex-1 flex-col space-y-9 px-7 py-9 md:px-12 md:py-11">
+        <div aria-hidden className="absolute -left-[9999px] h-px w-px overflow-hidden">
+          <label>
+            Company
+            <input name="company" tabIndex={-1} autoComplete="off" />
+          </label>
+        </div>
+
         <div className="grid gap-9 sm:grid-cols-2 sm:gap-x-10">
           <label className="block">
             <span className="label mb-1 block text-brass">Your names</span>
@@ -184,10 +218,21 @@ export default function TourForm({ presetWhen = "" }: { presetWhen?: string }) {
         <div className="mt-auto pt-1">
           <button
             type="submit"
-            className="label btn-fill btn-fill-light w-full bg-pine px-9 py-5 text-cream"
+            disabled={sending}
+            aria-busy={sending}
+            className="label btn-fill btn-fill-light w-full bg-pine px-9 py-5 text-cream disabled:cursor-wait disabled:opacity-80"
           >
-            Request Your Tour
+            {sending ? "Sending" : "Request Your Tour"}
           </button>
+          {failed && (
+            <p role="alert" className="mt-4 text-center text-sm leading-relaxed text-ink-soft">
+              That didn&rsquo;t go through. Please try again, or{" "}
+              <a href={fallbackHref || `mailto:${site.email}`} className="text-brass underline underline-offset-4">
+                send it by email instead
+              </a>
+              . Everything you wrote comes along.
+            </p>
+          )}
         </div>
       </form>
     </div>
