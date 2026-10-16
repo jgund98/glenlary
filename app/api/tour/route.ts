@@ -33,7 +33,12 @@ export async function GET(req: Request) {
     const res = await fetch("https://api.brevo.com/v3/account", {
       headers: { "api-key": key as string, accept: "application/json" },
     });
-    return NextResponse.json({ ok: true, configured, keyValid: res.ok, brevoStatus: res.status });
+    // Brevo's own reason on failure ("Key not found", "unrecognised IP address"),
+    // plus the key's shape, so a bad paste can be diagnosed without exposing it
+    const reason = res.ok ? undefined : ((await res.json().catch(() => ({}))) as { message?: string }).message;
+    const k = key as string;
+    const shape = k.startsWith("xkeysib-") ? "xkeysib" : /^[A-Za-z0-9+/=]+$/.test(k) && k.length > 80 ? "base64-wrapped?" : "unexpected";
+    return NextResponse.json({ ok: true, configured, keyValid: res.ok, brevoStatus: res.status, reason, keyShape: shape, keyLength: k.length, whitespace: k !== k.trim() });
   } catch {
     return NextResponse.json({ ok: true, configured, keyValid: false, brevoStatus: 0 });
   }
