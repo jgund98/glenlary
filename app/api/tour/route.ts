@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { EMAIL_RE, sendLead } from "@/lib/lead-email";
+import { EMAIL_RE, brevoKey, sendLead } from "@/lib/lead-email";
 
 /*
  * Tour requests -> email, via Epic's client email protocol.
@@ -24,7 +24,7 @@ export const dynamic = "force-dynamic";
 const str = (v: unknown, max = 2000) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 
 export async function GET(req: Request) {
-  const key = process.env.BREVO_API_KEY;
+  const key = brevoKey();
   const configured = Boolean(key);
   if (!configured || !new URL(req.url).searchParams.has("verify")) {
     return NextResponse.json({ ok: true, configured });

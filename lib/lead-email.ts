@@ -10,6 +10,25 @@
 
 const BREVO_ENDPOINT = "https://api.brevo.com/v3/smtp/email";
 
+/*
+ * The Brevo key from the environment, unwrapped if needed. Brevo's "API keys &
+ * MCP" page hands out a base64 blob (JSON holding the real xkeysib-... key);
+ * pasting that blob looks right but 401s with "Key not found". Accept both.
+ */
+export function brevoKey(): string | undefined {
+  const raw = process.env.BREVO_API_KEY?.trim();
+  if (!raw || raw.startsWith("xkeysib-")) return raw;
+  try {
+    const decoded = Buffer.from(raw, "base64").toString("utf8");
+    const fromJson = (JSON.parse(decoded) as { api_key?: string }).api_key;
+    if (fromJson?.startsWith("xkeysib-")) return fromJson.trim();
+  } catch {
+    const m = Buffer.from(raw, "base64").toString("utf8").match(/xkeysib-[A-Za-z0-9-]+/);
+    if (m) return m[0];
+  }
+  return raw;
+}
+
 /* Inquiries go to Jordan for now; switch to elizabeth@eventsatglenlary.com
    (or set LEAD_TO_EMAIL in Vercel) when she takes them over. Comma-separate
    to send to more than one inbox. */
@@ -244,7 +263,7 @@ export async function sendLead(lead: TourLead): Promise<{
      and the inbox ate it" from "never sent" when debugging. */
   messageId?: string;
 }> {
-  const key = process.env.BREVO_API_KEY;
+  const key = brevoKey();
   if (!key) {
     console.warn("[glenlary] BREVO_API_KEY missing, skipping send.");
     return { ok: false, skipped: true };
