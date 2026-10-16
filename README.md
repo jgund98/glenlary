@@ -48,6 +48,10 @@ itself. `siteUrl` in `lib/site.ts` is fixed to https://eventsatglenlary.com, and
   sent: `GET /api/tour?verify=1`. Email preview: `LEAD_PREVIEW=1 npm start` then
   `/api/tour/preview`. If a send fails the visitor gets a one-tap prefilled
   email to Elizabeth instead, so no request is lost.
+  `BREVO_API_KEY` may be pasted as the plain `xkeysib-...` key or as the base64
+  blob Brevo's "API keys & MCP" page shows; `brevoKey()` unwraps it. If
+  `?verify=1` reports "unrecognised IP address", Brevo's Security → Authorized
+  IPs blocking for API keys is on; deactivate it (Vercel's IPs change).
 - **Photo rules:** photos of Elizabeth's own earlier wedding must never appear
   on the site. Every current image has been checked.
 
