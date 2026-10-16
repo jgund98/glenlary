@@ -29,10 +29,9 @@ export function brevoKey(): string | undefined {
   return raw;
 }
 
-/* Inquiries go to Jordan for now; switch to elizabeth@eventsatglenlary.com
-   (or set LEAD_TO_EMAIL in Vercel) when she takes them over. Comma-separate
-   to send to more than one inbox. */
-const TO_EMAIL = process.env.LEAD_TO_EMAIL || "jgundyt@gmail.com";
+/* Tour requests go to Elizabeth, the Events Director. Override with
+   LEAD_TO_EMAIL in Vercel; comma-separate to send to more than one inbox. */
+const TO_EMAIL = process.env.LEAD_TO_EMAIL || "elizabeth@eventsatglenlary.com";
 const FROM_EMAIL = process.env.LEAD_FROM_EMAIL || "noreply@epicdevsolutions.com";
 const FROM_NAME = process.env.LEAD_FROM_NAME || "The GlenLary Estate";
 

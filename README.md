@@ -43,7 +43,7 @@ itself. `siteUrl` in `lib/site.ts` is fixed to https://eventsatglenlary.com, and
 
 - **Tour form:** posts to `/api/tour`, which emails the request through Brevo
   (Epic client email protocol) from noreply@epicdevsolutions.com to
-  jgundyt@gmail.com (default in `lib/lead-email.ts`; override with
+  elizabeth@eventsatglenlary.com (default in `lib/lead-email.ts`; override with
   `LEAD_TO_EMAIL`). The ONLY env var is `BREVO_API_KEY`. Health check, no mail
   sent: `GET /api/tour?verify=1`. Email preview: `LEAD_PREVIEW=1 npm start` then
   `/api/tour/preview`. If a send fails the visitor gets a one-tap prefilled
