@@ -9,12 +9,14 @@ import { Barn, Cabin, Manor, Pool, Stables, Tent } from "./estate-map-icons";
  * wedding actually happens, laid out from the county plat (CUP 18-07,
  * Figure 1) and the aerial. North is up. Austerlitz Road runs along the top;
  * the drive enters at the north-west corner and runs down the west side past
- * the pond to the manor, a third of a mile in. The manor faces north up the
- * drive, which runs straight down the house's centre line from the gate and
- * opens into a circle in front of the house; the great oak stands inside the
- * circle on the west side with the ceremony chairs between it and the house;
- * a lane leaves the circle, wraps the base of the small pond and runs south
- * to the barn, with the big pond to its east; behind the house
+ * THE pond (the swan pond, just east of the drive and north of the house;
+ * Elizabeth: "the pond is the top pond, not the back pond") to the manor, a
+ * third of a mile in. The manor faces north up the drive, which runs straight
+ * down the house's centre line from the gate and opens into a circle in front
+ * of the house; the great oak stands inside the circle on the west side with
+ * the ceremony chairs between it and the house; a lane leaves the circle and
+ * runs south to the barn, with a second, unmarked turnout pond off to its
+ * east (it is on the aerial, but it is not "the pond"); behind the house
  * come the pool, then the tent, with the log cabin beside the tent's west
  * end; the black tobacco barn sits further south down the lane (checked against the aerial and
  * the owner's walk-through). The working stables sit on the east side. Not
@@ -71,17 +73,16 @@ const places: Place[] = [
     n: "02",
     name: "The Pond",
     short: "the pond",
-    nolabel: true,
-    where: "East of the house",
+    where: "Beside the drive, north of the house",
     blurb:
-      "The big pond east of the house, still water ringed by pasture and the best place on the farm to watch the sun go.",
+      "Just off the drive on the way in. Still water ringed by pasture, home to the resident swan, and the best place on the farm to watch the sun go.",
     image: "/images/pond-spring.jpg",
     alt: "The pond in spring",
     cat: "grounds",
-    x: 436,
-    y: 622,
-    px: 470,
-    py: 580,
+    x: 290,
+    y: 432,
+    px: 334,
+    py: 372,
     lx: 24,
     ly: 6,
   },
@@ -213,9 +214,9 @@ const catLabel: Record<string, string> = {
 
 // The route the marker follows: through the gate, straight down the
 // tree-lined drive on the house's centre line, round the circle in front of
-// the manor, out its east side and round the base of the pond, then south
-// past the pool, tent and cabin to the barn, then the farm track east and
-// north to the stables.
+// the manor, out its east side and south past the pool, tent and cabin to
+// the barn (the unmarked turnout pond lies east of this stretch), then the
+// farm track east and north to the stables.
 const ROUTE =
   "M206 100 L206 502 C175 502 150 519 150 540 C150 561 175 578 206 578 C237 578 262 561 262 540 C262 520 280 506 300 500 C320 494 336 512 336 560 L330 700 C320 740 310 770 300 794 C330 794 356 776 360 748 C362 720 380 700 410 698 L470 696 C512 694 536 676 538 636 L538 410 C538 396 528 388 516 388";
 
@@ -553,7 +554,7 @@ export default function EstateMap({
                 ))}
               </g>
 
-              {/* the pond, just above the ceremony lawn */}
+              {/* THE pond (stop 02): beside the drive, north of the house, swan included */}
               <g transform="translate(4 28)">
               <path
                 d="M232 398 C246 380 284 384 296 404 C310 426 296 448 270 452 C242 456 218 432 232 398 Z"
@@ -574,7 +575,8 @@ export default function EstateMap({
               <circle cx="278" cy="418" r="1.3" fill="var(--m-house)" />
               </g>
 
-              {/* the big pond, east of the house */}
+              {/* the second pond, a turnout pond south-east of the house: on the
+                  aerial, so it stays drawn, but it is not "the pond", so no pin */}
               <path
                 d="M370 598 C390 584 440 590 472 604 C500 616 512 640 488 650 C460 660 420 644 396 634 C376 626 358 612 370 598 Z"
                 fill="var(--m-water)"
